@@ -1,10 +1,11 @@
 ﻿using TMDB.Models;
 namespace TMDB.Models
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using TMDB.Models;
+	using System;
+	using System.Collections.Generic;
+	using System.ComponentModel.DataAnnotations.Schema;
+	using System.Linq;
+	using TMDB.Models;
 
     public class Movie : BaseEntity
     {
@@ -33,6 +34,7 @@ namespace TMDB.Models
 
         public DateTime ReleaseDate { get; set; }
 
+		[ForeignKey("Person")]
         public int DirectorID { get; set; }
 
         public decimal Gross { get; set; }
