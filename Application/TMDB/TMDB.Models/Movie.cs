@@ -1,10 +1,10 @@
 ﻿namespace IMDB.Models
 {
-    using System;
-    using System.Linq;
+using System;
+using System.Linq;
 
-    public class Movie
-    {
+namespace TMDB.Models
+{
         public int MovieID { get; set; }
 
         public string Title { get; set; }

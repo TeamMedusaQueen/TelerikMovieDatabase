@@ -7,8 +7,8 @@
     <ProjectGuid>{D03BE1AD-12DB-4C2E-A974-A8801BB5B66D}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>IMDB.Models</RootNamespace>
-    <AssemblyName>IMDB.Models</AssemblyName>
+    <RootNamespace>TMDB.Models</RootNamespace>
+    <AssemblyName>TMDB.Models</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
