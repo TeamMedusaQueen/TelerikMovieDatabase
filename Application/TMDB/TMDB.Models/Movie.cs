@@ -35,8 +35,6 @@ namespace TMDB.Models
 
         public int DirectorID { get; set; }
 
-        public int GenreID { get; set; }
-
         public int BoxOfficeEntry { get; set; }
 
         public decimal Gross { get; set; }
