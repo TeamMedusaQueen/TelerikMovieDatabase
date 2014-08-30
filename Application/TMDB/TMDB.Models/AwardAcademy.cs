@@ -1,10 +1,12 @@
 ﻿namespace TMDB.Models
 {
-    using System;
-    using System.Linq;
+	using System;
+	using System.Collections.Generic;
 
-    public class AwardAcademy : BaseEntity
-    {
-        public string Title { get; set; }
-    }
+	using System.Linq;
+
+	public class AwardAcademy : BaseEntity
+	{
+		public string Title { get; set; }
+	}
 }

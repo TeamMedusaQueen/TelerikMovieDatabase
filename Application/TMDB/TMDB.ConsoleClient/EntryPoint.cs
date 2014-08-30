@@ -7,9 +7,9 @@
 	using System.Text;
 	using System.Threading.Tasks;
 	using System.Xml;
-    using TMDB.Data;
-    using TMDB.Models;
-    
+	using TMDB.Data;
+	using TMDB.Models;
+
 
 	internal class Program
 	{
