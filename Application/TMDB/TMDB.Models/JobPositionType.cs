@@ -2,11 +2,13 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
-namespace IMDB.Models
+namespace TMDB.Models
 {
-    class Movie
+    public enum JobPositionType
     {
+        Actor,
+        Writer,
+        Director
     }
 }

@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.30501.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TMDB.Models", "TMDB.Models\TMDB.Models.csproj", "{D03BE1AD-12DB-4C2E-A974-A8801BB5B66D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TMDB.ConsoleClient", "TMDB.ConsoleClient\TMDB.ConsoleClient.csproj", "{58531FDC-33FF-4158-9F8D-AF6A74B3BAAD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TMDB.Data", "TMDB.Data\TMDB.Data.csproj", "{4F30509D-FC6B-4916-91E0-B8BC1BA5979F}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D03BE1AD-12DB-4C2E-A974-A8801BB5B66D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D03BE1AD-12DB-4C2E-A974-A8801BB5B66D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D03BE1AD-12DB-4C2E-A974-A8801BB5B66D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D03BE1AD-12DB-4C2E-A974-A8801BB5B66D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{58531FDC-33FF-4158-9F8D-AF6A74B3BAAD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{58531FDC-33FF-4158-9F8D-AF6A74B3BAAD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{58531FDC-33FF-4158-9F8D-AF6A74B3BAAD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{58531FDC-33FF-4158-9F8D-AF6A74B3BAAD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4F30509D-FC6B-4916-91E0-B8BC1BA5979F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4F30509D-FC6B-4916-91E0-B8BC1BA5979F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4F30509D-FC6B-4916-91E0-B8BC1BA5979F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4F30509D-FC6B-4916-91E0-B8BC1BA5979F}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
