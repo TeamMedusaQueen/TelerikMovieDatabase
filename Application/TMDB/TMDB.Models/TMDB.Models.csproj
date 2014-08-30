@@ -39,6 +39,7 @@
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -50,9 +51,11 @@
     <Compile Include="AwardAcademy.cs" />
     <Compile Include="BaseEntity.cs" />
     <Compile Include="BoxOfficeEntry.cs" />
+    <Compile Include="Country.cs" />
     <Compile Include="Genre.cs" />
     <Compile Include="JobPosition.cs" />
     <Compile Include="JobPositionType.cs" />
+    <Compile Include="Language.cs" />
     <Compile Include="Nomination.cs" />
     <Compile Include="Person.cs" />
     <Compile Include="Movie.cs" />

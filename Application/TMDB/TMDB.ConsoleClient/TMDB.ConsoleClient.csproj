@@ -60,6 +60,10 @@
       <Project>{4f30509d-fc6b-4916-91e0-b8bc1ba5979f}</Project>
       <Name>TMDB.Data</Name>
     </ProjectReference>
+    <ProjectReference Include="..\TMDB.IMDBDataProvider\TMDB.IMDBDataProvider.csproj">
+      <Project>{e009ffbd-243c-45d7-8c43-c657625e7cc5}</Project>
+      <Name>TMDB.IMDBDataProvider</Name>
+    </ProjectReference>
     <ProjectReference Include="..\TMDB.Models\TMDB.Models.csproj">
       <Project>{d03be1ad-12db-4c2e-a974-a8801bb5b66d}</Project>
       <Name>TMDB.Models</Name>

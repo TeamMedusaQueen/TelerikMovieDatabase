@@ -8,18 +8,27 @@
 	using System.Threading.Tasks;
 	using System.Xml;
 	using TMDB.Data;
-	using TMDB.Models;
-
 
 	internal class Program
 	{
 		private static void Main()
 		{
 			//ImportMovieAwardsAndNominationsFromXML();
-            TmdbContext db = new TmdbContext();
 
-            db.ProductionCompanies.Add(new ProductionCompany { Title = "Twenty Century Fox" });
-            db.SaveChanges();
+			using (TmdbContext dbContext = new TmdbContext())
+			{
+				var movies = dbContext.Movies.ToArray();
+
+				//dbContext.ProductionCompanies.Add(new ProductionCompany { Title = "Twenty Century Fox" });
+				//
+				//var movies = OMDB.GetTop250();
+				//foreach (var movie in movies)
+				//{
+				//	dbContext.Movies.Add(movie);
+				//}
+
+				//dbContext.SaveChanges();
+			}
 		}
 
 		private static void ImportMovieAwardsAndNominationsFromXML()

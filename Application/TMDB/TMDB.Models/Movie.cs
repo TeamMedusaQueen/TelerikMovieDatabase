@@ -14,6 +14,8 @@
 		private ICollection<Nomination> nominations;
 		private ICollection<Award> awards;
 		private ICollection<Genre> genres;
+		private ICollection<Country> countries;
+		private ICollection<Language> languages;
 
 		public Movie()
 		{
@@ -23,21 +25,32 @@
 			this.nominations = new HashSet<Nomination>();
 			this.awards = new HashSet<Award>();
 			this.genres = new HashSet<Genre>();
+			this.countries = new HashSet<Country>();
+			this.languages = new HashSet<Language>();
 		}
 
 		public string Title { get; set; }
 
 		public string Storyline { get; set; }
 
-		public int RunningTime { get; set; }
+		public int? RunningTime { get; set; }
 
-		public DateTime ReleaseDate { get; set; }
+		public byte? Metascore { get; set; }
 
-		//public int PersonID { get; set; }
+		public string Rated { get; set; }
+
+		public float Rating { get; set; }
+
+		public byte[] Poster { get; set; }
+
+		public DateTime? ReleaseDate { get; set; }
+
+		[Column("Director_ID")]
+		public Person Director { get; set; }
 
 		public decimal Gross { get; set; }
 
-		public int BoxOfficeEntryID { get; set; }
+		public int? BoxOfficeEntryID { get; set; }
 
 		public virtual BoxOfficeEntry BoxOfficeEntry { get; set; }
 
@@ -86,6 +99,30 @@
 			set
 			{
 				this.genres = value;
+			}
+		}
+
+		public virtual ICollection<Country> Countries
+		{
+			get
+			{
+				return this.countries;
+			}
+			set
+			{
+				this.countries = value;
+			}
+		}
+
+		public virtual ICollection<Language> Languages
+		{
+			get
+			{
+				return this.languages;
+			}
+			set
+			{
+				this.languages = value;
 			}
 		}
 

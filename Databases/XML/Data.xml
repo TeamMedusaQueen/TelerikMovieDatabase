@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8">
+<movie-nominations>
+  <nomination>
+    <industry-awards name="Academy Awards" year="2001"></industry-awards>
+  </nomination>
+  <nomination>
+    <industry-awards name="Golden Globes" year="2002"></industry-awards>
+  </nomination>
+  <nomination>
+    <industry-awards name="Golden Globes" year="2000"></industry-awards>
+  </nomination>
+<movie-nominations>
+<movie-awards>
+    <awards>
+      <industry-awards name="Academy Awards" year="2010"></industry-awards>
+    </awards>
+    <awards>
+      <industry-awards name="Golden Globes" year="2012"></industry-awards>
+    </awards>
+    <awards>
+      <industry-awards name="Golden Globes" year="2010"></industry-awards>
+    </awards>
+<movie-awards>

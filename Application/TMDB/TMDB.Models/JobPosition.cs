@@ -25,7 +25,7 @@
             }
         }
 
-        public JobPositionType JobPositionType { get; set; }
+        public JobPositionType Type { get; set; }
 
 
     }
