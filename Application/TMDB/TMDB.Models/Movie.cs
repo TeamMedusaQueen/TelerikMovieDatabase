@@ -15,6 +15,7 @@ namespace TMDB.Models
         private ICollection<Nomination> nominations;
         private ICollection<Award> awards;
         private ICollection<Genre> genres;
+        private ICollection<JobPosition> job;
 
         public Movie()
         {
@@ -23,6 +24,7 @@ namespace TMDB.Models
             this.productionCompanies = new HashSet<ProductionCompany>();
             this.nominations = new HashSet<Nomination>();
             this.awards = new HashSet<Award>();
+            this.job = new HashSet<JobPosition>();
             this.genres = new HashSet<Genre>();
         }
 
@@ -52,6 +54,18 @@ namespace TMDB.Models
             set
             {
                 this.writers = value;
+            }
+        }
+
+        public virtual ICollection<JobPosition> Job
+        {
+            get
+            {
+                return this.job;
+            }
+            set
+            {
+                this.job = value;
             }
         }
 

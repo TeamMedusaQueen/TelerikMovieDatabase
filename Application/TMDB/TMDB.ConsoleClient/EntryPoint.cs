@@ -10,16 +10,16 @@
 	using TMDB.Data;
 	using TMDB.Models;
 
+
 	internal class Program
 	{
 		private static void Main()
 		{
-			ImportMovieAwardsAndNominationsFromXML();
+			//ImportMovieAwardsAndNominationsFromXML();
+            TmdbContext db = new TmdbContext();
 
-			TmdbContext db = new TmdbContext();
-
-			db.ProductionCompanies.Add(new ProductionCompany { Title = "Twenty Century Fox" });
-			db.SaveChanges();
+            db.ProductionCompanies.Add(new ProductionCompany { Title = "Twenty Century Fox" });
+            db.SaveChanges();
 		}
 
 		private static void ImportMovieAwardsAndNominationsFromXML()
