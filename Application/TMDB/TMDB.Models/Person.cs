@@ -8,15 +8,17 @@
     public class Person : BaseEntity
     {
         private ICollection<JobPosition> job;
-        private ICollection<Movie> movies;
+		private ICollection<Movie> filmedMovies;
+		private ICollection<Movie> writedMovies;
 
         public Person()
         {
             this.job = new HashSet<JobPosition>();
-            this.movies = new HashSet<Movie>();
+			this.filmedMovies = new HashSet<Movie>();
+			this.writedMovies = new HashSet<Movie>();
         }
 
-        public ICollection<JobPosition> Job
+		public virtual ICollection<JobPosition> Job
         {
             get
             {
@@ -28,17 +30,28 @@
             }
         }
 
-        public ICollection<Movie> Movies
+        public virtual ICollection<Movie> FilmedMovies
         {
             get
             {
-                return this.movies;
+                return this.filmedMovies;
             }
             set
             {
-                this.movies = value;
+                this.filmedMovies = value;
             }
         }
+		public virtual ICollection<Movie> WritedMovies
+		{
+			get
+			{
+				return this.writedMovies;
+			}
+			set
+			{
+				this.writedMovies = value;
+			}
+		}
 
         public string FirstName { get; set; }
         

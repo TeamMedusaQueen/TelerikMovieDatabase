@@ -4,7 +4,7 @@
     using System.Collections.Generic;
     using System.Linq;
     
-    class JobPosition : BaseEntity
+    public class JobPosition : BaseEntity
     {
         private ICollection<Person> workers;
 
@@ -13,7 +13,7 @@
             this.workers = new HashSet<Person>();
         }
 
-        public ICollection<Person> Workers
+		public virtual ICollection<Person> Workers
         {
             get
             {

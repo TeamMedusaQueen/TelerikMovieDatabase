@@ -11,8 +11,33 @@
         public TmdbContext()
             : base("TMDB")
         {
-            Database.SetInitializer(new MigrateDatabaseToLatestVersion<TmdbContext, Configuration>());
+			Database.SetInitializer(new MigrateDatabaseToLatestVersion<TmdbContext, Configuration>());
         }
+
+		protected override void OnModelCreating(DbModelBuilder modelBuilder)
+		{
+			base.OnModelCreating(modelBuilder);
+
+			modelBuilder.Entity<Person>()
+				.HasMany(i => i.FilmedMovies)
+				.WithMany(i => i.Cast)
+				.Map(i =>
+				{
+					i.MapLeftKey("Person_ID");
+					i.MapRightKey("Movie_ID");
+					i.ToTable("ActorsMovies");
+				});
+
+			modelBuilder.Entity<Person>()
+				.HasMany(i => i.WritedMovies)
+				.WithMany(i => i.Writers)
+				.Map(i =>
+				{
+					i.MapLeftKey("Person_ID");
+					i.MapRightKey("Movie_ID");
+					i.ToTable("WritersMovies");
+				});
+		}
 
         public IDbSet<Movie> Movies { get; set; }
 
