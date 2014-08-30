@@ -8,10 +8,12 @@
     public class Person : BaseEntity
     {
         private ICollection<JobPosition> job;
+        private ICollection<Movie> movies;
 
         public Person()
         {
             this.job = new HashSet<JobPosition>();
+            this.movies = new HashSet<Movie>();
         }
 
         public ICollection<JobPosition> Job
@@ -23,6 +25,18 @@
             set
             {
                 this.job = value;
+            }
+        }
+
+        public ICollection<Movie> Movies
+        {
+            get
+            {
+                return this.movies;
+            }
+            set
+            {
+                this.movies = value;
             }
         }
 
