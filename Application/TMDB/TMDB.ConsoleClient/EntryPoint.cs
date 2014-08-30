@@ -7,12 +7,19 @@
 	using System.Text;
 	using System.Threading.Tasks;
 	using System.Xml;
+	using TMDB.Data;
+	using TMDB.Models;
 
 	internal class Program
 	{
 		private static void Main()
 		{
 			ImportMovieAwardsAndNominationsFromXML();
+
+			TmdbContext db = new TmdbContext();
+
+			db.ProductionCompanies.Add(new ProductionCompany { Title = "Twenty Century Fox" });
+			db.SaveChanges();
 		}
 
 		private static void ImportMovieAwardsAndNominationsFromXML()

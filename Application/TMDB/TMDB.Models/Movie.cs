@@ -35,11 +35,11 @@ namespace TMDB.Models
 
         public int DirectorID { get; set; }
 
-        public int BoxOfficeEntry { get; set; }
-
         public decimal Gross { get; set; }
 
-        public int BoxOfficeEntryId { get; set; }
+        public int BoxOfficeEntryID { get; set; }
+
+		public virtual BoxOfficeEntry BoxOfficeEntry { get; set; }
 
         public virtual ICollection<Person> Writers
         {
