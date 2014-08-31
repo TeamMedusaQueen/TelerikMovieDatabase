@@ -172,3 +172,15 @@ UpgradeLog*.htm
 
 # Microsoft Fakes
 FakesAssemblies/
+Application/TMDB/.nuget/NuGet.Config
+Application/TMDB/.nuget/NuGet.exe
+Application/TMDB/.nuget/NuGet.targets
+Application/TMDB/TMDB.ConsoleClient/TMDB.ConsoleClient.csproj
+Application/TMDB/TMDB.Data/TMDB.Data.csproj
+Application/TMDB/TMDB.Models/TMDB.Models.csproj
+Application/TMDB/TMDB.ConsoleClient/TMDB.ConsoleClient.csproj
+Application/TMDBMongoDB/TMDBMongoDB.Models/BaseEntity.cs
+Application/TMDBMongoDB/TMDBMongoDB.Models/Movie.cs
+Application/TMDBMongoDB/TMDBMongoDB.Models/Properties/AssemblyInfo.cs
+Application/TMDBMongoDB/TMDBMongoDB.Models/TMDBMongoDB.Models.csproj
+Application/TMDBMongoDB/TMDBMongoDB.sln
