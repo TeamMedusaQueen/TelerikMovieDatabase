@@ -7,29 +7,36 @@
 	using System.Text;
 	using System.Threading.Tasks;
 	using System.Xml;
+    using System.Data.SQLite;
 
 	internal class Program
 	{
 		private static void Main()
 		{
-			//ImportMovieAwardsAndNominationsFromXML();
-
-			using (var dbContext = new TMDB.Data.TmdbContext())
-			{
-				var movies = dbContext.Movies.ToArray();
-
-				//var movieJSONModels = OMDB.GetTop250();
-				//foreach (var movieJSONModel in movieJSONModels)
-				//{
-				//	var movie = movieJSONModel.GetMovieModel(dbContext);
-				//	dbContext.Movies.Add(movie);
-				//}
-
-				//dbContext.SaveChanges();
-			}
-
-			//var mongoDbContext = new TMDB.Data.Provider.MongoDatabase.TmdbMongoDbContext();
-			//mongoDbContext.InitialCreate();
+            var result  = ConnectToSqLiteDatabase();
+            foreach (var entry in result)
+            {
+                Console.WriteLine(entry);
+            }
+			////ImportMovieAwardsAndNominationsFromXML();
+            //
+			//using (var dbContext = new TMDB.Data.TmdbContext())
+			//{
+			//	var movies = dbContext.Movies.ToArray();
+            //  
+            //
+			//	//var movieJSONModels = OMDB.GetTop250();
+			//	//foreach (var movieJSONModel in movieJSONModels)
+			//	//{
+			//	//	var movie = movieJSONModel.GetMovieModel(dbContext);
+			//	//	dbContext.Movies.Add(movie);
+			//	//}
+            //
+			//	//dbContext.SaveChanges();
+			//}
+            //
+			////var mongoDbContext = new TMDB.Data.Provider.MongoDatabase.TmdbMongoDbContext();
+			////mongoDbContext.InitialCreate();
 		}
 
 		private static void ImportMovieAwardsAndNominationsFromXML()
@@ -106,5 +113,28 @@
 				Console.WriteLine(award);
 			}
 		}
+
+        private static List<Object> ConnectToSqLiteDatabase()
+        {
+            SQLiteConnection sqliteConnection = new SQLiteConnection("Data Source = ..\\..\\..\\..\\Databases\\SQLite\\MovieBudget.db");
+            sqliteConnection.Open();
+            SQLiteCommand command = new SQLiteCommand("SELECT * FROM MovieBudgetReports", sqliteConnection);
+            SQLiteDataReader reader = command.ExecuteReader();
+            var data = new List<object>();
+            using (reader)
+            {
+                while (reader.Read())
+                {
+                    int reportId = Convert.ToInt32(reader["ReportID"]);
+                    string title = (string)reader["Title"];
+                    int budget = Convert.ToInt32(reader["Budget"]);
+                    data.Add(reportId);
+                    data.Add(title);
+                    data.Add(budget);
+                    //InsertInExcel("Bugs", carModel, description, importance);
+                }
+            }
+            return data;
+        }
 	}
 }
