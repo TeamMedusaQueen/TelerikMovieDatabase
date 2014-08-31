@@ -9,11 +9,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TMDB.ConsoleClient", "TMDB.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TMDB.Data", "TMDB.Data\TMDB.Data.csproj", "{4F30509D-FC6B-4916-91E0-B8BC1BA5979F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TMDB.IMDBDataProvider", "TMDB.IMDBDataProvider\TMDB.IMDBDataProvider.csproj", "{E009FFBD-243C-45D7-8C43-C657625E7CC5}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TMDB.Data.Provider.IMDB", "TMDB.Data.Provider.IMDB\TMDB.Data.Provider.IMDB.csproj", "{E009FFBD-243C-45D7-8C43-C657625E7CC5}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XLSFilesWorking", "XLSFilesWorking\XLSFilesWorking.csproj", "{41029C3B-F796-40FA-A4CD-10B293EA8E56}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PDFFileExport", "PDFFileExport\PDFFileExport.csproj", "{B2E5B08F-0156-4437-83EC-4B9F5E8A0467}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TMDB.Data.Provider.MongoDatabase", "TMDB.Data.Provider.MongoDatabase\TMDB.Data.Provider.MongoDatabase.csproj", "{7DE0BED1-518F-42F8-A6E4-7EE27829A410}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -41,10 +41,10 @@ Global
 		{41029C3B-F796-40FA-A4CD-10B293EA8E56}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{41029C3B-F796-40FA-A4CD-10B293EA8E56}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{41029C3B-F796-40FA-A4CD-10B293EA8E56}.Release|Any CPU.Build.0 = Release|Any CPU
-		{B2E5B08F-0156-4437-83EC-4B9F5E8A0467}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{B2E5B08F-0156-4437-83EC-4B9F5E8A0467}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{B2E5B08F-0156-4437-83EC-4B9F5E8A0467}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{B2E5B08F-0156-4437-83EC-4B9F5E8A0467}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7DE0BED1-518F-42F8-A6E4-7EE27829A410}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7DE0BED1-518F-42F8-A6E4-7EE27829A410}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7DE0BED1-518F-42F8-A6E4-7EE27829A410}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7DE0BED1-518F-42F8-A6E4-7EE27829A410}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
