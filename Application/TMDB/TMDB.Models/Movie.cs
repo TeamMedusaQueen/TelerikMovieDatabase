@@ -2,9 +2,11 @@
 {
 	using System;
 	using System.Collections.Generic;
+	using System.ComponentModel.DataAnnotations;
 	using System.ComponentModel.DataAnnotations.Schema;
 
 	using System.Linq;
+	using System.Runtime.Serialization;
 
 	public class Movie : BaseEntity
 	{
@@ -29,18 +31,22 @@
 			this.languages = new HashSet<Language>();
 		}
 
+		[StringLength(100)]
 		public string Title { get; set; }
 
+		[StringLength(500)]
 		public string Storyline { get; set; }
 
 		public int? RunningTime { get; set; }
 
 		public byte? Metascore { get; set; }
 
+		[StringLength(10)]
 		public string Rated { get; set; }
 
 		public float Rating { get; set; }
 
+		[MaxLength(int.MaxValue)]
 		public byte[] Poster { get; set; }
 
 		public DateTime? ReleaseDate { get; set; }

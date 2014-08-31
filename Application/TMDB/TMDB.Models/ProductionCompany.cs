@@ -13,7 +13,7 @@
             this.movies = new HashSet<Movie>();
         }
 
-        public string Title { get; set; }
+        public string Name { get; set; }
 
         public virtual ICollection<Movie> Movies
         {

@@ -7,7 +7,6 @@
 	using System.Text;
 	using System.Threading.Tasks;
 	using System.Xml;
-	using TMDB.Data;
 
 	internal class Program
 	{
@@ -15,20 +14,22 @@
 		{
 			//ImportMovieAwardsAndNominationsFromXML();
 
-			using (TmdbContext dbContext = new TmdbContext())
+			using (var dbContext = new TMDB.Data.TmdbContext())
 			{
 				var movies = dbContext.Movies.ToArray();
 
-				//dbContext.ProductionCompanies.Add(new ProductionCompany { Title = "Twenty Century Fox" });
-				//
-				//var movies = OMDB.GetTop250();
-				//foreach (var movie in movies)
+				//var movieJSONModels = OMDB.GetTop250();
+				//foreach (var movieJSONModel in movieJSONModels)
 				//{
+				//	var movie = movieJSONModel.GetMovieModel(dbContext);
 				//	dbContext.Movies.Add(movie);
 				//}
 
 				//dbContext.SaveChanges();
 			}
+
+			//var mongoDbContext = new TMDB.Data.Provider.MongoDatabase.TmdbMongoDbContext();
+			//mongoDbContext.InitialCreate();
 		}
 
 		private static void ImportMovieAwardsAndNominationsFromXML()
