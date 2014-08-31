@@ -1,4 +1,4 @@
-MedusaQueen
+TelerikMovieDatabase
 ===========
 
 TeamWork Database
