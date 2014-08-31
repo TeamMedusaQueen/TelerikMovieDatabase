@@ -54,9 +54,12 @@
     <Compile Include="TmdbContext.cs" />
   </ItemGroup>
   <ItemGroup>
+<<<<<<< HEAD
     <None Include="App.config">
       <SubType>Designer</SubType>
     </None>
+=======
+>>>>>>> origin/master
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>

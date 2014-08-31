@@ -8,8 +8,10 @@
 
 	public class TmdbContext : DbContext, IDisposable
 	{
+		public const string ConnectionStringName = "MSSQLSERVER";
+
 		public TmdbContext()
-			: base("TMDB")
+			: base(ConnectionStringName)
 		{
 			Database.SetInitializer(new MigrateDatabaseToLatestVersion<TmdbContext, Configuration>());
 		}
