@@ -1,0 +1,12 @@
+C#
+Prelimirary data
+ZIP File Excel 2003 => SQL Server
+MongoDB => SQL Server
+
+XML file => SQL Server and MongoDB
+SQLite + MySQL => Excel 2007 (.xlsx)
+SQL Server => JSON => MySQL
+
+Reports
+SQL Server => XML
+SQL Server => PDF
