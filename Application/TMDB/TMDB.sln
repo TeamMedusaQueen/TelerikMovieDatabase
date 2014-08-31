@@ -15,6 +15,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XLSFilesWorking", "XLSFiles
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TMDB.Data.Provider.MongoDatabase", "TMDB.Data.Provider.MongoDatabase\TMDB.Data.Provider.MongoDatabase.csproj", "{7DE0BED1-518F-42F8-A6E4-7EE27829A410}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TMDB.PDFFileExport", "TMDB.PDFFileExport\TMDB.PDFFileExport.csproj", "{B2E5B08F-0156-4437-83EC-4B9F5E8A0467}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -45,6 +47,10 @@ Global
 		{7DE0BED1-518F-42F8-A6E4-7EE27829A410}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7DE0BED1-518F-42F8-A6E4-7EE27829A410}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7DE0BED1-518F-42F8-A6E4-7EE27829A410}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B2E5B08F-0156-4437-83EC-4B9F5E8A0467}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B2E5B08F-0156-4437-83EC-4B9F5E8A0467}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B2E5B08F-0156-4437-83EC-4B9F5E8A0467}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B2E5B08F-0156-4437-83EC-4B9F5E8A0467}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
