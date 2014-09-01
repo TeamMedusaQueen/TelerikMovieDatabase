@@ -1,4 +1,4 @@
-﻿namespace TMDB.ConsoleClient
+﻿namespace TelerikMovieDatabase.ConsoleClient
 {
     using System;
     using System.Collections.Generic;

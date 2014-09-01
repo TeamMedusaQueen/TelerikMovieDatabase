@@ -4,11 +4,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("TelerikMovieDatabase.DatabaseDataGet")]
+[assembly: AssemblyTitle("TelerikMovieDatabase.Data.MySql")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("TelerikMovieDatabase.DatabaseDataGet")]
+[assembly: AssemblyProduct("TelerikMovieDatabase.Data.MySql")]
 [assembly: AssemblyCopyright("Copyright ©  2014")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]

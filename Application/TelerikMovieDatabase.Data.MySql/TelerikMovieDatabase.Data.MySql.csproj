@@ -7,8 +7,8 @@
     <ProjectGuid>{53265996-A416-4E3A-904D-184AE9759C2D}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>TelerikMovieDatabase.DatabaseDataGet</RootNamespace>
-    <AssemblyName>TelerikMovieDatabase.DatabaseDataGet</AssemblyName>
+    <RootNamespace>TelerikMovieDatabase.Data.MySql</RootNamespace>
+    <AssemblyName>TelerikMovieDatabase.Data.MySql</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
