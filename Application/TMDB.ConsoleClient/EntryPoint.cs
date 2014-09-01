@@ -29,9 +29,12 @@
                 Console.WriteLine(entry.Key + "--->" + entry.Value);
             }
 
-            //TmdbContext db = new TmdbContext();                       //reading from excell files and adding to sqlDB in BoxOfficeEntry
+            TmdbContext db = new TmdbContext();                       //reading from excell files and adding to sqlDB in BoxOfficeEntry
             //ExcelManager.InsertInSqlDB(db);
 
+            
+                Console.WriteLine(db.BoxOfficeEntries);
+            
             ////ImportMovieAwardsAndNominationsFromXML();
             //
             // using (var dbContext = new TMDB.Data.TmdbContext())
