@@ -1,0 +1,76 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.30723.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TelerikMovieDatabase.Models", "TelerikMovieDatabase.Models\TelerikMovieDatabase.Models.csproj", "{D03BE1AD-12DB-4C2E-A974-A8801BB5B66D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TelerikMovieDatabase.ConsoleClient", "TelerikMovieDatabase.ConsoleClient\TelerikMovieDatabase.ConsoleClient.csproj", "{58531FDC-33FF-4158-9F8D-AF6A74B3BAAD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TelerikMovieDatabase.Data.MsSql", "TelerikMovieDatabase.Data.MsSql\TelerikMovieDatabase.Data.MsSql.csproj", "{4F30509D-FC6B-4916-91E0-B8BC1BA5979F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TelerikMovieDatabase.Data.Imdb", "TelerikMovieDatabase.Data.Imdb\TelerikMovieDatabase.Data.Imdb.csproj", "{E009FFBD-243C-45D7-8C43-C657625E7CC5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TelerikMovieDatabase.Data.MongoDb", "TelerikMovieDatabase.Data.MongoDb\TelerikMovieDatabase.Data.MongoDb.csproj", "{7DE0BED1-518F-42F8-A6E4-7EE27829A410}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TelerikMovieDatabase.Data.Pdf", "TelerikMovieDatabase.Data.Pdf\TelerikMovieDatabase.Data.Pdf.csproj", "{B2E5B08F-0156-4437-83EC-4B9F5E8A0467}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TelerikMovieDatabase.Data.Excel", "TelerikMovieDatabase.Data.Excel\TelerikMovieDatabase.Data.Excel.csproj", "{D5FB25D1-306D-4ADE-9C57-63C4FA1E6F5F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TelerikMovieDatabase.DatabaseDataGet", "TelerikMovieDatabase.DatabaseDataGet\TelerikMovieDatabase.DatabaseDataGet.csproj", "{53265996-A416-4E3A-904D-184AE9759C2D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TelerikMovieDatabase.Data.Json", "TelerikMovieDatabase.Data.Json\TelerikMovieDatabase.Data.Json.csproj", "{370ED994-C881-4031-A6CC-D8A9B821AC19}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TelerikMovieDatabase.Utils", "TelerikMovieDatabase.Utils\TelerikMovieDatabase.Utils.csproj", "{A53B833F-B631-49E2-A9B4-55CA6AB85506}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D03BE1AD-12DB-4C2E-A974-A8801BB5B66D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D03BE1AD-12DB-4C2E-A974-A8801BB5B66D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D03BE1AD-12DB-4C2E-A974-A8801BB5B66D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D03BE1AD-12DB-4C2E-A974-A8801BB5B66D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{58531FDC-33FF-4158-9F8D-AF6A74B3BAAD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{58531FDC-33FF-4158-9F8D-AF6A74B3BAAD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{58531FDC-33FF-4158-9F8D-AF6A74B3BAAD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{58531FDC-33FF-4158-9F8D-AF6A74B3BAAD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4F30509D-FC6B-4916-91E0-B8BC1BA5979F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4F30509D-FC6B-4916-91E0-B8BC1BA5979F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4F30509D-FC6B-4916-91E0-B8BC1BA5979F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4F30509D-FC6B-4916-91E0-B8BC1BA5979F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E009FFBD-243C-45D7-8C43-C657625E7CC5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E009FFBD-243C-45D7-8C43-C657625E7CC5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E009FFBD-243C-45D7-8C43-C657625E7CC5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E009FFBD-243C-45D7-8C43-C657625E7CC5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7DE0BED1-518F-42F8-A6E4-7EE27829A410}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7DE0BED1-518F-42F8-A6E4-7EE27829A410}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7DE0BED1-518F-42F8-A6E4-7EE27829A410}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7DE0BED1-518F-42F8-A6E4-7EE27829A410}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B2E5B08F-0156-4437-83EC-4B9F5E8A0467}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B2E5B08F-0156-4437-83EC-4B9F5E8A0467}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B2E5B08F-0156-4437-83EC-4B9F5E8A0467}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B2E5B08F-0156-4437-83EC-4B9F5E8A0467}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D5FB25D1-306D-4ADE-9C57-63C4FA1E6F5F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D5FB25D1-306D-4ADE-9C57-63C4FA1E6F5F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D5FB25D1-306D-4ADE-9C57-63C4FA1E6F5F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D5FB25D1-306D-4ADE-9C57-63C4FA1E6F5F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{53265996-A416-4E3A-904D-184AE9759C2D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{53265996-A416-4E3A-904D-184AE9759C2D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{53265996-A416-4E3A-904D-184AE9759C2D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{53265996-A416-4E3A-904D-184AE9759C2D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{370ED994-C881-4031-A6CC-D8A9B821AC19}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{370ED994-C881-4031-A6CC-D8A9B821AC19}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{370ED994-C881-4031-A6CC-D8A9B821AC19}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{370ED994-C881-4031-A6CC-D8A9B821AC19}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A53B833F-B631-49E2-A9B4-55CA6AB85506}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A53B833F-B631-49E2-A9B4-55CA6AB85506}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A53B833F-B631-49E2-A9B4-55CA6AB85506}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A53B833F-B631-49E2-A9B4-55CA6AB85506}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
