@@ -11,44 +11,68 @@
     {
         static void Main(string[] args)
         {
-            string fileName = Path.GetFileNameWithoutExtension("..\\..\\BoxOffice.xls");
-            
-            ZIPOperations.CreateZipFile("..\\..\\BoxOffice.xls", "..\\..\\" + fileName + ".zip", fileName);
-            
-            string fileName2 = Path.GetFileNameWithoutExtension("..\\..\\BoxOffice2.xls");
-            ZIPOperations.AddFileToZipArchive("..\\..\\BoxOffice2.xls", fileName2, "..\\..\\BoxOffice.zip");
-            ZIPOperations.AddFolderToZipArchive("..\\..\\Test", "Test", "..\\..\\BoxOffice.zip");
-            ZIPOperations.ExtractFiles("..\\..\\BoxOffice.zip", "..\\..\\XLSData");
+            System.Threading.Thread.CurrentThread.CurrentCulture = System.Globalization.CultureInfo.InvariantCulture;
+            const string ReportsPath = "..\\..\\XLSData";
+            const string directoryPathForArchive = "..\\..\\Reports";
+            const string zipFilePath = "..\\..\\";
+            const string zipFileName = "ReportsArchive.zip";
 
-            var directories = Directory.GetDirectories("..\\..\\XLSData");
-            List<string> files = new List<string>();
-
-            foreach (var folder in directories)
+            if (!Directory.Exists(ReportsPath))
             {
-                files.AddRange(Directory.GetFiles(folder));
+                Directory.CreateDirectory(ReportsPath);
             }
 
-            foreach (var file in files)
+            List<string> files = new List<string>();
+            var directories = Directory.GetDirectories(ReportsPath);
+
+            //Only testing
+
+            var filesForArchive = Directory.GetFiles(directoryPathForArchive);
+
+            foreach (var file in filesForArchive)
             {
-                OleDbConnection dbCon = new OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" + file + ";Extended Properties=\"Excel 12.0 Xml;HDR=YES\";");
-                dbCon.Open();
+                string fileName = Path.GetFileNameWithoutExtension(file);
 
-                using (dbCon)
+                if (!File.Exists(zipFilePath + zipFileName))
                 {
-                    OleDbCommand command = new OleDbCommand("SELECT * FROM [Sheet1$]", dbCon);
-                    OleDbDataReader reader = command.ExecuteReader();
-
-                    using (reader)
-                    {
-                        while (reader.Read())
-                        {
-                            string name = (string)reader["Name"];
-                            string score = (string)reader["Value"];
-                            Console.WriteLine("{0} - score: {1}", name, score);
-                        }
-                    }
+                    ZIPOperations.CreateZipFile(file, zipFilePath + zipFileName, File.GetCreationTime(file).ToString("dd-MMM-yyyy"));
+                }
+                else
+                {
+                    ZIPOperations.AddFileToZipArchive(file, File.GetCreationTime(file).ToString("dd-MMM-yyyy"), zipFilePath + zipFileName);
                 }
             }
+
+            //ZIPOperations.AddFolderToZipArchive("..\\..\\Test", "Test", "..\\..\\BoxOffice.zip");
+
+            ZIPOperations.ExtractFiles(zipFilePath + zipFileName, ReportsPath, "BoxOffice.xls");
+
+            //foreach (var folder in directories)
+            //{
+            //    files.AddRange(Directory.GetFiles(folder));
+            //}
+
+            //foreach (var file in files)
+            //{
+            //    OleDbConnection dbCon = new OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" + file + ";Extended Properties=\"Excel 12.0 Xml;HDR=YES\";");
+            //    dbCon.Open();
+
+            //    using (dbCon)
+            //    {
+            //        OleDbCommand command = new OleDbCommand("SELECT * FROM [Sheet1$]", dbCon);
+            //        OleDbDataReader reader = command.ExecuteReader();
+
+            //        using (reader)
+            //        {
+            //            while (reader.Read())
+            //            {
+            //                string name = (string)reader["Name"];
+            //                string score = (string)reader["Value"];
+            //                Console.WriteLine("{0} - score: {1}", name, score);
+            //            }
+            //        }
+            //    }
+            //}
         }
     }
 }

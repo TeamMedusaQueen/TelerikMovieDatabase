@@ -1,6 +1,7 @@
 ﻿namespace XLSFilesWorking
 {
     using System;
+    using System.Linq;
     using System.Data.OleDb;
     using System.Data;
     using Ionic.Zip;
@@ -21,15 +22,30 @@
             return zip;
         }
 
-        public static void ExtractFiles(string zipFile, string zipDirectory)
+        public static void ExtractFiles(string zipFile, string zipDirectory, string fileName = "")
         {
             using (ZipFile zipForUnpack = ZipFile.Read(zipFile))
             {
-                // here, we extract every entry, but we could extract conditionally
-                // based on entry name, size, date, checkbox status, etc.  
-                foreach (ZipEntry dir in zipForUnpack)
+                //If fileName is empty, it extracts all files
+                if (string.IsNullOrEmpty(fileName) || string.IsNullOrWhiteSpace(fileName))
                 {
-                    dir.Extract(zipDirectory, ExtractExistingFileAction.OverwriteSilently);
+                    zipForUnpack.ExtractAll(zipDirectory, ExtractExistingFileAction.OverwriteSilently);
+                }
+                else
+                {
+                    var result = zipForUnpack.Any(entry => entry.FileName.EndsWith(fileName));
+                    if (result)
+                    {
+                        foreach (var folder in zipForUnpack)
+                        {
+                            ZipEntry e = folder;
+                            if (e.ToString().EndsWith(fileName))
+                            {
+                                e.Extract(zipDirectory,ExtractExistingFileAction.OverwriteSilently);
+                            }
+                        }
+                    }
+
                 }
             }
         }
@@ -44,10 +60,20 @@
         }
         public static void AddFileToZipArchive(string dirPath, string zipDirectory, string zipFilePath)
         {
+            FileInfo fileInfo = new FileInfo(dirPath);
+            string dateCteated = fileInfo.CreationTime.ToString("dd-MMM-yyyy");
+
             using (ZipFile zip = ZipFile.Read(zipFilePath))
             {
-                zip.AddFile(dirPath, zipDirectory);
-                zip.Save();
+                try
+                {
+                    zip.AddFile(dirPath, zipDirectory);
+                    zip.Save();
+                }
+                catch(ArgumentException)
+                {
+                    Console.WriteLine("File With the same name already added");
+                }
             }
         }
     }
