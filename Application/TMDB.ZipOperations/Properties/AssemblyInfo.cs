@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("XLSFilesWorking")]
+[assembly: AssemblyTitle("TMDB.ZipOperations")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("XLSFilesWorking")]
+[assembly: AssemblyProduct("TMDB.ZipOperations")]
 [assembly: AssemblyCopyright("Copyright ©  2014")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("f06600ae-fc6d-40df-8875-dba7d7fe8b30")]
+[assembly: Guid("15bd69b9-1dfd-4822-b403-0bf68d67c799")]
 
 // Version information for an assembly consists of the following four values:
 //

@@ -1,16 +1,18 @@
-﻿namespace XLSFilesWorking
+﻿namespace TMDB.ZipOperations
 {
     using System;
     using System.Linq;
-    using System.Data.OleDb;
-    using System.Data;
     using Ionic.Zip;
     using System.IO;
+    using System.Threading;
+    using System.Globalization;
 
     public static class ZIPOperations
     {
         public static ZipFile CreateZipFile(string filePath, string zipName, string zipDirectory)
         {
+            Thread.CurrentThread.CurrentCulture = CultureInfo.InvariantCulture;
+
             ZipFile zip;
             using (zip = new ZipFile())
             {
@@ -41,7 +43,7 @@
                             ZipEntry e = folder;
                             if (e.ToString().EndsWith(fileName))
                             {
-                                e.Extract(zipDirectory,ExtractExistingFileAction.OverwriteSilently);
+                                e.Extract(zipDirectory, ExtractExistingFileAction.OverwriteSilently);
                             }
                         }
                     }
@@ -60,6 +62,8 @@
         }
         public static void AddFileToZipArchive(string dirPath, string zipDirectory, string zipFilePath)
         {
+            Thread.CurrentThread.CurrentCulture = CultureInfo.InvariantCulture;
+
             FileInfo fileInfo = new FileInfo(dirPath);
             string dateCteated = fileInfo.CreationTime.ToString("dd-MMM-yyyy");
 
@@ -70,7 +74,7 @@
                     zip.AddFile(dirPath, zipDirectory);
                     zip.Save();
                 }
-                catch(ArgumentException)
+                catch (ArgumentException)
                 {
                     Console.WriteLine("File With the same name already added");
                 }

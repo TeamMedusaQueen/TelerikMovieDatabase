@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
-VisualStudioVersion = 12.0.30324.0
+VisualStudioVersion = 12.0.30501.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TMDB.Models", "TMDB.Models\TMDB.Models.csproj", "{D03BE1AD-12DB-4C2E-A974-A8801BB5B66D}"
 EndProject
@@ -10,8 +10,6 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TMDB.Data", "TMDB.Data\TMDB.Data.csproj", "{4F30509D-FC6B-4916-91E0-B8BC1BA5979F}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TMDB.Data.Provider.IMDB", "TMDB.Data.Provider.IMDB\TMDB.Data.Provider.IMDB.csproj", "{E009FFBD-243C-45D7-8C43-C657625E7CC5}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XLSFilesWorking", "XLSFilesWorking\XLSFilesWorking.csproj", "{41029C3B-F796-40FA-A4CD-10B293EA8E56}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TMDB.Data.Provider.MongoDatabase", "TMDB.Data.Provider.MongoDatabase\TMDB.Data.Provider.MongoDatabase.csproj", "{7DE0BED1-518F-42F8-A6E4-7EE27829A410}"
 EndProject
@@ -22,6 +20,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TMDB.DatabaseDataGet", "TMDB.DatabaseDataGet\TMDB.DatabaseDataGet.csproj", "{53265996-A416-4E3A-904D-184AE9759C2D}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TMDB.JsonOperations", "TMDB.JsonOperations\TMDB.JsonOperations.csproj", "{370ED994-C881-4031-A6CC-D8A9B821AC19}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TMDB.ZipOperations", "TMDB.ZipOperations\TMDB.ZipOperations.csproj", "{A53B833F-B631-49E2-A9B4-55CA6AB85506}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -45,10 +45,6 @@ Global
 		{E009FFBD-243C-45D7-8C43-C657625E7CC5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E009FFBD-243C-45D7-8C43-C657625E7CC5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E009FFBD-243C-45D7-8C43-C657625E7CC5}.Release|Any CPU.Build.0 = Release|Any CPU
-		{41029C3B-F796-40FA-A4CD-10B293EA8E56}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{41029C3B-F796-40FA-A4CD-10B293EA8E56}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{41029C3B-F796-40FA-A4CD-10B293EA8E56}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{41029C3B-F796-40FA-A4CD-10B293EA8E56}.Release|Any CPU.Build.0 = Release|Any CPU
 		{7DE0BED1-518F-42F8-A6E4-7EE27829A410}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{7DE0BED1-518F-42F8-A6E4-7EE27829A410}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7DE0BED1-518F-42F8-A6E4-7EE27829A410}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -69,6 +65,10 @@ Global
 		{370ED994-C881-4031-A6CC-D8A9B821AC19}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{370ED994-C881-4031-A6CC-D8A9B821AC19}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{370ED994-C881-4031-A6CC-D8A9B821AC19}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A53B833F-B631-49E2-A9B4-55CA6AB85506}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A53B833F-B631-49E2-A9B4-55CA6AB85506}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A53B833F-B631-49E2-A9B4-55CA6AB85506}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A53B833F-B631-49E2-A9B4-55CA6AB85506}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

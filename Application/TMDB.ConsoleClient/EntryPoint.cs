@@ -9,6 +9,9 @@
     using TMDB.Data;
     using System.Data.Entity;
     using TMDB.JsonOperations;
+    using TMDB.ExcelOperations;
+    using System.Data.OleDb;
+    using TMDB.Models;
 
     internal class EntryPoint
     {
@@ -25,27 +28,31 @@
             {
                 Console.WriteLine(entry.Key + "--->" + entry.Value);
             }
+
+            //TmdbContext db = new TmdbContext();                       //reading from excell files and adding to sqlDB in BoxOfficeEntry
+            //ExcelManager.InsertInSqlDB(db);
+
             ////ImportMovieAwardsAndNominationsFromXML();
             //
-           // using (var dbContext = new TMDB.Data.TmdbContext())
-           // {
-           //     var movie = dbContext.Movies.Select(m => m.ID == 1);
-           //     foreach (var m in movie)
-           //     {
-           //         Console.WriteLine(m);
-           //     }
-           // 	//var movies = dbContext.Movies.ToArray();
-           //     //
-           //     //
-           // 	//var movieJSONModels = OMDB.GetTop250();
-           // 	//foreach (var movieJSONModel in movieJSONModels)
-           // 	//{
-           // 	//	var movie = movieJSONModel.GetMovieModel(dbContext);
-           // 	//	dbContext.Movies.Add(movie);
-           // 	//}
-           // 
-           // 	dbContext.SaveChanges();
-           // }
+            // using (var dbContext = new TMDB.Data.TmdbContext())
+            // {
+            //     var movie = dbContext.Movies.Select(m => m.ID == 1);
+            //     foreach (var m in movie)
+            //     {
+            //         Console.WriteLine(m);
+            //     }
+            // 	//var movies = dbContext.Movies.ToArray();
+            //     //
+            //     //
+            // 	//var movieJSONModels = OMDB.GetTop250();
+            // 	//foreach (var movieJSONModel in movieJSONModels)
+            // 	//{
+            // 	//	var movie = movieJSONModel.GetMovieModel(dbContext);
+            // 	//	dbContext.Movies.Add(movie);
+            // 	//}
+            // 
+            // 	dbContext.SaveChanges();
+            // }
             //
             ////var mongoDbContext = new TMDB.Data.Provider.MongoDatabase.TmdbMongoDbContext();
             ////mongoDbContext.InitialCreate();
