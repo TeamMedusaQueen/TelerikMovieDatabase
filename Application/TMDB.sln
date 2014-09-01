@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
-VisualStudioVersion = 12.0.30723.0
+VisualStudioVersion = 12.0.30324.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TMDB.Models", "TMDB.Models\TMDB.Models.csproj", "{D03BE1AD-12DB-4C2E-A974-A8801BB5B66D}"
 EndProject
@@ -16,6 +16,12 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TMDB.Data.Provider.MongoDatabase", "TMDB.Data.Provider.MongoDatabase\TMDB.Data.Provider.MongoDatabase.csproj", "{7DE0BED1-518F-42F8-A6E4-7EE27829A410}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TMDB.PDFFileExport", "TMDB.PDFFileExport\TMDB.PDFFileExport.csproj", "{B2E5B08F-0156-4437-83EC-4B9F5E8A0467}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TMDB.ExcelOperations", "TMDB.ExcelOperations\TMDB.ExcelOperations.csproj", "{D5FB25D1-306D-4ADE-9C57-63C4FA1E6F5F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TMDB.DatabaseDataGet", "TMDB.DatabaseDataGet\TMDB.DatabaseDataGet.csproj", "{53265996-A416-4E3A-904D-184AE9759C2D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TMDB.JsonOperations", "TMDB.JsonOperations\TMDB.JsonOperations.csproj", "{370ED994-C881-4031-A6CC-D8A9B821AC19}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -51,6 +57,18 @@ Global
 		{B2E5B08F-0156-4437-83EC-4B9F5E8A0467}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B2E5B08F-0156-4437-83EC-4B9F5E8A0467}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B2E5B08F-0156-4437-83EC-4B9F5E8A0467}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D5FB25D1-306D-4ADE-9C57-63C4FA1E6F5F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D5FB25D1-306D-4ADE-9C57-63C4FA1E6F5F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D5FB25D1-306D-4ADE-9C57-63C4FA1E6F5F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D5FB25D1-306D-4ADE-9C57-63C4FA1E6F5F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{53265996-A416-4E3A-904D-184AE9759C2D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{53265996-A416-4E3A-904D-184AE9759C2D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{53265996-A416-4E3A-904D-184AE9759C2D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{53265996-A416-4E3A-904D-184AE9759C2D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{370ED994-C881-4031-A6CC-D8A9B821AC19}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{370ED994-C881-4031-A6CC-D8A9B821AC19}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{370ED994-C881-4031-A6CC-D8A9B821AC19}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{370ED994-C881-4031-A6CC-D8A9B821AC19}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

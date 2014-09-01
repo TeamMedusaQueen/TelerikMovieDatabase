@@ -8,7 +8,7 @@
 
 	public class TmdbContext : DbContext, IDisposable
 	{
-		public const string ConnectionStringName = "MSSQLSERVER";
+		public const string ConnectionStringName = "TMDB";
 
 		public TmdbContext()
 			: base(ConnectionStringName)

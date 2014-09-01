@@ -5,32 +5,47 @@
     using System.IO;
     using System.Linq;
     using System.Text;
-    using System.Threading.Tasks;
     using System.Xml;
-    using System.Data.SQLite;
-    using System.Data.OleDb;
+    using TMDB.Data;
+    using System.Data.Entity;
+    using TMDB.JsonOperations;
 
-    internal class Program
+    internal class EntryPoint
     {
         private static void Main()
         {
-
+            Dictionary<string, int> testData = new Dictionary<string, int>();
+            testData.Add("testData 1", 1);
+            testData.Add("testData2", 2);
+            JsonManager manger = new JsonManager();
+            string result = manger.ExportToJson(testData);
+            Console.WriteLine(result);
+            var data = manger.ImportFromJson(result);
+            foreach (var entry in data)
+            {
+                Console.WriteLine(entry.Key + "--->" + entry.Value);
+            }
             ////ImportMovieAwardsAndNominationsFromXML();
             //
-            //using (var dbContext = new TMDB.Data.TmdbContext())
-            //{
-            //	var movies = dbContext.Movies.ToArray();
-            //  
-            //
-            //	//var movieJSONModels = OMDB.GetTop250();
-            //	//foreach (var movieJSONModel in movieJSONModels)
-            //	//{
-            //	//	var movie = movieJSONModel.GetMovieModel(dbContext);
-            //	//	dbContext.Movies.Add(movie);
-            //	//}
-            //
-            //	//dbContext.SaveChanges();
-            //}
+           // using (var dbContext = new TMDB.Data.TmdbContext())
+           // {
+           //     var movie = dbContext.Movies.Select(m => m.ID == 1);
+           //     foreach (var m in movie)
+           //     {
+           //         Console.WriteLine(m);
+           //     }
+           // 	//var movies = dbContext.Movies.ToArray();
+           //     //
+           //     //
+           // 	//var movieJSONModels = OMDB.GetTop250();
+           // 	//foreach (var movieJSONModel in movieJSONModels)
+           // 	//{
+           // 	//	var movie = movieJSONModel.GetMovieModel(dbContext);
+           // 	//	dbContext.Movies.Add(movie);
+           // 	//}
+           // 
+           // 	dbContext.SaveChanges();
+           // }
             //
             ////var mongoDbContext = new TMDB.Data.Provider.MongoDatabase.TmdbMongoDbContext();
             ////mongoDbContext.InitialCreate();
@@ -108,46 +123,6 @@
             foreach (var award in awards)
             {
                 Console.WriteLine(award);
-            }
-        }
-
-        private static void ManageSQLiteDataBaseExcelConnection()
-        {
-            SQLiteConnection sqliteConnection = new SQLiteConnection("Data Source = ..\\..\\..\\..\\Databases\\SQLite\\MovieBudget.db");
-            sqliteConnection.Open();
-            SQLiteCommand command = new SQLiteCommand("SELECT * FROM MovieBudgetReports", sqliteConnection);
-            SQLiteDataReader reader = command.ExecuteReader();
-            var data = new List<object>();
-            using (reader)
-            {
-                while (reader.Read())
-                {
-                    int reportId = Convert.ToInt32(reader["ReportID"]);
-                    string title = (string)reader["Title"];
-                    int budget = Convert.ToInt32(reader["Budget"]);
-                    data.Add(reportId);
-                    data.Add(title);
-                    data.Add(budget);
-                    InsertInExcel(reportId, title, budget);
-                }
-            }
-            sqliteConnection.Close();
-            Console.WriteLine("Data inserted in Excel file successfully.");
-        }
-
-        private static void InsertInExcel(int reportId, string title, int budget)
-        {
-            OleDbConnection excelConnection = new OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=..\\..\\..\\..\\Databases\\SQLite\\MovieBudgetReportList.xlsx;Extended Properties=Excel 12.0;");
-            excelConnection.Open();
-
-            using (excelConnection)
-            {
-                OleDbCommand insertCommand = new OleDbCommand("INSERT INTO [Sheet1$] (ReportID, Title, Budget) VALUES (@reportId, @title, @budget)", excelConnection);
-                insertCommand.Parameters.AddWithValue("@ReportID", reportId);
-                insertCommand.Parameters.AddWithValue("@Title", title);
-                insertCommand.Parameters.AddWithValue("@Budget", budget);
-
-                insertCommand.ExecuteNonQuery();
             }
         }
     }
