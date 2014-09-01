@@ -1,4 +1,4 @@
-﻿namespace TelerikMovieDatabase.DatabaseDataGet
+﻿namespace TelerikMovieDatabase.Data.SqLite
 {
 	using System;
 	using System.Collections.Generic;
