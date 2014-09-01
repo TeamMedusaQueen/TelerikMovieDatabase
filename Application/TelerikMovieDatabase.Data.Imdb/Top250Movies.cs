@@ -6,7 +6,7 @@
 	using System.Text;
 	using System.Threading.Tasks;
 
-	internal static class MovieNames
+	internal static class Top250Movies
 	{
 		public static string[] Top250 = {
 			"tt0111161",

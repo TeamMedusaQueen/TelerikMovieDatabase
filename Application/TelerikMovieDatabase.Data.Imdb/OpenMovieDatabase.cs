@@ -8,16 +8,15 @@
 	using System.Net;
 	using System.Text;
 	using System.Threading.Tasks;
-	using TelerikMovieDatabase.Data.Imdb;
 	using TelerikMovieDatabase.Data.Imdb.Models;
 
 	public static class OpenMovieDatabase
 	{
-		private const string CacheFolder = "OMDBCache\\";
+		private static readonly string cacheFolder = Settings.Default.CachedFolderPath;
 
 		public static MovieJsonModel GetMovieDataByID(string movieID)
 		{
-			var fileName = CacheFolder + movieID + ".json";
+			var fileName = cacheFolder + movieID + ".json";
 			string jsonData = null;
 
 			if (!File.Exists(fileName))
@@ -30,26 +29,26 @@
 				jsonData = File.ReadAllText(fileName);
 			}
 
-			var movieJSONModel = JsonConvert.DeserializeObject<MovieJsonModel>(jsonData);
-			StripAdditinalInformation(movieJSONModel);
+			var movieJsonModel = JsonConvert.DeserializeObject<MovieJsonModel>(jsonData);
+			StripAdditinalInformation(movieJsonModel);
 
-			return movieJSONModel;
+			return movieJsonModel;
 		}
 
 		public static MovieJsonModel GetMovieDataByTitle(string movieTitle)
 		{
 			var jsonData = GetString("http://www.omdbapi.com/?t=" + movieTitle);
-			var movieJSONModel = JsonConvert.DeserializeObject<MovieJsonModel>(jsonData);
-			StripAdditinalInformation(movieJSONModel);
+			var movieJsonModel = JsonConvert.DeserializeObject<MovieJsonModel>(jsonData);
+			StripAdditinalInformation(movieJsonModel);
 
-			return movieJSONModel;
+			return movieJsonModel;
 		}
 
 		public static ICollection<MovieJsonModel> GetTop250()
 		{
 			var movies = new HashSet<MovieJsonModel>();
 
-			foreach (var movieID in MovieNames.Top250)
+			foreach (var movieID in Top250Movies.Top250)
 			{
 				var movie = GetMovieDataByID(movieID);
 				if (movie != null)
@@ -61,7 +60,7 @@
 			return movies;
 		}
 
-		public static string GetString(string url)
+		private static string GetString(string url)
 		{
 			using (var webClient = new WebClient())
 			{
@@ -83,8 +82,8 @@
 				return names;
 			}
 
-			const string separator = ", ";
-			var namesArray = names.Split(new[] { separator }, StringSplitOptions.RemoveEmptyEntries);
+			const string Separator = ", ";
+			var namesArray = names.Split(new[] { Separator }, StringSplitOptions.RemoveEmptyEntries);
 			var fixedNames = new HashSet<string>();
 
 			foreach (var name in namesArray)
@@ -93,7 +92,7 @@
 				fixedNames.Add(fixedName);
 			}
 
-			return string.Join(separator, fixedNames);
+			return string.Join(Separator, fixedNames);
 		}
 
 		private static string StripAdditionalInformationFromName(string name)

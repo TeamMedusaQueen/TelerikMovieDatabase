@@ -49,7 +49,7 @@
   <ItemGroup>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="TelerikMovieDatabaseContext.cs" />
+    <Compile Include="TelerikMovieDatabaseMsSqlContext.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

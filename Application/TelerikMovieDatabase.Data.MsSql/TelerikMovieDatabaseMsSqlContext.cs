@@ -6,14 +6,14 @@
 	using TelerikMovieDatabase.Data.MsSql.Migrations;
 	using TelerikMovieDatabase.Models;
 
-	public class TelerikMovieDatabaseContext : DbContext, IDisposable
+	public class TelerikMovieDatabaseMsSqlContext : DbContext, IDisposable
 	{
 		public const string ConnectionStringName = "TMDB";
 
-		public TelerikMovieDatabaseContext()
+		public TelerikMovieDatabaseMsSqlContext()
 			: base(ConnectionStringName)
 		{
-			Database.SetInitializer(new MigrateDatabaseToLatestVersion<TelerikMovieDatabaseContext, Configuration>());
+			Database.SetInitializer(new MigrateDatabaseToLatestVersion<TelerikMovieDatabaseMsSqlContext, Configuration>());
 		}
 
 		protected override void OnModelCreating(DbModelBuilder modelBuilder)
@@ -55,8 +55,6 @@
 		public IDbSet<BoxOfficeEntry> BoxOfficeEntries { get; set; }
 
 		public IDbSet<Nomination> Nominations { get; set; }
-
-		public IDbSet<ProductionCompany> ProductionCompanies { get; set; }
 
 		public IDbSet<Genre> Genres { get; set; }
 

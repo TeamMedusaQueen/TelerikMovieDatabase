@@ -5,7 +5,7 @@ namespace TelerikMovieDatabase.Data.MsSql.Migrations
 
 	using System.Linq;
 
-	internal sealed class Configuration : DbMigrationsConfiguration<TelerikMovieDatabase.Data.MsSql.TelerikMovieDatabaseContext>
+	internal sealed class Configuration : DbMigrationsConfiguration<TelerikMovieDatabase.Data.MsSql.TelerikMovieDatabaseMsSqlContext>
 	{
 		public Configuration()
 		{
@@ -13,7 +13,7 @@ namespace TelerikMovieDatabase.Data.MsSql.Migrations
 			AutomaticMigrationDataLossAllowed = true;
 		}
 
-		protected override void Seed(TelerikMovieDatabase.Data.MsSql.TelerikMovieDatabaseContext context)
+		protected override void Seed(TelerikMovieDatabase.Data.MsSql.TelerikMovieDatabaseMsSqlContext context)
 		{
 			//  This method will be called after migrating to the latest version.
 			//  You can use the DbSet<T>.AddOrUpdate() helper extension method

@@ -1,132 +1,135 @@
 ﻿namespace TelerikMovieDatabase.ConsoleClient
 {
-    using System;
-    using System.Collections.Generic;
-    using System.IO;
-    using System.Linq;
-    using System.Text;
-    using System.Xml;
+	using System;
+	using System.Collections.Generic;
+	using System.IO;
+	using System.Linq;
+	using System.Text;
+	using System.Xml;
 	using TelerikMovieDatabase.Data.Json;
 
-    internal class EntryPoint
-    {
-        private static void Main()
-        {
-            Dictionary<string, int> testData = new Dictionary<string, int>();
-            testData.Add("testData 1", 1);
-            testData.Add("testData2", 2);
-            JsonManager manger = new JsonManager();
-            string result = manger.ExportToJson(testData);
-            Console.WriteLine(result);
-            var data = manger.ImportFromJson(result);
-            foreach (var entry in data)
-            {
-                Console.WriteLine(entry.Key + "--->" + entry.Value);
-            }
+	internal class EntryPoint
+	{
+		private static void Main()
+		{
+			// Step 1
+			//new MongoDbInitializer().Init();
+			// Step 2
+			//new ExcelZipFileInitializer().Init();
 
-            //TmdbContext db = new TmdbContext();                       //reading from excell files and adding to sqlDB in BoxOfficeEntry
-            //ExcelManager.InsertInSqlDB(db);
+			Dictionary<string, int> testData = new Dictionary<string, int>();
+			testData.Add("testData 1", 1);
+			testData.Add("testData2", 2);
+			string result = JsonHandler.Serialize(testData);
+			Console.WriteLine(result);
+			var data = JsonHandler.Deserialize<Dictionary<string, int>>(result);
+			foreach (var entry in data)
+			{
+				Console.WriteLine(entry.Key + "--->" + entry.Value);
+			}
 
-            
-            ////ImportMovieAwardsAndNominationsFromXML();
-            //
-            // using (var dbContext = new TMDB.Data.TmdbContext())
-            // {
-            //     var movie = dbContext.Movies.Select(m => m.ID == 1);
-            //     foreach (var m in movie)
-            //     {
-            //         Console.WriteLine(m);
-            //     }
-            // 	//var movies = dbContext.Movies.ToArray();
-            //     //
-            //     //
-            // 	//var movieJSONModels = OMDB.GetTop250();
-            // 	//foreach (var movieJSONModel in movieJSONModels)
-            // 	//{
-            // 	//	var movie = movieJSONModel.GetMovieModel(dbContext);
-            // 	//	dbContext.Movies.Add(movie);
-            // 	//}
-            // 
-            // 	dbContext.SaveChanges();
-            // }
-            //
-            ////var mongoDbContext = new TMDB.Data.Provider.MongoDatabase.TmdbMongoDbContext();
-            ////mongoDbContext.InitialCreate();
-        }
+			//TmdbContext db = new TmdbContext();                       //reading from excell files and adding to sqlDB in BoxOfficeEntry
+			//ExcelManager.InsertInSqlDB(db);
 
-        private static void ImportMovieAwardsAndNominationsFromXML()
-        {
-            const string movieAward = "movie-awards";
-            const string movieNomination = "movie-nominations";
-            const string industryAwardsNode = "industry-awards";
+			////ImportMovieAwardsAndNominationsFromXML();
+			//
+			// using (var dbContext = new TMDB.Data.TmdbContext())
+			// {
+			//     var movie = dbContext.Movies.Select(m => m.ID == 1);
+			//     foreach (var m in movie)
+			//     {
+			//         Console.WriteLine(m);
+			//     }
+			// 	//var movies = dbContext.Movies.ToArray();
+			//     //
+			//     //
+			// 	//var movieJSONModels = OMDB.GetTop250();
+			// 	//foreach (var movieJSONModel in movieJSONModels)
+			// 	//{
+			// 	//	var movie = movieJSONModel.GetMovieModel(dbContext);
+			// 	//	dbContext.Movies.Add(movie);
+			// 	//}
+			//
+			// 	dbContext.SaveChanges();
+			// }
+			//
+			////var mongoDbContext = new TMDB.Data.Provider.MongoDatabase.TmdbMongoDbContext();
+			////mongoDbContext.InitialCreate();
+		}
 
-            var result = new StringBuilder();
+		private static void ImportMovieAwardsAndNominationsFromXML()
+		{
+			const string movieAward = "movie-awards";
+			const string movieNomination = "movie-nominations";
+			const string industryAwardsNode = "industry-awards";
 
-            var nominations = new List<string>();
-            var awards = new List<string>();
-            List<string> currentCollection = null;
+			var result = new StringBuilder();
 
-            // Create an XmlReader
-            using (XmlReader reader = XmlReader.Create(new StringReader(File.ReadAllText("Data.xml"))))
-            {
-                XmlWriterSettings ws = new XmlWriterSettings();
-                ws.Indent = true;
+			var nominations = new List<string>();
+			var awards = new List<string>();
+			List<string> currentCollection = null;
 
-                bool isInAwardNode = false;
-                bool isInNominationNode = false;
+			// Create an XmlReader
+			using (XmlReader reader = XmlReader.Create(new StringReader(File.ReadAllText("Data.xml"))))
+			{
+				XmlWriterSettings ws = new XmlWriterSettings();
+				ws.Indent = true;
 
-                // Parse the file and display each of the nodes.
-                while (reader.Read())
-                {
-                    switch (reader.NodeType)
-                    {
-                        case XmlNodeType.Element:
-                            if (!(isInAwardNode || isInNominationNode))
-                            {
-                                isInAwardNode = reader.Name == movieAward;
-                                isInNominationNode = reader.Name == movieNomination;
+				bool isInAwardNode = false;
+				bool isInNominationNode = false;
 
-                                if (isInAwardNode)
-                                {
-                                    currentCollection = awards;
-                                }
+				// Parse the file and display each of the nodes.
+				while (reader.Read())
+				{
+					switch (reader.NodeType)
+					{
+						case XmlNodeType.Element:
+							if (!(isInAwardNode || isInNominationNode))
+							{
+								isInAwardNode = reader.Name == movieAward;
+								isInNominationNode = reader.Name == movieNomination;
 
-                                if (isInNominationNode)
-                                {
-                                    currentCollection = nominations;
-                                }
-                            }
-                            else if (reader.Name == industryAwardsNode)
-                            {
-                                var awardYear = reader.GetAttribute("year");
-                                var awardName = reader.ReadElementContentAsString();
-                                currentCollection.Add("Name: " + awardName + " Year: " + awardYear);
-                            }
-                            break;
+								if (isInAwardNode)
+								{
+									currentCollection = awards;
+								}
 
-                        case XmlNodeType.EndElement:
-                            if (reader.Name != industryAwardsNode)
-                            {
-                                isInAwardNode = false;
-                                isInNominationNode = false;
-                                currentCollection = null;
-                            }
-                            break;
-                    }
-                }
-            }
+								if (isInNominationNode)
+								{
+									currentCollection = nominations;
+								}
+							}
+							else if (reader.Name == industryAwardsNode)
+							{
+								var awardYear = reader.GetAttribute("year");
+								var awardName = reader.ReadElementContentAsString();
+								currentCollection.Add("Name: " + awardName + " Year: " + awardYear);
+							}
+							break;
 
-            Console.WriteLine("Nominations:");
-            foreach (var nomination in nominations)
-            {
-                Console.WriteLine(nomination);
-            }
+						case XmlNodeType.EndElement:
+							if (reader.Name != industryAwardsNode)
+							{
+								isInAwardNode = false;
+								isInNominationNode = false;
+								currentCollection = null;
+							}
+							break;
+					}
+				}
+			}
 
-            Console.WriteLine("Awards:");
-            foreach (var award in awards)
-            {
-                Console.WriteLine(award);
-            }
-        }
-    }
+			Console.WriteLine("Nominations:");
+			foreach (var nomination in nominations)
+			{
+				Console.WriteLine(nomination);
+			}
+
+			Console.WriteLine("Awards:");
+			foreach (var award in awards)
+			{
+				Console.WriteLine(award);
+			}
+		}
+	}
 }

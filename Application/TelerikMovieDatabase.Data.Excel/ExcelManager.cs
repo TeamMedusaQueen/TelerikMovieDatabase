@@ -27,7 +27,7 @@
 			}
 		}
 
-		public static void InsertInSqlDB(TelerikMovieDatabaseContext db)
+		public static void InsertInSqlDB(TelerikMovieDatabaseMsSqlContext db)
 		{
 			const string ReportsPath = "..\\..\\..\\XLSFilesWorking\\XLSData";
 			const string directoryPathForArchive = "..\\..\\..\\XLSFilesWorking\\Reports";
