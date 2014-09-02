@@ -6,9 +6,9 @@ using System.IO;
 
 namespace TelerikMovieDatabase.Data.Pdf
 {
-	internal class Program
+	public class PdfManager
 	{
-		private static void Main(string[] args)
+		public void DoMagic()
 		{
 			// The exported file is located on the Desktop
 			var path = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);

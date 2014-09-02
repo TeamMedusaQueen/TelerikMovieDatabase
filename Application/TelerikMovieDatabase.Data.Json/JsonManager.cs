@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace TelerikMovieDatabase.Data.Json
 {
-	public static class JsonHandler
+	public static class JsonManager
 	{
 		public static string Serialize<TModel>(TModel data)
 		{

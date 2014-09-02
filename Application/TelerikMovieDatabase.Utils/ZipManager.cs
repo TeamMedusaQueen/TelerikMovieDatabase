@@ -7,7 +7,7 @@
 	using System.Linq;
 	using System.Threading;
 
-	public static class ZIPOperations
+	public static class ZipManager
 	{
 		public static ZipFile CreateZipFile(string filePath, string zipName, string zipDirectory)
 		{

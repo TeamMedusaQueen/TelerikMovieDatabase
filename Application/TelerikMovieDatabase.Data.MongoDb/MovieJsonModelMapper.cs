@@ -6,6 +6,7 @@
 	using System.Text;
 	using System.Threading.Tasks;
 	using TelerikMovieDatabase.Data.Imdb.Models;
+	using TelerikMovieDatabase.Data.MongoDb.Models;
 	using TelerikMovieDatabase.Data.MsSql;
 	using TelerikMovieDatabase.Models;
 
@@ -131,16 +132,17 @@
 				movieLanguages.Add(movieLanguage);
 			}
 
-			var movieProjection = new
+			var movieProjection = new MongoDbMovie
 			{
 				_id = movieID++,
-				movie.Title,
-				movie.Storyline,
-				movie.RunningTime,
-				movie.Metascore,
-				movie.Rated,
-				movie.Poster,
-				movie.ReleaseDate,
+				Title = movie.Title,
+				Storyline = movie.Storyline,
+				RunningTime = movie.RunningTime,
+				Metascore = movie.Metascore,
+				Rated = movie.Rated,
+				Rating = movie.Rating,
+				Poster = movie.Poster,
+				ReleaseDate = movie.ReleaseDate,
 				Director_id = director.ID,
 				Writers = movieWriters.Select(i => i.ID),
 				Cast = movieCast.Select(i => i.ID),
@@ -173,7 +175,7 @@
 					personJobs.Add(personJob);
 				}
 
-				var personProjection = new
+				var personProjection = new MongoDbPerson
 				{
 					_id = person.ID,
 					Name = person.Name,
@@ -188,22 +190,22 @@
 
 		public IEnumerable<object> GetGenreProjections()
 		{
-			return this.GetProjections(this.genres, item => new { _id = item.ID, Title = item.Title });
+			return this.GetProjections(this.genres, item => new MongoDbGenre { _id = item.ID, Title = item.Title });
 		}
 
 		public IEnumerable<object> GetCountryProjections()
 		{
-			return this.GetProjections(this.countries, item => new { _id = item.ID, Name = item.Name });
+			return this.GetProjections(this.countries, item => new MongoDbCountry { _id = item.ID, Name = item.Name });
 		}
 
 		public IEnumerable<object> GetLanguageProjections()
 		{
-			return this.GetProjections(this.languages, item => new { _id = item.ID, Name = item.Name });
+			return this.GetProjections(this.languages, item => new MongoDbLanguage { _id = item.ID, Name = item.Name });
 		}
 
 		public IEnumerable<object> GetJobProjections()
 		{
-			return this.GetProjections(this.jobs, item => new { _id = item.ID, Type = item.Type });
+			return this.GetProjections(this.jobs, item => new MongoDbJob { _id = item.ID, Type = item.Type });
 		}
 
 		public IEnumerable<object> GetProjections<TModel>(IEnumerable<TModel> collection, Func<TModel, object> getProjection)

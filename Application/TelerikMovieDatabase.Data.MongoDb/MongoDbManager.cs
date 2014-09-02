@@ -9,8 +9,9 @@
 	using System.Text;
 	using System.Threading.Tasks;
 	using TelerikMovieDatabase.Data.Json;
+	using TelerikMovieDatabase.Data.MongoDb.Models;
 
-	public class MongoDbHandler
+	public class MongoDbManager
 	{
 		public static readonly string ConnectionString = Settings.Default.ConnectionString;
 
@@ -62,12 +63,12 @@
 
 		public void GetMovies()
 		{
-			var movies = this.GetDatabase().GetCollection<BsonArray>(DbTableMoviesName);
-			var persons = this.GetDatabase().GetCollection<BsonArray>(DbTablePersonsName);
-			var genres = this.GetDatabase().GetCollection<BsonArray>(DbTableGenresName);
-			var countries = this.GetDatabase().GetCollection<BsonArray>(DbTableCountriesName);
-			var languages = this.GetDatabase().GetCollection<BsonArray>(DbTableLanguagesName);
-			var jobPositions = this.GetDatabase().GetCollection<BsonArray>(DbTableJobPositionsName);
+			var movies = this.GetDatabase().GetCollection<MongoDbMovie>(DbTableMoviesName);
+			var persons = this.GetDatabase().GetCollection<MongoDbPerson>(DbTablePersonsName);
+			var genres = this.GetDatabase().GetCollection<MongoDbGenre>(DbTableGenresName);
+			var countries = this.GetDatabase().GetCollection<MongoDbCountry>(DbTableCountriesName);
+			var languages = this.GetDatabase().GetCollection<MongoDbLanguage>(DbTableLanguagesName);
+			var jobPositions = this.GetDatabase().GetCollection<MongoDbJob>(DbTableJobPositionsName);
 			// TODO
 		}
 
@@ -105,7 +106,7 @@
 		{
 			if (data.Any())
 			{
-				var jsonString = JsonHandler.Serialize(data);
+				var jsonString = JsonManager.Serialize(data);
 				BsonArray bsonArray = BsonSerializer.Deserialize<BsonArray>(jsonString);
 				var collection = database.GetCollection<BsonArray>(tableName);
 				collection.InsertBatch(bsonArray);

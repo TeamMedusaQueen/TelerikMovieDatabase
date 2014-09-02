@@ -14,6 +14,7 @@
 			: base(ConnectionStringName)
 		{
 			Database.SetInitializer(new MigrateDatabaseToLatestVersion<TelerikMovieDatabaseMsSqlContext, Configuration>());
+			Database.Initialize(true);
 		}
 
 		protected override void OnModelCreating(DbModelBuilder modelBuilder)

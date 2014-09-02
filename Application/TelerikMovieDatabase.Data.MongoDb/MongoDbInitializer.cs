@@ -11,7 +11,7 @@
 	{
 		public void Init()
 		{
-			var mongoDbHandler = new MongoDbHandler();
+			var mongoDbHandler = new MongoDbManager();
 			mongoDbHandler.Connect();
 
 			if (!mongoDbHandler.DatabaseExists())

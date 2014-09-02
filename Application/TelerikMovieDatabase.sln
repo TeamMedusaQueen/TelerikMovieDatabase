@@ -25,6 +25,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TelerikMovieDatabase.Utils"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TelerikMovieDatabase.Data.SqLite", "TelerikMovieDatabase.Data.SqLite\TelerikMovieDatabase.Data.SqLite.csproj", "{152B7108-1ED1-46E4-B035-80FC0AB205EC}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TelerikMovieDatabase.Data.Xml", "TelerikMovieDatabase.Data.Xml\TelerikMovieDatabase.Data.Xml.csproj", "{108516F2-DB82-418E-8B8D-EF168DDF2637}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TelerikMovieDatabase.ReportModels", "TelerikMovieDatabase.ReportModels\TelerikMovieDatabase.ReportModels.csproj", "{4C5F1FE0-CB68-47CD-B18B-59F22F51CC8E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -75,6 +79,14 @@ Global
 		{152B7108-1ED1-46E4-B035-80FC0AB205EC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{152B7108-1ED1-46E4-B035-80FC0AB205EC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{152B7108-1ED1-46E4-B035-80FC0AB205EC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{108516F2-DB82-418E-8B8D-EF168DDF2637}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{108516F2-DB82-418E-8B8D-EF168DDF2637}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{108516F2-DB82-418E-8B8D-EF168DDF2637}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{108516F2-DB82-418E-8B8D-EF168DDF2637}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4C5F1FE0-CB68-47CD-B18B-59F22F51CC8E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4C5F1FE0-CB68-47CD-B18B-59F22F51CC8E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4C5F1FE0-CB68-47CD-B18B-59F22F51CC8E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4C5F1FE0-CB68-47CD-B18B-59F22F51CC8E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
