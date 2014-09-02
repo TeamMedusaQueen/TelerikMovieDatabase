@@ -1,20 +1,37 @@
-﻿using MySql.Data.MySqlClient;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace TMDB.DatabaseDataGet
+﻿namespace TMDB.DatabaseDataGet
 {
-    class MySqlManager
-    {
-        public MySqlConnection MySqlDb { get; set; }
-        public MySqlManager()
-        {
-            this.MySqlDb = new MySqlConnection(@"Server=localhost;Port=3306;Database=TMDBGrossInformation;Uid=root;Pwd=11235813787898");
-        }
-        
+    using MySql.Data.MySqlClient;
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Text;
+    using System.Threading.Tasks;
+    using TMDB.ExcelOperations;
+    using TMDB.GrossReports;
 
+    public class MySqlManager
+    {
+        public List<Grossreport> GetDataFromMySqlDatabase()
+        {
+            var db = new GrossReports();
+            var data = db.Grossreports.ToList<Grossreport>();
+            return data;
+        }
+
+        public void InsertIntoMySqlDatabase(IDictionary<string, int> data)
+        {
+            var db = new GrossReports();
+            using (db)
+            {
+                foreach (var pair in data)
+                {
+                    Grossreport report = new Grossreport();
+                    report.Title = pair.Key;
+                    report.Gross = pair.Value;
+                    db.Add(report);
+                }
+                db.SaveChanges();
+            }
+        }
     }
 }

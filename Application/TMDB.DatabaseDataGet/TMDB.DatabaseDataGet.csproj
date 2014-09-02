@@ -55,11 +55,16 @@
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
+    <Reference Include="Telerik.OpenAccess, Version=2014.2.711.1, Culture=neutral, PublicKeyToken=7ce17eeaf1d59342, processorArchitecture=MSIL" />
+    <Reference Include="Telerik.OpenAccess.35.Extensions, Version=2014.2.711.1, Culture=neutral, PublicKeyToken=7ce17eeaf1d59342, processorArchitecture=MSIL" />
+    <Reference Include="Telerik.OpenAccess.40.Extensions, Version=2014.2.711.1, Culture=neutral, PublicKeyToken=7ce17eeaf1d59342, processorArchitecture=MSIL" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DatabaseDataConnector.cs" />
     <Compile Include="MySqlManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SQLiteManager.cs" />
+    <Compile Include="SqLiteReturnObject.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="x64\SQLite.Interop.dll">
@@ -77,6 +82,10 @@
     <ProjectReference Include="..\TMDB.ExcelOperations\TMDB.ExcelOperations.csproj">
       <Project>{d5fb25d1-306d-4ade-9c57-63c4fa1e6f5f}</Project>
       <Name>TMDB.ExcelOperations</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TMDB.GrossReports\TMDB.GrossReports.csproj">
+      <Project>{c50145e6-a244-4f1f-b41f-90d1925b4a00}</Project>
+      <Name>TMDB.GrossReports</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

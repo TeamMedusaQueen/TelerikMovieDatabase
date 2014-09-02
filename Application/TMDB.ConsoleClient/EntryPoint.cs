@@ -9,25 +9,29 @@
     using TMDB.Data;
     using System.Data.Entity;
     using TMDB.JsonOperations;
+    using TMDB.DatabaseDataGet;
 
     internal class EntryPoint
     {
         private static void Main()
         {
-            Dictionary<string, int> testData = new Dictionary<string, int>();
-            testData.Add("testData 1", 1);
-            testData.Add("testData2", 2);
-            JsonManager manger = new JsonManager();
-            string result = manger.ExportToJson(testData);
-            Console.WriteLine(result);
-            var data = manger.ImportFromJson(result);
-            foreach (var entry in data)
-            {
-                Console.WriteLine(entry.Key + "--->" + entry.Value);
-            }
-            ////ImportMovieAwardsAndNominationsFromXML();
-            //
-           // using (var dbContext = new TMDB.Data.TmdbContext())
+            MySqlManager manager = new MySqlManager();
+           
+           Dictionary<string, int> testData = new Dictionary<string, int>();
+           testData.Add("testData 1", 1);
+           testData.Add("testData2", 2);
+           JsonManager manger = new JsonManager();
+           string result = manger.ExportToJson(testData);
+           Console.WriteLine(result);
+           var data = manger.ImportFromJson(result);
+           foreach (var entry in data)
+           {
+               Console.WriteLine(entry.Key + "--->" + entry.Value);
+           }
+             manager.InsertIntoMySqlDatabase(data);
+           //ImportMovieAwardsAndNominationsFromXML();
+           
+          // using (var dbContext = new TMDB.Data.TmdbContext())
            // {
            //     var movie = dbContext.Movies.Select(m => m.ID == 1);
            //     foreach (var m in movie)

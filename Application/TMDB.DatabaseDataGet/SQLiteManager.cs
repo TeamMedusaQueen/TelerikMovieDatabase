@@ -4,17 +4,16 @@
     using System.Collections.Generic;
     using System.Data.SQLite;
     using System.Linq;
-    using TMDB.ExcelOperations;
-    
+
     class SQLiteManager
     {
-        private static void ManageSQLiteDataBaseExcelConnection()
+        private IList<SqLiteReturnObject> GetDataFromSqLiteDatabase()
         {
             SQLiteConnection sqliteConnection = new SQLiteConnection("Data Source = ..\\..\\..\\..\\Databases\\SQLite\\MovieBudget.db");
             sqliteConnection.Open();
             SQLiteCommand command = new SQLiteCommand("SELECT * FROM MovieBudgetReports", sqliteConnection);
             SQLiteDataReader reader = command.ExecuteReader();
-            var data = new List<object>();
+            var data = new List<SqLiteReturnObject>();
             using (reader)
             {
                 while (reader.Read())
@@ -22,14 +21,12 @@
                     int reportId = Convert.ToInt32(reader["ReportID"]);
                     string title = (string)reader["Title"];
                     int budget = Convert.ToInt32(reader["Budget"]);
-                    data.Add(reportId);
-                    data.Add(title);
-                    data.Add(budget);
-                    ExcelManager.InsertInExcelFile(reportId, title, budget);
+                    SqLiteReturnObject report = new SqLiteReturnObject(reportId, title, budget);
+                    data.Add(report);
                 }
             }
-            sqliteConnection.Close();
-            Console.WriteLine("Data inserted in Excel file successfully.");
+            
+            return data;
         }
     }
 }
