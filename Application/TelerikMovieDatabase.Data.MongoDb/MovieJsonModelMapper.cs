@@ -141,7 +141,7 @@
 				Metascore = movie.Metascore,
 				Rated = movie.Rated,
 				Rating = movie.Rating,
-				Poster = movie.Poster,
+				//Poster = movie.Poster,
 				ReleaseDate = movie.ReleaseDate,
 				Director_id = director.ID,
 				Writers = movieWriters.Select(i => i.ID),

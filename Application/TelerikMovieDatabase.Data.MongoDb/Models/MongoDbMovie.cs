@@ -18,9 +18,9 @@
 
 		public string Rated { get; set; }
 
-		public float Rating { get; set; }
+		public double Rating { get; set; }
 
-		public byte[] Poster { get; set; }
+		//public byte[] Poster { get; set; }
 
 		public DateTime? ReleaseDate { get; set; }
 

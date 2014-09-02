@@ -41,10 +41,10 @@
 		[StringLength(10)]
 		public string Rated { get; set; }
 
-		public float Rating { get; set; }
+		public double Rating { get; set; }
 
-		[MaxLength(int.MaxValue)]
-		public byte[] Poster { get; set; }
+		//[MaxLength(int.MaxValue)]
+		//public byte[] Poster { get; set; }
 
 		public DateTime? ReleaseDate { get; set; }
 

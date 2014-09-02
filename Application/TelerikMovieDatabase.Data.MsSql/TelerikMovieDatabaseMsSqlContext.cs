@@ -8,13 +8,12 @@
 
 	public class TelerikMovieDatabaseMsSqlContext : DbContext, IDisposable
 	{
-		public const string ConnectionStringName = "TMDB";
+		public const string ConnectionStringName = "TelerikMovieDatabase";
 
 		public TelerikMovieDatabaseMsSqlContext()
 			: base(ConnectionStringName)
 		{
 			Database.SetInitializer(new MigrateDatabaseToLatestVersion<TelerikMovieDatabaseMsSqlContext, Configuration>());
-			Database.Initialize(true);
 		}
 
 		protected override void OnModelCreating(DbModelBuilder modelBuilder)

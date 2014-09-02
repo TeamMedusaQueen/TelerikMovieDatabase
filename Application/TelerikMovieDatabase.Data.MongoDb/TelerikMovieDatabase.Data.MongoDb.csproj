@@ -64,6 +64,7 @@
     <Compile Include="Models\MongoDbMovie.cs" />
     <Compile Include="Models\MongoDbCountry.cs" />
     <Compile Include="Models\MongoDbPerson.cs" />
+    <Compile Include="MongoDbToMsSqlMigration.cs" />
     <Compile Include="MongoDbManager.cs" />
     <Compile Include="MovieJsonModelMapper.cs" />
     <Compile Include="MongoDbInitializer.cs" />

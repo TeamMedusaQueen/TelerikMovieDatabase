@@ -97,7 +97,7 @@
 				Metascore = metascore,
 				Rated = this.Rated,
 				Rating = this.imdbRating,
-				Poster = this.GetImageData(this.Poster),
+				//Poster = this.GetImageData(this.Poster),
 				ReleaseDate = releaseDate,
 				Director = this.GetPerson(this.Director, dbContext, JobPositionType.Director),
 				Writers = this.GetPersonsCollection(this.Writer, dbContext, JobPositionType.Writer),

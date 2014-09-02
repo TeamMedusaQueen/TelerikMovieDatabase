@@ -3,8 +3,7 @@
 	using System;
 	using System.Collections.Generic;
 	using System.Linq;
-	using System.Text;
-	using TelerikMovieDatabase.Data.Imdb;
+	using TelerikMovieDatabase.Data.MongoDb;
 	using TelerikMovieDatabase.Data.MsSql;
 
 	internal class EntryPoint
@@ -13,7 +12,7 @@
 		{
 			// Prepare Initial Data
 			// Step 1
-			//new MongoDbInitializer().Init();
+			new MongoDbInitializer().Init();
 			// Step 2
 			//new ExcelZipFileInitializer().Init();
 			// Step 3
@@ -22,22 +21,25 @@
 			//Create MySql Database and fill data ?
 
 			// Step 5
-			//Start the tasks 1 by 1
+			// Migrate Data From MongoDb To MsSql
+			MigrateDataFromMongoDbToMsSql();
 		}
 
-		// Temporary Method
-		private void FillMsSqlDatabaseFromOMDB()
+		private static void MigrateDataFromMongoDbToMsSql()
 		{
 			using (var dbContext = new TelerikMovieDatabaseMsSqlContext())
 			{
-				var movieJsonModels = OpenMovieDatabase.GetTop250();
-				foreach (var movieJsonModel in movieJsonModels)
+				// TODO: This condition should be removed, when UI is ready the migration process will be invoked from button
+				if (!dbContext.Movies.Any())
 				{
-					var movie = movieJsonModel.GetMovieModel(dbContext);
-					dbContext.Movies.Add(movie);
-				}
+					var movies = new MongoDbToMsSqlMigration().GetMovies();
+					foreach (var movie in movies)
+					{
+						dbContext.Movies.Add(movie);
+					}
 
-				dbContext.SaveChanges();
+					dbContext.SaveChanges();
+				}
 			}
 		}
 	}

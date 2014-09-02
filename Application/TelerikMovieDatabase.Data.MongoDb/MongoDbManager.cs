@@ -6,10 +6,7 @@
 	using System;
 	using System.Collections.Generic;
 	using System.Linq;
-	using System.Text;
-	using System.Threading.Tasks;
 	using TelerikMovieDatabase.Data.Json;
-	using TelerikMovieDatabase.Data.MongoDb.Models;
 
 	public class MongoDbManager
 	{
@@ -27,13 +24,12 @@
 		private MongoServer server;
 		private MongoDatabase database;
 
-		public void Connect()
-		{
-			this.client = new MongoClient(ConnectionString);
-		}
-
 		public MongoClient GetClient()
 		{
+			if (this.client == null)
+			{
+				this.client = new MongoClient(ConnectionString);
+			}
 			return this.client;
 		}
 
@@ -59,17 +55,6 @@
 		public bool DatabaseExists()
 		{
 			return this.GetServer().DatabaseExists(DbName);
-		}
-
-		public void GetMovies()
-		{
-			var movies = this.GetDatabase().GetCollection<MongoDbMovie>(DbTableMoviesName);
-			var persons = this.GetDatabase().GetCollection<MongoDbPerson>(DbTablePersonsName);
-			var genres = this.GetDatabase().GetCollection<MongoDbGenre>(DbTableGenresName);
-			var countries = this.GetDatabase().GetCollection<MongoDbCountry>(DbTableCountriesName);
-			var languages = this.GetDatabase().GetCollection<MongoDbLanguage>(DbTableLanguagesName);
-			var jobPositions = this.GetDatabase().GetCollection<MongoDbJob>(DbTableJobPositionsName);
-			// TODO
 		}
 
 		public void InsertMovies(IEnumerable<object> data)
