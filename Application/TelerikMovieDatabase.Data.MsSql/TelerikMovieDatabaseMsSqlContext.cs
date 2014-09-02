@@ -8,7 +8,7 @@
 
 	public class TelerikMovieDatabaseMsSqlContext : DbContext, IDisposable
 	{
-		public const string ConnectionStringName = "TMDB";
+		public const string ConnectionStringName = "TelerikMovieDatabase";
 
 		public TelerikMovieDatabaseMsSqlContext()
 			: base(ConnectionStringName)

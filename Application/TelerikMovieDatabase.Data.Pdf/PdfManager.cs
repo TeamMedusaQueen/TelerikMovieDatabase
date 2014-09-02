@@ -1,103 +1,93 @@
-﻿namespace TelerikMovieDatabase.Data.Pdf
+﻿using iTextSharp.text;
+using iTextSharp.text.pdf;
+using System;
+using System.Data.SqlClient;
+using System.IO;
+
+namespace TelerikMovieDatabase.Data.Pdf
 {
-    using iTextSharp.text;
-    using iTextSharp.text.pdf;
-    using System;
-    using System.Data.SqlClient;
-    using System.IO;
+	public class PdfManager
+	{
+		public void DoMagic()
+		{
+			// The exported file is located on the Desktop
+			var path = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
 
-    internal class PdfManager
-    {
-        private static void Main(string[] args)
-        {
-            const string PdfFileName = "MoviesPDFDocument.pdf";
-            const string MetadataFileAuthor = "Team Medusa Queen";
-            const string MetadataFileSubject = "PDF Export of TMDB data";
-            const string MetadataFileTitle = "TMDB Report";
-            const int TableNumberOfColumns = 3;
+			System.IO.FileStream fs = new FileStream(path + "/MoviesPDFDocument.pdf", FileMode.Create);
+			Document document = new Document(PageSize.A4, 25, 25, 30, 30);
+			PdfWriter writer = PdfWriter.GetInstance(document, fs);
+			document.AddAuthor("Team Medusa Queen");
+			document.AddCreator("Sample application using iTextSharp");
+			document.AddSubject("PDF Export of TMDB data");
+			document.AddTitle("TMDB Report");
 
-            DateTime reportDate = DateTime.Now;
-            Font fontBold = new Font(Font.FontFamily.TIMES_ROMAN, 13, Font.BOLD, BaseColor.BLACK);
+			document.Open();
+			iTextSharp.text.Font fontBold = new iTextSharp.text.Font(iTextSharp.text.Font.FontFamily.TIMES_ROMAN, 13, iTextSharp.text.Font.BOLD, BaseColor.BLACK);
+			iTextSharp.text.Font fontNormal = new iTextSharp.text.Font(iTextSharp.text.Font.FontFamily.TIMES_ROMAN, 11, iTextSharp.text.Font.NORMAL, BaseColor.BLACK);
+			DateTime date = DateTime.Now;
 
-            string[] headerLines = new string[]    
-            {
-                "Telerik Academy\n",
-                "Movie Report\n",
-                "bul. Al. Malinov\n",
-                reportDate.ToString()
-            };
+			Phrase ps = new Phrase("Telerik Academy" + "\n", fontBold);
+			Phrase ps1 = new Phrase("Movie Report" + "\n", fontBold);
+			Phrase p1 = new Phrase(date.TimeOfDay + "\n");
+			Phrase p4 = new Phrase("bul. Al. Malinov" + "\n");
 
-            // The exported file is located on the Desktop
-            var pathToDesktop = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
+			var paragraph = new Paragraph();
+			paragraph.Alignment = Element.ALIGN_LEFT;
+			paragraph.Add(ps);
+			paragraph.Add(ps1);
+			paragraph.Add(p1);
+			paragraph.Add(p4);
+			//paragraph.Add(p2);
+			//paragraph.Add(p5);
+			//paragraph.Add(p6)s
+			document.Add(paragraph);
 
-            FileStream fileStream = new FileStream(pathToDesktop + "/" + PdfFileName, FileMode.Create);
-            Document documentPage = new Document(PageSize.A4, 25, 25, 20, 20);
-            PdfWriter documentWriter = PdfWriter.GetInstance(documentPage, fileStream);
+			Paragraph paragraph4 = new Paragraph();
+			paragraph4.Alignment = Element.ALIGN_CENTER;
+			paragraph4.Add("Movie Report\n\n");
+			paragraph4.Font.IsBold();
+			document.Add(paragraph4);
 
-            // PDF Metadata
-            documentPage.Open();
-            documentPage.AddAuthor(MetadataFileAuthor);
-            documentPage.AddCreator(MetadataFileAuthor);
-            documentPage.AddSubject(MetadataFileSubject);
-            documentPage.AddTitle(MetadataFileTitle);
+			PdfPTable table = new PdfPTable(3);
+			table.TotalWidth = 150f;
 
-            // Header paragraph data
-            Paragraph paragraph = new Paragraph();
-            paragraph.Alignment = Element.ALIGN_LEFT;
+			float[] widths = new float[] { 80f, 20f, 25f };
+			table.SetWidths(widths);
 
-            foreach (var headerLine in headerLines)
-            {
-                paragraph.Add(new Phrase(headerLine));
-            }
+			PdfPCell cellID = new PdfPCell(new Phrase("Movie Title", fontBold));
+			cellID.HorizontalAlignment = 1;
+			PdfPCell cellName = new PdfPCell(new Phrase("Metascore", fontBold));
+			cellName.HorizontalAlignment = 1;
+			PdfPCell cellDesc = new PdfPCell(new Phrase("Release Date", fontBold));
+			cellDesc.HorizontalAlignment = 1;
+			table.AddCell(cellID);
+			table.AddCell(cellName);
+			table.AddCell(cellDesc);
 
-            documentPage.Add(paragraph);
+			SqlConnection dbCon = new SqlConnection("Server=(localdb)\\MSSqlLocalDB; " + "Database=TMDB; Integrated Security=true");
+			dbCon.Open();
+			using (dbCon)
+			{
+				string query = "SELECT top 25 Title, Metascore, CONVERT(VARCHAR(11), ReleaseDate, 106) FROM Movies";
 
-            // Table title
-            Paragraph tableTitle = new Paragraph();
-            tableTitle.Alignment = Element.ALIGN_CENTER;
-            tableTitle.Add("Movie Report\n");
-            documentPage.Add(tableTitle);
+				SqlCommand cmd = new SqlCommand(query, dbCon);
 
-            // Report table parameters
-            PdfPTable reportTable = new PdfPTable(TableNumberOfColumns);
-            reportTable.SetWidths(new float[] { 80f, 20f, 25f });
+				using (SqlDataReader rdr = cmd.ExecuteReader())
+				{
+					while (rdr.Read())
+					{
+						table.AddCell(rdr[0].ToString());
+						table.AddCell(rdr[1].ToString());
+						table.AddCell(rdr[2].ToString());
+					}
+				}
 
-            SqlConnection dbCon = new SqlConnection("Server=(localdb)\\MSSqlLocalDB; " + "Database=TMDB; Integrated Security=true");
-            dbCon.Open();
+				document.Add(table);
+			}
 
-            using (dbCon)
-            {
-                string query = "SELECT top 25 Title as [Movie Title], Metascore, CONVERT(VARCHAR(11), ReleaseDate, 106) AS [Release Date] FROM Movies";
-
-                SqlCommand cmd = new SqlCommand(query, dbCon);
-
-                using (SqlDataReader dataReader = cmd.ExecuteReader())
-                {
-
-                    for (int i = 0; i < dataReader.FieldCount; i++)
-                    {
-
-                        PdfPCell cellName = new PdfPCell(new Phrase(dataReader.GetName(i), fontBold));
-                        cellName.HorizontalAlignment = 1;
-                        reportTable.AddCell(cellName);
-                    }
-
-                    while (dataReader.Read())
-                    {
-                        for (int q = 0; q < dataReader.FieldCount; q++)
-                        {
-                            reportTable.AddCell(dataReader[q].ToString());
-                        }
-
-                    }
-                }
-
-                documentPage.Add(reportTable);
-            }
-
-            documentPage.Close();
-            documentWriter.Close();
-            fileStream.Close();
-        }
-    }
+			document.Close();
+			writer.Close();
+			fs.Close();
+		}
+	}
 }

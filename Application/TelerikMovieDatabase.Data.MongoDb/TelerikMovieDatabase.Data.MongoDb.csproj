@@ -57,7 +57,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="MongoDbHandler.cs" />
+    <Compile Include="Models\MongoDbBaseModel.cs" />
+    <Compile Include="Models\MongoDbJob.cs" />
+    <Compile Include="Models\MongoDbLanguage.cs" />
+    <Compile Include="Models\MongoDbGenre.cs" />
+    <Compile Include="Models\MongoDbMovie.cs" />
+    <Compile Include="Models\MongoDbCountry.cs" />
+    <Compile Include="Models\MongoDbPerson.cs" />
+    <Compile Include="MongoDbToMsSqlMigration.cs" />
+    <Compile Include="MongoDbManager.cs" />
     <Compile Include="MovieJsonModelMapper.cs" />
     <Compile Include="MongoDbInitializer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -94,9 +102,7 @@
       <Name>TelerikMovieDatabase.Models</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Models\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
