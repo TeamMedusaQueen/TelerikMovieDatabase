@@ -1,9 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<DomainModel xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" dslVersion="2.0.0.0" name="GrossReports" namespace="TMDB.GrossReports" showPropertiesCompartment="true" xmlns="http://www.telerik.com/ORM">
-  <orm:orm name="GrossReports" backend="mysql" xmlns:orm="http://tempuri.org/ORM">
-    <orm:namespace name="TMDB.GrossReports" default="true">
-      <orm:class name="Grossreport" uniqueId="0d00e8da-1a08-4a81-b820-e35c8390c38d">
-        <orm:table name="grossreports" />
+<DomainModel xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" dslVersion="2.0.0.0" name="TelerikMovieDatabaseMySqlContext" namespace="TelerikMovieDatabase.Data.MySql" showPropertiesCompartment="true" xmlns="http://www.telerik.com/ORM">
+  <orm:orm name="TelerikMovieDatabaseMySqlContext" backend="mysql" xmlns:orm="http://tempuri.org/ORM">
+    <orm:namespace name="TelerikMovieDatabase.Data.MySql" default="true">
+      <orm:class name="GrossReport" uniqueId="0d00e8da-1a08-4a81-b820-e35c8390c38d">
+        <orm:table name="GrossReports" />
         <orm:identity>
           <orm:key-generator name="autoinc">
             <orm:key-generator-member property-name="ReportID" />
@@ -23,13 +23,14 @@
       </orm:class>
     </orm:namespace>
     <orm:schema schema="">
-      <orm:table name="grossreports">
+      <orm:table name="GrossReports">
         <orm:column name="ReportID" sql-type="integer" nullable="false" length="0" scale="0" primary-key="true" backend-calculated="true" ado-type="Int32" />
         <orm:column name="Title" sql-type="nvarchar" nullable="false" length="45" scale="0" ado-type="UnicodeStringVariableLength" />
         <orm:column name="Gross" sql-type="integer" nullable="false" length="0" scale="0" ado-type="Int32" />
       </orm:table>
     </orm:schema>
     <orm:relational-naming-settings>
+      <orm:remove-leading-underscore>False</orm:remove-leading-underscore>
       <orm:source-strategy>Property</orm:source-strategy>
       <orm:remove-camel-case>False</orm:remove-camel-case>
     </orm:relational-naming-settings>
@@ -49,21 +50,28 @@
       <PropertyRules>
         <CaseMode>PascalCase</CaseMode>
       </PropertyRules>
-      <NavigationPropertyRules />
+      <NavigationPropertyRules>
+        <IsPrefixSuffixEnabled>false</IsPrefixSuffixEnabled>
+      </NavigationPropertyRules>
     </NamingSettings>
     <CodeGenerationSettings>
       <MappingDefinitionType>Xml</MappingDefinitionType>
     </CodeGenerationSettings>
-    <SchemaUpdateSettings />
+    <SchemaUpdateSettings>
+      <DeploymentProject>TelerikMovieDatabase.Data.MySql</DeploymentProject>
+    </SchemaUpdateSettings>
     <BackendConfigurationSettings>
       <BackendConfiguration>
         <Backend>MySql</Backend>
         <ProviderName>MySql.Data.MySqlClient</ProviderName>
+        <Logging>
+          <MetricStoreSnapshotInterval>0</MetricStoreSnapshotInterval>
+        </Logging>
       </BackendConfiguration>
     </BackendConfigurationSettings>
   </ModelSettings>
   <Types>
-    <DomainClass Id="0d00e8da-1a08-4a81-b820-e35c8390c38d" name="Grossreport" namespace="TMDB.GrossReports" showPropertiesCompartment="true" identityMechanism="DatabaseServerCalculated" concurrencyMode="Changed" showNavigationCompartment="true" showImplementationCompartment="true" identityMechanismMember="ReportID">
+    <DomainClass Id="0d00e8da-1a08-4a81-b820-e35c8390c38d" name="GrossReport" namespace="TelerikMovieDatabase.Data.MySql" showPropertiesCompartment="true" identityMechanism="DatabaseServerCalculated" concurrencyMode="Changed" showNavigationCompartment="true" showImplementationCompartment="true" identityMechanismMember="ReportID">
       <Property Id="36d630e5-d664-448f-a4c8-a91b1d4226bd" name="ReportID" type="Int32" label="ReportID : Int32" kind="Persistent" identity="true" fieldName="_reportID" />
       <Property Id="26eb7bf3-de07-4b22-a3a9-3deacbce2b1b" name="Gross" type="Int32" label="Gross : Int32" kind="Persistent" fieldName="_gross" />
       <Property Id="26bc9107-ea15-47da-939a-016dc4539ba9" name="Title" label="Title : String" kind="Persistent" fieldName="_title" />
@@ -71,8 +79,8 @@
   </Types>
   <domainContext>
     <domainModelHasDomainContext Id="9d9fa598-dd9b-480f-bb65-93c12cf3a70a">
-      <domainContainer name="GrossReports" namespace="TMDB.GrossReports" showPropertiesCompartment="true">
-        <entitySetProperty name="Grossreports" namespace="TMDB.GrossReports" type="Grossreport" label="Grossreports : IQueryable&lt;TMDB.GrossReports.Grossreport&gt;" />
+      <domainContainer name="TelerikMovieDatabaseMySqlContext" namespace="TelerikMovieDatabase.Data.MySql" showPropertiesCompartment="true">
+        <entitySetProperty name="GrossReports" namespace="TelerikMovieDatabase.Data.MySql" type="GrossReport" label="GrossReports : IQueryable&lt;TelerikMovieDatabase.Data.MySql.GrossReport&gt;" />
       </domainContainer>
     </domainModelHasDomainContext>
   </domainContext>

@@ -19,9 +19,9 @@ using Telerik.OpenAccess.Data.Common;
 using Telerik.OpenAccess.Metadata.Fluent;
 using Telerik.OpenAccess.Metadata.Fluent.Advanced;
 
-namespace TMDB.GrossReports	
+namespace TelerikMovieDatabase.Data.MySql	
 {
-	public partial class Grossreport
+	public partial class GrossReport
 	{
 		private int _reportID;
 		public virtual int ReportID

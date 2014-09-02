@@ -1,18 +1,36 @@
-﻿//using MySql.Data.MySqlClient;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace TelerikMovieDatabase.Data.MySql
+﻿namespace TelerikMovieDatabase.Data.MySql
 {
-	internal class MySqlManager
+	using System;
+	using System.Collections.Generic;
+	using System.Linq;
+	using System.Text;
+	using System.Threading.Tasks;
+
+	public class MySqlManager
 	{
-		//public MySqlConnection MySqlDb { get; set; }
-		//public MySqlManager()
-		//{
-		//	this.MySqlDb = new MySqlConnection(@"Server=localhost;Port=3306;Database=TMDBGrossInformation;Uid=root;Pwd=11235813787898");
-		//}
+		public List<GrossReport> GetDataFromMySqlDatabase()
+		{
+			using (var dbContext = new TelerikMovieDatabaseMySqlContext())
+			{
+				var data = dbContext.GrossReports.ToList<GrossReport>();
+				return data;
+			}
+		}
+
+		public void InsertIntoMySqlDatabase(IDictionary<string, int> data)
+		{
+			using (var dbContext = new TelerikMovieDatabaseMySqlContext())
+			{
+				foreach (var pair in data)
+				{
+					GrossReport report = new GrossReport();
+					report.Title = pair.Key;
+					report.Gross = pair.Value;
+					dbContext.Add(report);
+				}
+
+				dbContext.SaveChanges();
+			}
+		}
 	}
 }

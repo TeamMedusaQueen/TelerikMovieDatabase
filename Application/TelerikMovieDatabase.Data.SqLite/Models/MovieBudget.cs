@@ -1,11 +1,11 @@
-﻿namespace TMDB.DatabaseDataGet
+﻿namespace TelerikMovieDatabase.Data.SqLite.Models
 {
     using System;
     using System.Linq;
     
-    internal class SqLiteReturnObject
+    internal class MovieBudget
     {
-        public SqLiteReturnObject(int reportId, string title, int budget)
+        public MovieBudget(int reportId, string title, int budget)
         {
             this.ReportId = reportId;
             this.Title = title;

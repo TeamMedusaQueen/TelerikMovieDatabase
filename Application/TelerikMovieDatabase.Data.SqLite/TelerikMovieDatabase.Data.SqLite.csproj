@@ -43,13 +43,20 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SQLiteManager.cs" />
+    <Compile Include="SqLiteManager.cs" />
+    <Compile Include="Models\MovieBudget.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\TelerikMovieDatabase.Data.Excel\TelerikMovieDatabase.Data.Excel.csproj">
       <Project>{D5FB25D1-306D-4ADE-9C57-63C4FA1E6F5F}</Project>
       <Name>TelerikMovieDatabase.Data.Excel</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="x64\SQLite.Interop.dll" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="x86\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

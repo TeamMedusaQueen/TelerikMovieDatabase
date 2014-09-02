@@ -18,11 +18,11 @@ using Telerik.OpenAccess.Metadata;
 using Telerik.OpenAccess.Data.Common;
 using Telerik.OpenAccess.Metadata.Fluent;
 using Telerik.OpenAccess.Metadata.Fluent.Advanced;
-using TMDB.GrossReports;
+using TelerikMovieDatabase.Data.MySql;
 
-namespace TMDB.GrossReports	
+namespace TelerikMovieDatabase.Data.MySql	
 {
-	public partial class GrossReports : OpenAccessContext, IGrossReportsUnitOfWork
+	public partial class TelerikMovieDatabaseMySqlContext : OpenAccessContext, ITelerikMovieDatabaseMySqlContextUnitOfWork
 	{
 		private static string connectionStringName = @"Connection";
 			
@@ -30,56 +30,57 @@ namespace TMDB.GrossReports
 				
 		private static MetadataSource metadataSource = XmlMetadataSource.FromAssemblyResource("EntitiesModel.rlinq");
 		
-		public GrossReports()
+		public TelerikMovieDatabaseMySqlContext()
 			:base(connectionStringName, backend, metadataSource)
 		{ }
 		
-		public GrossReports(string connection)
+		public TelerikMovieDatabaseMySqlContext(string connection)
 			:base(connection, backend, metadataSource)
 		{ }
 		
-		public GrossReports(BackendConfiguration backendConfiguration)
+		public TelerikMovieDatabaseMySqlContext(BackendConfiguration backendConfiguration)
 			:base(connectionStringName, backendConfiguration, metadataSource)
 		{ }
 			
-		public GrossReports(string connection, MetadataSource metadataSource)
+		public TelerikMovieDatabaseMySqlContext(string connection, MetadataSource metadataSource)
 			:base(connection, backend, metadataSource)
 		{ }
 		
-		public GrossReports(string connection, BackendConfiguration backendConfiguration, MetadataSource metadataSource)
+		public TelerikMovieDatabaseMySqlContext(string connection, BackendConfiguration backendConfiguration, MetadataSource metadataSource)
 			:base(connection, backendConfiguration, metadataSource)
 		{ }
 			
-		public IQueryable<Grossreport> Grossreports 
+		public IQueryable<GrossReport> GrossReports 
 		{
 			get
 			{
-				return this.GetAll<Grossreport>();
+				return this.GetAll<GrossReport>();
 			}
 		}
 		
 		public static BackendConfiguration GetBackendConfiguration()
 		{
-		
 			BackendConfiguration backend = new BackendConfiguration();
 			backend.Backend = "MySql";
 			backend.ProviderName = "MySql.Data.MySqlClient";
+			backend.Logging.MetricStoreSnapshotInterval = 0;
 		
 			CustomizeBackendConfiguration(ref backend);
+		
 			return backend;
 		}
 		
 		/// <summary>
-		/// Allows you to customize the BackendConfiguration of GrossReports.
+		/// Allows you to customize the BackendConfiguration of TelerikMovieDatabaseMySqlContext.
 		/// </summary>
-		/// <param name="config">The BackendConfiguration of GrossReports.</param>
+		/// <param name="config">The BackendConfiguration of TelerikMovieDatabaseMySqlContext.</param>
 		static partial void CustomizeBackendConfiguration(ref BackendConfiguration config);
 		
 	}
 	
-	public interface IGrossReportsUnitOfWork : IUnitOfWork
+	public interface ITelerikMovieDatabaseMySqlContextUnitOfWork : IUnitOfWork
 	{
-		IQueryable<Grossreport> Grossreports
+		IQueryable<GrossReport> GrossReports
 		{
 			get;
 		}
