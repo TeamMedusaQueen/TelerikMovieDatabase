@@ -1,0 +1,30 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="TelerikMovieDatabase.Data.MongoDb" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="DbName" Type="System.String" Scope="User">
+      <Value Profile="(Default)">TelerikMovieDatabase</Value>
+    </Setting>
+    <Setting Name="DbTableMoviesName" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Movies</Value>
+    </Setting>
+    <Setting Name="DbTablePersonsName" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Persons</Value>
+    </Setting>
+    <Setting Name="DbTableGenresName" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Genres</Value>
+    </Setting>
+    <Setting Name="DbTableCountriesName" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Countries</Value>
+    </Setting>
+    <Setting Name="DbTableLanguagesName" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Languages</Value>
+    </Setting>
+    <Setting Name="DbTableJobPositionsName" Type="System.String" Scope="User">
+      <Value Profile="(Default)">JobPositions</Value>
+    </Setting>
+    <Setting Name="ConnectionString" Type="System.String" Scope="User">
+      <Value Profile="(Default)">mongodb://localhost</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>

@@ -57,18 +57,33 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="JsonMovieJsonModelMapper.cs" />
-    <Compile Include="TmdbMongoDbContext.cs" />
+    <Compile Include="MongoDbHandler.cs" />
+    <Compile Include="MovieJsonModelMapper.cs" />
+    <Compile Include="MongoDbInitializer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Settings.cs" />
+    <Compile Include="Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
+    <None Include="Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\TelerikMovieDatabase.Data.Imdb\TelerikMovieDatabase.Data.Imdb.csproj">
       <Project>{e009ffbd-243c-45d7-8c43-c657625e7cc5}</Project>
       <Name>TelerikMovieDatabase.Data.Imdb</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TelerikMovieDatabase.Data.Json\TelerikMovieDatabase.Data.Json.csproj">
+      <Project>{370ed994-c881-4031-a6cc-d8a9b821ac19}</Project>
+      <Name>TelerikMovieDatabase.Data.Json</Name>
     </ProjectReference>
     <ProjectReference Include="..\TelerikMovieDatabase.Data.MsSql\TelerikMovieDatabase.Data.MsSql.csproj">
       <Project>{4f30509d-fc6b-4916-91e0-b8bc1ba5979f}</Project>

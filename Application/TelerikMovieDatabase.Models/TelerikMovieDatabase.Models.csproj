@@ -69,7 +69,6 @@
     <Compile Include="Nomination.cs" />
     <Compile Include="Person.cs" />
     <Compile Include="Movie.cs" />
-    <Compile Include="ProductionCompany.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

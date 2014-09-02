@@ -11,7 +11,6 @@
 	{
 		private ICollection<Person> writers;
 		private ICollection<Person> cast;
-		private ICollection<ProductionCompany> productionCompanies;
 		private ICollection<Nomination> nominations;
 		private ICollection<Award> awards;
 		private ICollection<Genre> genres;
@@ -22,7 +21,6 @@
 		{
 			this.writers = new HashSet<Person>();
 			this.cast = new HashSet<Person>();
-			this.productionCompanies = new HashSet<ProductionCompany>();
 			this.nominations = new HashSet<Nomination>();
 			this.awards = new HashSet<Award>();
 			this.genres = new HashSet<Genre>();
@@ -80,18 +78,6 @@
 			set
 			{
 				this.cast = value;
-			}
-		}
-
-		public virtual ICollection<ProductionCompany> ProductionCompanies
-		{
-			get
-			{
-				return this.productionCompanies;
-			}
-			set
-			{
-				this.productionCompanies = value;
 			}
 		}
 

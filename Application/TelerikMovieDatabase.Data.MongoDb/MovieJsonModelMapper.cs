@@ -9,19 +9,17 @@
 	using TelerikMovieDatabase.Data.MsSql;
 	using TelerikMovieDatabase.Models;
 
-	internal class JsonMovieJsonModelMapper
+	internal class MovieJsonModelMapper
 	{
-		private HashSet<Person> persons = new HashSet<Person>();
-		private HashSet<Genre> genres = new HashSet<Genre>();
-		private HashSet<ProductionCompany> productionCompanies = new HashSet<ProductionCompany>();
-		private HashSet<Country> countries = new HashSet<Country>();
-		private HashSet<Language> languages = new HashSet<Language>();
-		private HashSet<JobPosition> jobs = new HashSet<JobPosition>();
+		private readonly HashSet<Person> persons = new HashSet<Person>();
+		private readonly HashSet<Genre> genres = new HashSet<Genre>();
+		private readonly HashSet<Country> countries = new HashSet<Country>();
+		private readonly HashSet<Language> languages = new HashSet<Language>();
+		private readonly HashSet<JobPosition> jobs = new HashSet<JobPosition>();
 
 		private int movieID = 1;
 		private int personID = 1;
 		private int genreID = 1;
-		private int productionCompanyID = 1;
 		private int countryID = 1;
 		private int languageID = 1;
 		private int jobID = 1;
@@ -30,7 +28,7 @@
 		{
 			var movieProjections = new HashSet<object>();
 
-			using (var dbContext = new TelerikMovieDatabaseContext())
+			using (var dbContext = new TelerikMovieDatabaseMsSqlContext())
 			{
 				foreach (var model in models)
 				{
@@ -42,7 +40,7 @@
 			return movieProjections;
 		}
 
-		public object Map(MovieJsonModel model, TelerikMovieDatabaseContext dbContext)
+		public object Map(MovieJsonModel model, TelerikMovieDatabaseMsSqlContext dbContext)
 		{
 			var movie = model.GetMovieModel(dbContext);
 
@@ -103,21 +101,6 @@
 				movieGenres.Add(movieGenre);
 			}
 
-			var movieProductionCompanies = new HashSet<ProductionCompany>();
-			foreach (var productionCompany in movie.ProductionCompanies)
-			{
-				var movieProductionCompany = productionCompanies.SingleOrDefault(i => i.Name == productionCompany.Name);
-
-				if (movieProductionCompany == null)
-				{
-					productionCompanies.Add(productionCompany);
-					movieProductionCompany = productionCompany;
-					movieProductionCompany.ID = productionCompanyID++;
-				}
-
-				movieProductionCompanies.Add(movieProductionCompany);
-			}
-
 			var movieCountries = new HashSet<Country>();
 			foreach (var country in movie.Countries)
 			{
@@ -162,7 +145,6 @@
 				Writers = movieWriters.Select(i => i.ID),
 				Cast = movieCast.Select(i => i.ID),
 				Genres = movieGenres.Select(i => i.ID),
-				ProductionCompanies = movieProductionCompanies.Select(i => i.ID),
 				Countries = movieCountries.Select(i => i.ID),
 				Languages = movieLanguages.Select(i => i.ID),
 			};
@@ -207,11 +189,6 @@
 		public IEnumerable<object> GetGenreProjections()
 		{
 			return this.GetProjections(this.genres, item => new { _id = item.ID, Title = item.Title });
-		}
-
-		public IEnumerable<object> GetProductionCompanyProjections()
-		{
-			return this.GetProjections(this.productionCompanies, item => new { _id = item.ID, Name = item.Name });
 		}
 
 		public IEnumerable<object> GetCountryProjections()

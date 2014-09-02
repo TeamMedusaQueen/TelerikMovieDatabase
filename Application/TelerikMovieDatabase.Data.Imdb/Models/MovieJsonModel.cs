@@ -54,39 +54,39 @@
 
 		public string Response { get; set; }
 
-		public Movie GetMovieModel(TelerikMovieDatabaseContext dbContext)
+		public Movie GetMovieModel(TelerikMovieDatabaseMsSqlContext dbContext)
 		{
 			if (this.Title == null)
 			{
 				return null;
 			}
 
-			int int_;
-			byte byte_;
-			DateTime dateTime_;
+			int @int;
+			byte @byte;
+			DateTime dateTime;
 
 			int? runningTime = null;
 
 			if (!string.IsNullOrWhiteSpace(this.Runtime)
-				&& int.TryParse(this.Runtime.Split(' ')[0], out int_))
+				&& int.TryParse(this.Runtime.Split(' ')[0], out @int))
 			{
-				runningTime = int_;
+				runningTime = @int;
 			}
 
 			byte? metascore = null;
 
 			if (!string.IsNullOrWhiteSpace(this.Metascore)
-				&& byte.TryParse(this.Metascore, out byte_))
+				&& byte.TryParse(this.Metascore, out @byte))
 			{
-				metascore = byte_;
+				metascore = @byte;
 			}
 
 			DateTime? releaseDate = null;
 
 			if (!string.IsNullOrWhiteSpace(this.Released)
-				&& DateTime.TryParse(this.Released, out dateTime_))
+				&& DateTime.TryParse(this.Released, out dateTime))
 			{
-				releaseDate = dateTime_;
+				releaseDate = dateTime;
 			}
 
 			var movieModel = new Movie()
@@ -138,7 +138,7 @@
 			return movieModel;
 		}
 
-		private ICollection<Person> GetPersonsCollection(string names, TelerikMovieDatabaseContext dbContext, JobPositionType jobType)
+		private ICollection<Person> GetPersonsCollection(string names, TelerikMovieDatabaseMsSqlContext dbContext, JobPositionType jobType)
 		{
 			var personNames = names.Split(new[] { ", " }, StringSplitOptions.RemoveEmptyEntries);
 
@@ -173,7 +173,7 @@
 			return items;
 		}
 
-		private Person GetPerson(string name, TelerikMovieDatabaseContext dbContext, JobPositionType jobType)
+		private Person GetPerson(string name, TelerikMovieDatabaseMsSqlContext dbContext, JobPositionType jobType)
 		{
 			var person = dbContext.Persons.Local.FirstOrDefault(
 					p => p.Name == name
