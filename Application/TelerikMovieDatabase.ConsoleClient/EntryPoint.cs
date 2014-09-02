@@ -6,55 +6,54 @@
 	using System.Linq;
 	using System.Text;
 	using System.Xml;
+	using TelerikMovieDatabase.Data.Imdb;
 	using TelerikMovieDatabase.Data.Json;
+	using TelerikMovieDatabase.Data.MsSql;
 
 	internal class EntryPoint
 	{
 		private static void Main()
 		{
+			using (var dbContext = new TelerikMovieDatabaseMsSqlContext())
+			{
+				var movieJsonModels = OpenMovieDatabase.GetTop250();
+				foreach (var movieJsonModel in movieJsonModels)
+				{
+					var movie = movieJsonModel.GetMovieModel(dbContext);
+					dbContext.Movies.Add(movie);
+				}
+			
+			 	dbContext.SaveChanges();
+			 }
+
+
 			// Step 1
 			//new MongoDbInitializer().Init();
 			// Step 2
 			//new ExcelZipFileInitializer().Init();
 
-			Dictionary<string, int> testData = new Dictionary<string, int>();
-			testData.Add("testData 1", 1);
-			testData.Add("testData2", 2);
-			string result = JsonHandler.Serialize(testData);
-			Console.WriteLine(result);
-			var data = JsonHandler.Deserialize<Dictionary<string, int>>(result);
-			foreach (var entry in data)
-			{
-				Console.WriteLine(entry.Key + "--->" + entry.Value);
-			}
+			//Dictionary<string, int> testData = new Dictionary<string, int>();
+			//testData.Add("testData 1", 1);
+			//testData.Add("testData2", 2);
+			//string result = JsonHandler.Serialize(testData);
+			//Console.WriteLine(result);
+			//var data = JsonHandler.Deserialize<Dictionary<string, int>>(result);
+			//foreach (var entry in data)
+			//{
+			//	Console.WriteLine(entry.Key + "--->" + entry.Value);
+			//}
 
 			//TmdbContext db = new TmdbContext();                       //reading from excell files and adding to sqlDB in BoxOfficeEntry
 			//ExcelManager.InsertInSqlDB(db);
 
 			////ImportMovieAwardsAndNominationsFromXML();
 			//
-			// using (var dbContext = new TMDB.Data.TmdbContext())
-			// {
 			//     var movie = dbContext.Movies.Select(m => m.ID == 1);
 			//     foreach (var m in movie)
 			//     {
 			//         Console.WriteLine(m);
 			//     }
 			// 	//var movies = dbContext.Movies.ToArray();
-			//     //
-			//     //
-			// 	//var movieJSONModels = OMDB.GetTop250();
-			// 	//foreach (var movieJSONModel in movieJSONModels)
-			// 	//{
-			// 	//	var movie = movieJSONModel.GetMovieModel(dbContext);
-			// 	//	dbContext.Movies.Add(movie);
-			// 	//}
-			//
-			// 	dbContext.SaveChanges();
-			// }
-			//
-			////var mongoDbContext = new TMDB.Data.Provider.MongoDatabase.TmdbMongoDbContext();
-			////mongoDbContext.InitialCreate();
 		}
 
 		private static void ImportMovieAwardsAndNominationsFromXML()

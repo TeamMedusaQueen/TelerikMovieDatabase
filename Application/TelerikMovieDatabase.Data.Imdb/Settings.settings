@@ -3,7 +3,7 @@
   <Profiles />
   <Settings>
     <Setting Name="CachedFolderPath" Type="System.String" Scope="User">
-      <Value Profile="(Default)">..\..\..\..\..\Database\OMDB\OMDBCache</Value>
+      <Value Profile="(Default)">..\..\..\..\Databases\OMDB\OMDBCache</Value>
     </Setting>
   </Settings>
 </SettingsFile>

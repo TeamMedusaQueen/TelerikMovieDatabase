@@ -25,7 +25,7 @@ namespace TelerikMovieDatabase.Data.Imdb {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("..\\..\\..\\..\\..\\Database\\OMDB\\OMDBCache")]
+        [global::System.Configuration.DefaultSettingValueAttribute("..\\..\\..\\..\\Databases\\OMDB\\OMDBCache")]
         public string CachedFolderPath {
             get {
                 return ((string)(this["CachedFolderPath"]));

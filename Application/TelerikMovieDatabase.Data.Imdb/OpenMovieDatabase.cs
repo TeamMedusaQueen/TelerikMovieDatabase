@@ -16,7 +16,7 @@
 
 		public static MovieJsonModel GetMovieDataByID(string movieID)
 		{
-			var fileName = cacheFolder + movieID + ".json";
+			var fileName = cacheFolder + @"\" + movieID + ".json";
 			string jsonData = null;
 
 			if (!File.Exists(fileName))
