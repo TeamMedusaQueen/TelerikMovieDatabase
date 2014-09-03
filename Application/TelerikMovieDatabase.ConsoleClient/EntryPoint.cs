@@ -28,11 +28,11 @@
             TelerikMovieDatabaseMsSqlContext db = new TelerikMovieDatabaseMsSqlContext();
             using (db)
             {
-            //    ZipManager.AddFileToZipArchive("..\\..\\..\\..\\Databases\\XLS\\XLSData\\BoxOffice-week1-September.xls", File.GetCreationTime("..\\..\\..\\..\\Databases\\XLS\\XLSData\\BoxOffice-week1-September.xls").ToString("dd-MMM-yyyy"), "..\\..\\..\\..\\Databases\\XLS\\Reports.zip");
+                ZipManager.AddFileToZipArchive("..\\..\\..\\..\\Databases\\XLS\\XLSData\\BoxOffice-week1-September.xls", File.GetCreationTime("..\\..\\..\\..\\Databases\\XLS\\XLSData\\BoxOffice-week1-September.xls").ToString("dd-MMM-yyyy"), "..\\..\\..\\..\\Databases\\XLS\\Reports.zip");
 
-            //    ZipManager.ExtractFiles("..\\..\\..\\..\\Databases\\XLS\\Reports.zip", "..\\..\\..\\..\\Databases\\XLS\\Reports\\");
+                ZipManager.ExtractFiles("..\\..\\..\\..\\Databases\\XLS\\Reports.zip", "..\\..\\..\\..\\Databases\\XLS\\Reports\\");
 
-                ExcelManager.ImportInSqlDb(db, "..\\..\\..\\..\\Databases\\XLS\\Reports\\");
+                ExcelManager.ImportInSqlDb(db, "..\\..\\..\\..\\Databases\\XLS\\Reports\\"); //If you want to add in database first uncoment the code inside this method
 
             }
 

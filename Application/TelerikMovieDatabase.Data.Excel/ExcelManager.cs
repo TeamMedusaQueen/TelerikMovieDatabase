@@ -70,24 +70,44 @@
                                 reports.Add(movie, new string[] { weeks, score });
                             }
 
-                           // foreach (var movie in movies)
-                           // {
-                           //     db.BoxOfficeEntries.Add(
-                           //         new BoxOfficeEntry
-                           //         {
-                           //             Weeks = int.Parse(reports[movie][0]),
-                           //             GeneratedWeekendIncome = decimal.Parse(reports[movie][1])
-                           //         });
-                           // }
-                           // db.SaveChanges();
+                            //Adding movies info to SQL DB
+                            // foreach (var movie in movies)
+                            // {
+                            //     db.BoxOfficeEntries.Add(
+                            //         new BoxOfficeEntry
+                            //         {
+                            //             Weeks = int.Parse(reports[movie][0]),
+                            //             GeneratedWeekendIncome = decimal.Parse(reports[movie][1])
+                            //         });
+                            // }
+                            // db.SaveChanges();
 
-                           foreach (var item in db.BoxOfficeEntries)
-                           {
-                               Console.WriteLine(item.ID + " " + item.Weeks + " - > " + item.GeneratedWeekendIncome);
-                           }
+                            foreach (var item in db.BoxOfficeEntries)
+                            {
+                                Console.WriteLine(item.ID + " " + item.Weeks + " - > " + item.GeneratedWeekendIncome);
+                            }
                         }
                     }
                 }
+            }
+
+            ClearFolder(reportsZipPath);
+        }
+
+        private static void ClearFolder(string folderName)
+        {
+            DirectoryInfo dir = new DirectoryInfo(folderName);
+
+            foreach (FileInfo file in dir.GetFiles())
+            {
+                file.IsReadOnly = false;
+                file.Delete();
+            }
+
+            foreach (DirectoryInfo folder in dir.GetDirectories())
+            {
+                ClearFolder(folder.FullName);
+                folder.Delete();
             }
         }
     }
