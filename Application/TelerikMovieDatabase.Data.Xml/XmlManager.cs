@@ -12,14 +12,11 @@
 
     public class XmlManager
     {
-        private static void ExportFromMovieAwardsAndNominationsToXml()
-        {
-            //const string movieAward = "movie-awards";
-            //const string movieNomination = "movie-nominations";
-            //const string industryAwardsNode = "industry-awards";
+        private static void ExportFromMovieToXml()
+        {            
             //string path = "../../MovieAwards.xml";
 
-            //var connectionString = "Data Source=.SQLEXPRESS;Initial Catalog=...;Integrated Security=True";
+            //var connectionString = "Data Source=.SQLEXPRESS;Initial Catalog=...;Integrated Security=True"; 
             //var xmlFileData = "";
             //DataSet data = new DataSet();
             //var tables = new[] { "Hospital", "Patient" };
