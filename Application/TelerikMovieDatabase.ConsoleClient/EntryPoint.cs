@@ -2,15 +2,12 @@
 {
 	using System;
 	using System.Collections.Generic;
-	using System.IO;
 	using System.Linq;
-	using TelerikMovieDatabase.Common;
 	using TelerikMovieDatabase.Data.Excel;
 	using TelerikMovieDatabase.Data.Imdb;
 	using TelerikMovieDatabase.Data.MongoDb;
 	using TelerikMovieDatabase.Data.MsSql;
 	using TelerikMovieDatabase.Models;
-	using TelerikMovieDatabase.Utils;
 
 	internal class EntryPoint
 	{
