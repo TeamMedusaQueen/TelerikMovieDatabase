@@ -2,33 +2,50 @@
 {
 	using System;
 	using System.Collections.Generic;
-	using System.Data;
-	using System.Data.SqlClient;
 	using System.IO;
 	using System.Linq;
 	using System.Runtime.Serialization;
 	using System.Text;
 	using System.Xml;
+	using TelerikMovieDatabase.Data;
+	using TelerikMovieDatabase.Models;
 
-	public class XmlManager
+	public class XmlManager<TEntity> : ImportExportManagerBase<TEntity, string>
+		where TEntity : class, IKeyHolder
 	{
-		public static TEntity Deserialize<TEntity>(string fileName)
+		public override string FolderPath
 		{
-			TEntity data;
+			get
+			{
+				return Settings.Default.FolderPath;
+			}
+		}
+
+		public override string FileExtension
+		{
+			get
+			{
+				return ".xml";
+			}
+		}
+
+		public override IEnumerable<TEntity> Deserialize(string fileName)
+		{
+			TEntity[] data;
 
 			var filePath = GetFilePath(fileName);
 			using (var fileStream = File.OpenRead(filePath))
 			{
 				var xmlDictionaryReader = XmlDictionaryReader.CreateTextReader(fileStream, XmlDictionaryReaderQuotas.Max);
-				var dataContractSerializer = new DataContractSerializer(typeof(TEntity));
-				data = (TEntity)dataContractSerializer.ReadObject(xmlDictionaryReader);
+				var dataContractSerializer = new DataContractSerializer(typeof(TEntity[]));
+				data = (TEntity[])dataContractSerializer.ReadObject(xmlDictionaryReader);
 				xmlDictionaryReader.Close();
 			}
 
 			return data;
 		}
 
-		public static string Serialize<TEntity>(TEntity data)
+		public override string Serialize(IEnumerable<TEntity> data)
 		{
 			using (var memoryStream = new MemoryStream())
 			{
@@ -54,15 +71,9 @@
 			}
 		}
 
-		public static void SaveToFile(string fileName, string contents)
+		public override void SaveToFile(string filePath, string contents)
 		{
-			File.WriteAllText(GetFilePath(fileName), contents);
-		}
-
-		public static string GetFilePath(string fileName)
-		{
-			var filePath = Path.Combine(Settings.Default.FolderPath, fileName);
-			return filePath;
+			File.WriteAllText(filePath, contents);
 		}
 	}
 }

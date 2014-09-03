@@ -1,5 +1,6 @@
 ﻿namespace TelerikMovieDatabase.Models
 {
+	using Newtonsoft.Json;
 	using System;
 	using System.Collections.Generic;
 	using System.Linq;
@@ -19,6 +20,7 @@
 		public string Name { get; set; }
 
 		[IgnoreDataMember]
+		[JsonIgnore]
 		public virtual ICollection<Movie> Movies
 		{
 			get

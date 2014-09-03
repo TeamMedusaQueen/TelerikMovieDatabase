@@ -5,6 +5,7 @@
 
 	using System.Linq;
 	using System.Runtime.Serialization;
+	using Newtonsoft.Json;
 
 	public class JobPosition : BaseEntity
 	{
@@ -16,6 +17,7 @@
 		}
 
 		[IgnoreDataMember]
+		[JsonIgnore]
 		public virtual ICollection<Person> Workers
 		{
 			get

@@ -2,16 +2,12 @@
 {
 	using System;
 	using System.Collections.Generic;
-	using System.IO;
 	using System.Linq;
-
-	using TelerikMovieDatabase.Data.Excel;
+	using TelerikMovieDatabase.Common;
 	using TelerikMovieDatabase.Data.Imdb;
 	using TelerikMovieDatabase.Data.MongoDb;
 	using TelerikMovieDatabase.Data.MsSql;
-	using TelerikMovieDatabase.Data.MsSql.Repositories;
 	using TelerikMovieDatabase.Models;
-	using TelerikMovieDatabase.Utils;
 
 	internal class EntryPoint
 	{
@@ -35,12 +31,16 @@
 			InitializeMongoDb();
 			// Step 2
 			//Zip xls file to archive, extracting and import to sqlDB
-			using (var dbContext = new TelerikMovieDatabaseMsSqlContext())
-			{
-				ZipManager.AddFileToZipArchive("..\\..\\..\\..\\Databases\\XLS\\XLSData\\BoxOffice-week1-September.xls", File.GetCreationTime("..\\..\\..\\..\\Databases\\XLS\\XLSData\\BoxOffice-week1-September.xls").ToString("dd-MMM-yyyy"), "..\\..\\..\\..\\Databases\\XLS\\Reports.zip");
-				ZipManager.ExtractFiles("..\\..\\..\\..\\Databases\\XLS\\Reports.zip", "..\\..\\..\\..\\Databases\\XLS\\Reports\\");
-				ExcelManager.ImportInSqlDb(dbContext, "..\\..\\..\\..\\Databases\\XLS\\Reports\\"); //If you want to add in database first uncoment the code inside this method
-			}
+			//using (var dbContext = new TelerikMovieDatabaseMsSqlContext())
+			//{
+			//	ZipManager.AddFileToZipArchive(
+			//		"..\\..\\..\\..\\Databases\\XLS\\XLSData\\BoxOffice-week1-September.xls",
+			//		File.GetCreationTime("..\\..\\..\\..\\Databases\\XLS\\XLSData\\BoxOffice-week1-September.xls")
+			//			.ToString("dd-MMM-yyyy"),
+			//		"..\\..\\..\\..\\Databases\\XLS\\Reports.zip");
+			//	ZipManager.ExtractFiles("..\\..\\..\\..\\Databases\\XLS\\Reports.zip", "..\\..\\..\\..\\Databases\\XLS\\Reports\\");
+			//	ExcelManager.ImportInSqlDb(dbContext, "..\\..\\..\\..\\Databases\\XLS\\Reports\\"); //If you want to add in database first uncoment the code inside this method
+			//}
 			// Step 3
 			//Create SqLite Database and fill data ?
 			// Step 4
@@ -50,31 +50,38 @@
 			// Migrate Data From MongoDb To MsSql
 			MigrateDataFromMongoDbToMsSql();
 
+			var personsManager = ManagerProvider<Person>.Json;
+			var languagesManager = ManagerProvider<Language>.Json;
+			var countriesManager = ManagerProvider<Country>.Json;
+			var jobPositionsManager = ManagerProvider<JobPosition>.Json;
+			var genresManager = ManagerProvider<Genre>.Json;
+			var moviesManager = ManagerProvider<Movie>.Json;
+
 			// Export all data to xml
 			using (var data = new TelerikMovieDatabaseMsSqlData())
 			{
-				XmlReport.ExportToXml<IGenericRepository<Person>, Person>(data.Persons, "Persons.xml", p => p.Jobs);
-				XmlReport.ExportToXml<IGenericRepository<Language>, Language>(data.Languages, "Languages.xml");
-				XmlReport.ExportToXml<IGenericRepository<Country>, Country>(data.Countries, "Countries.xml");
-				XmlReport.ExportToXml<IGenericRepository<JobPosition>, JobPosition>(data.JobPositions, "JobPositions.xml");
-				XmlReport.ExportToXml<IGenericRepository<Genre>, Genre>(data.Genres, "Genres.xml");
+				personsManager.Export(data.Persons, "Persons", p => p.Jobs);
+				languagesManager.Export(data.Languages, "Languages");
+				countriesManager.Export(data.Countries, "Countries");
+				jobPositionsManager.Export(data.JobPositions, "JobPositions");
+				genresManager.Export(data.Genres, "Genres");
 
 				// Custom report ( All movies after 2000 year exported with direcotr and actors )
-				XmlReport.ExportToXml<IGenericRepository<Movie>, Movie>(
+				moviesManager.Export(
 					data.Movies,
-					"MoviesAfter2000.xml",
+					"MoviesAfter2000",
 					movie => movie.ReleaseDate.HasValue && movie.ReleaseDate.Value.Year > 2000,
 					movie => movie.Director,
 					movie => movie.Cast);
 			}
 
 			// Import all data from xml
-			var persons = XmlReport.ImportFromXml<Person[]>("Persons.xml");
-			var languages = XmlReport.ImportFromXml<Language[]>("Languages.xml");
-			var countries = XmlReport.ImportFromXml<Country[]>("Countries.xml");
-			var jobPositions = XmlReport.ImportFromXml<JobPosition[]>("JobPositions.xml");
-			var genres = XmlReport.ImportFromXml<Genre[]>("Genres.xml");
-			var moviesAfter2000 = XmlReport.ImportFromXml<Movie[]>("MoviesAfter2000.xml");
+			var persons = personsManager.Import("Persons");
+			var languages = languagesManager.Import("Languages");
+			var countries = countriesManager.Import("Countries");
+			var jobPositions = jobPositionsManager.Import("JobPositions");
+			var genres = genresManager.Import("Genres");
+			var moviesAfter2000 = moviesManager.Import("MoviesAfter2000");
 		}
 
 		private static void InitializeMongoDb()

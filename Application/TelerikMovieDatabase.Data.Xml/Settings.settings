@@ -3,7 +3,7 @@
   <Profiles />
   <Settings>
     <Setting Name="FolderPath" Type="System.String" Scope="User">
-      <Value Profile="(Default)">..\..\..\..\Databases\XML\</Value>
+      <Value Profile="(Default)">..\..\..\..\Databases\Xml\</Value>
     </Setting>
   </Settings>
 </SettingsFile>

@@ -74,6 +74,10 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\TelerikMovieDatabase.Common\TelerikMovieDatabase.Common.csproj">
+      <Project>{3e30d509-29c3-4ee8-8a17-08d8900a8823}</Project>
+      <Name>TelerikMovieDatabase.Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\TelerikMovieDatabase.Data.Imdb\TelerikMovieDatabase.Data.Imdb.csproj">
       <Project>{e009ffbd-243c-45d7-8c43-c657625e7cc5}</Project>
       <Name>TelerikMovieDatabase.Data.Imdb</Name>
@@ -85,6 +89,10 @@
     <ProjectReference Include="..\TelerikMovieDatabase.Data.MsSql\TelerikMovieDatabase.Data.MsSql.csproj">
       <Project>{4f30509d-fc6b-4916-91e0-b8bc1ba5979f}</Project>
       <Name>TelerikMovieDatabase.Data.MsSql</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TelerikMovieDatabase.Data\TelerikMovieDatabase.Data.csproj">
+      <Project>{d41efd1c-507f-425e-bca2-e0bf9597fafc}</Project>
+      <Name>TelerikMovieDatabase.Data</Name>
     </ProjectReference>
     <ProjectReference Include="..\TelerikMovieDatabase.Models\TelerikMovieDatabase.Models.csproj">
       <Project>{d03be1ad-12db-4c2e-a974-a8801bb5b66d}</Project>

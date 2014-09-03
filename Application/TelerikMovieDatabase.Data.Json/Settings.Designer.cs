@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace TelerikMovieDatabase.Data.Xml {
+namespace TelerikMovieDatabase.Data.Json {
     
     
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
@@ -25,7 +25,7 @@ namespace TelerikMovieDatabase.Data.Xml {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("..\\..\\..\\..\\Databases\\Xml\\")]
+        [global::System.Configuration.DefaultSettingValueAttribute("..\\..\\..\\..\\Databases\\Json\\")]
         public string FolderPath {
             get {
                 return ((string)(this["FolderPath"]));
