@@ -2,12 +2,15 @@
 {
 	using System;
 	using System.Collections.Generic;
+	using System.IO;
 	using System.Linq;
 	using TelerikMovieDatabase.Common;
+	using TelerikMovieDatabase.Data.Excel;
 	using TelerikMovieDatabase.Data.Imdb;
 	using TelerikMovieDatabase.Data.MongoDb;
 	using TelerikMovieDatabase.Data.MsSql;
 	using TelerikMovieDatabase.Models;
+	using TelerikMovieDatabase.Utils;
 
 	internal class EntryPoint
 	{
@@ -30,17 +33,13 @@
 			// Step 1
 			InitializeMongoDb();
 			// Step 2
-			//Zip xls file to archive, extracting and import to sqlDB
-			//using (var dbContext = new TelerikMovieDatabaseMsSqlContext())
-			//{
-			//	ZipManager.AddFileToZipArchive(
-			//		"..\\..\\..\\..\\Databases\\XLS\\XLSData\\BoxOffice-week1-September.xls",
-			//		File.GetCreationTime("..\\..\\..\\..\\Databases\\XLS\\XLSData\\BoxOffice-week1-September.xls")
-			//			.ToString("dd-MMM-yyyy"),
-			//		"..\\..\\..\\..\\Databases\\XLS\\Reports.zip");
-			//	ZipManager.ExtractFiles("..\\..\\..\\..\\Databases\\XLS\\Reports.zip", "..\\..\\..\\..\\Databases\\XLS\\Reports\\");
-			//	ExcelManager.ImportInSqlDb(dbContext, "..\\..\\..\\..\\Databases\\XLS\\Reports\\"); //If you want to add in database first uncoment the code inside this method
-			//}
+			const string InitialExcelZipFileName = "BoxOffice-week1-September";
+			ExcelZipInitializer.Init(InitialExcelZipFileName);
+			using (var dbContext = new TelerikMovieDatabaseMsSqlData())
+			{
+				ExcelManager.ImportBoxOfficeEntriesFromZip(dbContext, InitialExcelZipFileName);
+			}
+
 			// Step 3
 			//Create SqLite Database and fill data ?
 			// Step 4
@@ -50,38 +49,38 @@
 			// Migrate Data From MongoDb To MsSql
 			MigrateDataFromMongoDbToMsSql();
 
-			var personsManager = ManagerProvider<Person>.Json;
-			var languagesManager = ManagerProvider<Language>.Json;
-			var countriesManager = ManagerProvider<Country>.Json;
-			var jobPositionsManager = ManagerProvider<JobPosition>.Json;
-			var genresManager = ManagerProvider<Genre>.Excel2007;
-			var moviesManager = ManagerProvider<Movie>.Json;
+			//var personsManager = ManagerProvider<Person>.Excel2007;
+			//var languagesManager = ManagerProvider<Language>.Json;
+			//var countriesManager = ManagerProvider<Country>.Json;
+			//var jobPositionsManager = ManagerProvider<JobPosition>.Json;
+			//var genresManager = ManagerProvider<Genre>.Excel2007;
+			//var moviesManager = ManagerProvider<Movie>.Json;
 
 			// Export all data to xml
 			using (var data = new TelerikMovieDatabaseMsSqlData())
 			{
-				personsManager.Export(data.Persons, "Persons", p => p.Jobs);
-				languagesManager.Export(data.Languages, "Languages");
-				countriesManager.Export(data.Countries, "Countries");
-				jobPositionsManager.Export(data.JobPositions, "JobPositions");
-				genresManager.Export(data.Genres, "Genres");
+				//personsManager.Export(data.Persons, "Persons", p => p.Jobs);
+				//languagesManager.Export(data.Languages, "Languages");
+				//countriesManager.Export(data.Countries, "Countries");
+				//jobPositionsManager.Export(data.JobPositions, "JobPositions");
+				//genresManager.Export(data.Genres, "Genres");
 
 				// Custom report ( All movies after 2000 year exported with direcotr and actors )
-				moviesManager.Export(
-					data.Movies,
-					"MoviesAfter2000",
-					movie => movie.ReleaseDate.HasValue && movie.ReleaseDate.Value.Year > 2000,
-					movie => movie.Director,
-					movie => movie.Cast);
+				//moviesManager.Export(
+				//	data.Movies,
+				//	"MoviesAfter2000",
+				//	movie => movie.ReleaseDate.HasValue && movie.ReleaseDate.Value.Year > 2000,
+				//	movie => movie.Director,
+				//	movie => movie.Cast);
 			}
 
 			// Import all data from xml
-			var persons = personsManager.Import("Persons");
-			var languages = languagesManager.Import("Languages");
-			var countries = countriesManager.Import("Countries");
-			var jobPositions = jobPositionsManager.Import("JobPositions");
+			//var persons = personsManager.Import("Persons");
+			//var languages = languagesManager.Import("Languages");
+			//var countries = countriesManager.Import("Countries");
+			//var jobPositions = jobPositionsManager.Import("JobPositions");
 			//var genres = genresManager.Import("Genres");
-			var moviesAfter2000 = moviesManager.Import("MoviesAfter2000");
+			//var moviesAfter2000 = moviesManager.Import("MoviesAfter2000");
 		}
 
 		private static void InitializeMongoDb()

@@ -2,16 +2,14 @@
 {
 	using ClosedXML.Excel;
 	using System;
+	using System.Collections;
 	using System.Collections.Generic;
-	using System.Data;
 	using System.IO;
 	using System.Linq;
-	using System.Text;
 	using TelerikMovieDatabase.Data;
-	using TelerikMovieDatabase.Data.Xml;
 	using TelerikMovieDatabase.Models;
 
-	public class Excel2007Manager<TEntity> : ImportExportManagerBase<TEntity, MemoryStream>
+	public class Excel2007Manager<TEntity> : ImportExportManagerBase<TEntity, byte[]>
 		where TEntity : class, IKeyHolder
 	{
 		public override string FolderPath
@@ -30,56 +28,78 @@
 			}
 		}
 
-		public override MemoryStream Serialize(IEnumerable<TEntity> data, string fileName)
+		public override byte[] Serialize(IEnumerable<TEntity> data, string fileName)
 		{
-			var xmlData = new XmlManager<TEntity>().Serialize(data, fileName);
-			var dataSet = new DataSet();
-
 			var workBook = new XLWorkbook();
 			var workSheet = workBook.Worksheets.Add(fileName);
 
-			var xmlDataBytes = Encoding.UTF8.GetBytes(xmlData);
-			using (var memoryStream = new MemoryStream(xmlDataBytes))
+			int rowIndex = 1;
+
+			var entityProperties = typeof(TEntity).GetProperties();
+			// Header
+			for (int propertyIndex = 0; propertyIndex < entityProperties.Length; propertyIndex++)
 			{
-				dataSet.ReadXml(memoryStream);
+				var property = entityProperties[propertyIndex];
+				workSheet.Cell(rowIndex, propertyIndex + 1).Value = property.Name;
 			}
 
-			var table = dataSet.Tables[0];
-			int rowIndex = 0;
-			int rowsCount = table.Rows.Count;
-			int colIndex = 0;
-			int colsCount = table.Columns.Count;
-			for (rowIndex = 0; rowIndex <= rowsCount - 1; rowIndex++)
+			// Rows
+			foreach (var item in data)
 			{
-				var tableRow = table.Rows[rowIndex];
-				for (colIndex = 0; colIndex <= colsCount - 1; colIndex++)
+				rowIndex++;
+
+				for (int propertyIndex = 0; propertyIndex < entityProperties.Length; propertyIndex++)
 				{
-					var tableCol = tableRow.ItemArray[colIndex];
-					workSheet.Cell(rowIndex + 1, colIndex + 1).Value = tableCol.ToString();
+					var property = entityProperties[propertyIndex];
+					var propertyValue = property.GetValue(item);
+					string propertyValueToString = null;
+
+					if (propertyValue is IEnumerable && !(propertyValue is String))
+					{
+						var dataArray = propertyValue as IEnumerable;
+						var dataItems = new List<string>();
+						foreach (var dataItem in dataArray)
+						{
+							dataItems.Add(dataItem.ToString());
+						}
+
+						propertyValueToString = string.Join(", ", dataItems);
+					}
+					else
+					{
+						propertyValueToString = propertyValue.ToString();
+					}
+
+					workSheet.Cell(rowIndex, propertyIndex + 1).Value = propertyValueToString;
 				}
 			}
 
-			//var tableData = workSheet.Range(0, 0, rowsCount, colsCount).CreateTable();
-			//tableData.Theme = XLTableTheme.TableStyleMedium17;
+			var tableData = workSheet.Range(1, 1, rowIndex, entityProperties.Length).CreateTable();
+			tableData.Theme = XLTableTheme.TableStyleMedium17;
 			workSheet.Columns().AdjustToContents();
 
-			var excelFileStream = new MemoryStream();
-			workBook.SaveAs(excelFileStream);
+			byte[] fileData;
 
-			excelFileStream.Flush();
-			excelFileStream.Seek(0, SeekOrigin.Begin);
+			using (var excelFileStream = new MemoryStream())
+			{
+				workBook.SaveAs(excelFileStream);
 
-			return excelFileStream;
+				excelFileStream.Flush();
+				excelFileStream.Seek(0, SeekOrigin.Begin);
+				fileData = excelFileStream.GetBuffer();
+			}
+
+			return fileData;
 		}
 
-		public override IEnumerable<TEntity> Deserialize(MemoryStream output)
+		public override IEnumerable<TEntity> Deserialize(byte[] output)
 		{
 			throw new NotImplementedException();
 		}
 
-		public override void SaveToFile(string filePath, MemoryStream contents)
+		public override void SaveToFile(string filePath, byte[] contents)
 		{
-			File.WriteAllBytes(filePath, contents.GetBuffer());
+			File.WriteAllBytes(filePath, contents);
 		}
 	}
 }

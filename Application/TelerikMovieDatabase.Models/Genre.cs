@@ -30,5 +30,10 @@
 				this.movies = value;
 			}
 		}
+
+		public override string ToString()
+		{
+			return this.Title;
+		}
 	}
 }
