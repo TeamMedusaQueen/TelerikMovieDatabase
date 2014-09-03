@@ -17,9 +17,9 @@
 
 		public abstract string FileExtension { get; }
 
-		public abstract TOutput Serialize(IEnumerable<TInput> data);
+		public abstract TOutput Serialize(IEnumerable<TInput> data, string fileName);
 
-		public virtual TOutput[] SerializeMultiple(IEnumerable<TInput> data)
+		public virtual TOutput[] SerializeMultiple(IEnumerable<TInput> data, string fileName)
 		{
 			throw new NotImplementedException();
 		}
@@ -71,7 +71,7 @@
 		{
 			if (IsMultiple)
 			{
-				var output = this.SerializeMultiple(data);
+				var output = this.SerializeMultiple(data, fileName);
 				var outputWithID = new List<Tuple<int, TOutput>>();
 
 				for (int itemIndex = 0; itemIndex < output.Length; itemIndex++)
@@ -83,7 +83,7 @@
 			}
 			else
 			{
-				var output = this.Serialize(data);
+				var output = this.Serialize(data, fileName);
 				this.SaveToFile(this.GetFilePath(fileName), output);
 			}
 		}

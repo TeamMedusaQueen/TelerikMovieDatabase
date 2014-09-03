@@ -57,7 +57,7 @@
 			var languagesManager = ManagerProvider<Language>.Json;
 			var countriesManager = ManagerProvider<Country>.Json;
 			var jobPositionsManager = ManagerProvider<JobPosition>.Json;
-			var genresManager = ManagerProvider<Genre>.Json;
+			var genresManager = ManagerProvider<Genre>.Excel2007;
 			var moviesManager = ManagerProvider<Movie>.Json;
             
 			// Export all data to xml
@@ -83,7 +83,7 @@
 			var languages = languagesManager.Import("Languages");
 			var countries = countriesManager.Import("Countries");
 			var jobPositions = jobPositionsManager.Import("JobPositions");
-			var genres = genresManager.Import("Genres");
+			//var genres = genresManager.Import("Genres");
 			var moviesAfter2000 = moviesManager.Import("MoviesAfter2000");
 		}
 

@@ -45,7 +45,7 @@
 			return data;
 		}
 
-		public override string Serialize(IEnumerable<TEntity> data)
+		public override string Serialize(IEnumerable<TEntity> data, string fileName)
 		{
 			using (var memoryStream = new MemoryStream())
 			{

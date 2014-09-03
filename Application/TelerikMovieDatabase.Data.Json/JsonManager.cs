@@ -28,7 +28,7 @@ namespace TelerikMovieDatabase.Data.Json
 			}
 		}
 
-		public override string Serialize(IEnumerable<TEntity> data)
+		public override string Serialize(IEnumerable<TEntity> data, string fileName)
 		{
 			return JsonConvert.SerializeObject(data, Formatting.Indented);
 		}
@@ -44,7 +44,7 @@ namespace TelerikMovieDatabase.Data.Json
 			File.WriteAllText(filePath, contents);
 		}
 
-		public override string[] SerializeMultiple(IEnumerable<TEntity> data)
+		public override string[] SerializeMultiple(IEnumerable<TEntity> data, string fileName)
 		{
 			var items = new List<string>();
 
