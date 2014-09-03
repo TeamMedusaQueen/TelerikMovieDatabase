@@ -6,7 +6,7 @@
 	using TelerikMovieDatabase.Data.MsSql.Migrations;
 	using TelerikMovieDatabase.Models;
 
-	public class TelerikMovieDatabaseMsSqlContext : DbContext, IDisposable
+	public class TelerikMovieDatabaseMsSqlContext : DbContext, IDisposable, ITelerikMovieDatabaseMsSqlContext
 	{
 		public const string ConnectionStringName = "TelerikMovieDatabase";
 
@@ -61,5 +61,15 @@
 		public IDbSet<Country> Countries { get; set; }
 
 		public IDbSet<Language> Languages { get; set; }
+
+		public new IDbSet<T> Set<T>() where T : class
+		{
+			return base.Set<T>();
+		}
+
+		public new void SaveChanges()
+		{
+			base.SaveChanges();
+		}
 	}
 }

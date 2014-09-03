@@ -4,6 +4,7 @@
 	using System.Collections.Generic;
 
 	using System.Linq;
+	using System.Runtime.Serialization;
 
 	public class Person : BaseEntity
 	{
@@ -18,6 +19,7 @@
 			this.writedMovies = new HashSet<Movie>();
 		}
 
+		[DataMemberAttribute]
 		public virtual ICollection<JobPosition> Jobs
 		{
 			get
@@ -30,6 +32,7 @@
 			}
 		}
 
+		[IgnoreDataMember]
 		public virtual ICollection<Movie> FilmedMovies
 		{
 			get
@@ -42,6 +45,7 @@
 			}
 		}
 
+		[IgnoreDataMember]
 		public virtual ICollection<Movie> WritedMovies
 		{
 			get
@@ -54,6 +58,7 @@
 			}
 		}
 
+		[DataMemberAttribute]
 		public string Name { get; set; }
 	}
 }

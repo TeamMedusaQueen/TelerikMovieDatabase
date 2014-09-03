@@ -9,14 +9,14 @@ namespace TelerikMovieDatabase.Data.Json
 {
 	public static class JsonManager
 	{
-		public static string Serialize<TModel>(TModel data)
+		public static string Serialize<TEntity>(TEntity data)
 		{
 			return JsonConvert.SerializeObject(data);
 		}
 
-		public static TModel Deserialize<TModel>(string jsonObject)
+		public static TEntity Deserialize<TEntity>(string jsonObject)
 		{
-			return JsonConvert.DeserializeObject<TModel>(jsonObject);
+			return JsonConvert.DeserializeObject<TEntity>(jsonObject);
 		}
 	}
 }

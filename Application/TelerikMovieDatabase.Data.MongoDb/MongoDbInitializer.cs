@@ -3,27 +3,23 @@
 	using System;
 	using System.Collections.Generic;
 	using System.Linq;
-	using System.Text;
-	using System.Threading.Tasks;
-	using TelerikMovieDatabase.Data.Imdb;
+	using TelerikMovieDatabase.Models;
 
 	public class MongoDbInitializer
 	{
-		public void Init()
+		public bool Init(IEnumerable<Movie> movies)
 		{
 			var mongoDbHandler = new MongoDbManager();
 
 			if (!mongoDbHandler.DatabaseExists())
 			{
-				var modelMapper = new MovieJsonModelMapper();
-				var movieJsonModels = OpenMovieDatabase.GetTop250();
-
-				var movieProjections = modelMapper.Map(movieJsonModels);
-				var personProjections = modelMapper.GetPersonProjections();
-				var genreProjections = modelMapper.GetGenreProjections();
-				var countryProjections = modelMapper.GetCountryProjections();
-				var languageProjections = modelMapper.GetLanguageProjections();
-				var jobProjections = modelMapper.GetJobProjections();
+				var movieMapper = new MovieMapper();
+				var movieProjections = movieMapper.Map(movies);
+				var personProjections = movieMapper.GetPersonProjections();
+				var genreProjections = movieMapper.GetGenreProjections();
+				var countryProjections = movieMapper.GetCountryProjections();
+				var languageProjections = movieMapper.GetLanguageProjections();
+				var jobProjections = movieMapper.GetJobProjections();
 
 				mongoDbHandler.InsertMovies(movieProjections);
 				mongoDbHandler.InsertPersons(personProjections);
@@ -31,7 +27,11 @@
 				mongoDbHandler.InsertCountries(countryProjections);
 				mongoDbHandler.InsertLanguages(languageProjections);
 				mongoDbHandler.InsertJobPositions(jobProjections);
+
+				return true;
 			}
+
+			return false;
 		}
 	}
 }

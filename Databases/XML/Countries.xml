@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ArrayOfCountry xmlns:i="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://schemas.datacontract.org/2004/07/TelerikMovieDatabase.Models">
+	<Country>
+		<Name>USA</Name>
+	</Country>
+	<Country>
+		<Name>UK</Name>
+	</Country>
+	<Country>
+		<Name>Italy</Name>
+	</Country>
+	<Country>
+		<Name>Spain</Name>
+	</Country>
+	<Country>
+		<Name>West Germany</Name>
+	</Country>
+	<Country>
+		<Name>New Zealand</Name>
+	</Country>
+	<Country>
+		<Name>Germany</Name>
+	</Country>
+	<Country>
+		<Name>Australia</Name>
+	</Country>
+	<Country>
+		<Name>Japan</Name>
+	</Country>
+	<Country>
+		<Name>Brazil</Name>
+	</Country>
+	<Country>
+		<Name>France</Name>
+	</Country>
+	<Country>
+		<Name>Poland</Name>
+	</Country>
+	<Country>
+		<Name>Hong Kong</Name>
+	</Country>
+	<Country>
+		<Name>South Korea</Name>
+	</Country>
+	<Country>
+		<Name>Iran</Name>
+	</Country>
+	<Country>
+		<Name>Austria</Name>
+	</Country>
+	<Country>
+		<Name>India</Name>
+	</Country>
+	<Country>
+		<Name>Mexico</Name>
+	</Country>
+	<Country>
+		<Name>Denmark</Name>
+	</Country>
+	<Country>
+		<Name>Sweden</Name>
+	</Country>
+	<Country>
+		<Name>Argentina</Name>
+	</Country>
+	<Country>
+		<Name>South Africa</Name>
+	</Country>
+	<Country>
+		<Name>Canada</Name>
+	</Country>
+	<Country>
+		<Name>Ireland</Name>
+	</Country>
+	<Country>
+		<Name>China</Name>
+	</Country>
+	<Country>
+		<Name>Soviet Union</Name>
+	</Country>
+	<Country>
+		<Name>Switzerland</Name>
+	</Country>
+	<Country>
+		<Name>Algeria</Name>
+	</Country>
+	<Country>
+		<Name>United Arab Emirates</Name>
+	</Country>
+	<Country>
+		<Name>Indonesia</Name>
+	</Country>
+</ArrayOfCountry>
