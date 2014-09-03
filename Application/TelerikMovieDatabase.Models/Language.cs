@@ -3,6 +3,7 @@
 	using System;
 	using System.Collections.Generic;
 	using System.Linq;
+	using System.Runtime.Serialization;
 	using System.Text;
 	using System.Threading.Tasks;
 
@@ -17,6 +18,7 @@
 
 		public string Name { get; set; }
 
+		[IgnoreDataMember]
 		public virtual ICollection<Movie> Movies
 		{
 			get

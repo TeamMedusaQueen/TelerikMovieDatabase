@@ -7,9 +7,9 @@
     using TelerikMovieDatabase.Data.MsSql.Migrations;
     using TelerikMovieDatabase.Models;
 
-    public class TelerikMovieDatabaseMsSqlContext : DbContext, IDisposable
-    {
-        public const string ConnectionStringName = "TelerikMovieDatabase";
+	public class TelerikMovieDatabaseMsSqlContext : DbContext, IDisposable, ITelerikMovieDatabaseMsSqlContext
+	{
+		public const string ConnectionStringName = "TelerikMovieDatabase";
 
         public TelerikMovieDatabaseMsSqlContext()
             : base(ConnectionStringName)
@@ -68,10 +68,19 @@
 
         public IDbSet<Nomination> Nominations { get; set; }
 
+		public IDbSet<Country> Countries { get; set; }
         public IDbSet<Genre> Genres { get; set; }
 
-        public IDbSet<Country> Countries { get; set; }
+		public IDbSet<Language> Languages { get; set; }
 
-        public IDbSet<Language> Languages { get; set; }
-    }
+		public new IDbSet<T> Set<T>() where T : class
+		{
+			return base.Set<T>();
+		}
+
+		public new void SaveChanges()
+		{
+			base.SaveChanges();
+		}
+	}
 }

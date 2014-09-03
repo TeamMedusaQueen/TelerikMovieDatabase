@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ArrayOfJobPosition xmlns:i="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://schemas.datacontract.org/2004/07/TelerikMovieDatabase.Models">
+	<JobPosition>
+		<Type>Actor</Type>
+	</JobPosition>
+	<JobPosition>
+		<Type>Director</Type>
+	</JobPosition>
+	<JobPosition>
+		<Type>Writer</Type>
+	</JobPosition>
+</ArrayOfJobPosition>

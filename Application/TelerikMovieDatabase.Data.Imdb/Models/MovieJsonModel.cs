@@ -152,11 +152,11 @@
 			return persons;
 		}
 
-		private ICollection<TModel> GetCollection<TModel>(string names, Func<string, TModel> getItem, Func<string, TModel> createNew)
+		private ICollection<TEntity> GetCollection<TEntity>(string names, Func<string, TEntity> getItem, Func<string, TEntity> createNew)
 		{
 			var itemNames = names.Split(new[] { ", " }, StringSplitOptions.RemoveEmptyEntries);
 
-			var items = new HashSet<TModel>();
+			var items = new HashSet<TEntity>();
 
 			foreach (var name in itemNames)
 			{

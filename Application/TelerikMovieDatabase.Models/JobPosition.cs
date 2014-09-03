@@ -4,6 +4,7 @@
 	using System.Collections.Generic;
 
 	using System.Linq;
+	using System.Runtime.Serialization;
 
 	public class JobPosition : BaseEntity
 	{
@@ -14,6 +15,7 @@
 			this.workers = new HashSet<Person>();
 		}
 
+		[IgnoreDataMember]
 		public virtual ICollection<Person> Workers
 		{
 			get
@@ -26,6 +28,7 @@
 			}
 		}
 
+		[DataMember]
 		public JobPositionType Type { get; set; }
 	}
 }

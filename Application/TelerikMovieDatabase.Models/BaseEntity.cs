@@ -5,7 +5,9 @@
 	using System.ComponentModel.DataAnnotations;
 
 	using System.Linq;
+	using System.Runtime.Serialization;
 
+	[DataContract]
 	public abstract class BaseEntity
 	{
 		[Key]

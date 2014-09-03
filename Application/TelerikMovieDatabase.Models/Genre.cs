@@ -4,6 +4,7 @@
 	using System.Collections.Generic;
 
 	using System.Linq;
+	using System.Runtime.Serialization;
 
 	public class Genre : BaseEntity
 	{
@@ -16,6 +17,7 @@
 
 		public string Title { get; set; }
 
+		[IgnoreDataMember]
 		public virtual ICollection<Movie> Movies
 		{
 			get

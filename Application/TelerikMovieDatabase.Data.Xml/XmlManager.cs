@@ -1,117 +1,68 @@
 ﻿namespace TelerikMovieDatabase.Data.Xml
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Data;
-    using System.Data.SqlClient;
-    using System.IO;
-    using System.Linq;
-    using System.Text;
-    using System.Threading.Tasks;
-    using System.Xml;
+	using System;
+	using System.Collections.Generic;
+	using System.Data;
+	using System.Data.SqlClient;
+	using System.IO;
+	using System.Linq;
+	using System.Runtime.Serialization;
+	using System.Text;
+	using System.Xml;
 
-    public class XmlManager
-    {
-        public void ExportFromMovieToXml(string TableName, List<string> columnNames)
-        {
-            string path = "../../../Movies.xml";
-            var connectionString = "Data Source=(localdb)\\mssqllocaldb;Initial Catalog=TMDB;Integrated Security=True";
-            var xmlFileData = "<?xml version='1.0'?>";
+	public class XmlManager
+	{
+		public static TEntity Deserialize<TEntity>(string fileName)
+		{
+			TEntity data;
 
-            DataSet data = new DataSet();
-            data.DataSetName = TableName;
-            var query = "SELECT ";
-            foreach (var column in columnNames)
-            {
-                query += column + ", ";
-            }
-            query = query.Substring(0, query.Length - 2);
-            query += " FROM " + TableName;            
-            //" WHERE (RunningTime = '200')";
-            SqlConnection connection = new SqlConnection(connectionString);
-            SqlCommand command = new SqlCommand(query, connection);
-            connection.Open();
-            SqlDataAdapter dataAdapter = new SqlDataAdapter(command);
-            dataAdapter.Fill(data);
-            connection.Close();
-            connection.Dispose();
-            xmlFileData += data.GetXml();
-            File.WriteAllText(path, xmlFileData);
-        }
+			var filePath = GetFilePath(fileName);
+			using (var fileStream = File.OpenRead(filePath))
+			{
+				var xmlDictionaryReader = XmlDictionaryReader.CreateTextReader(fileStream, XmlDictionaryReaderQuotas.Max);
+				var dataContractSerializer = new DataContractSerializer(typeof(TEntity));
+				data = (TEntity)dataContractSerializer.ReadObject(xmlDictionaryReader);
+				xmlDictionaryReader.Close();
+			}
 
-        private static void ImportMovieAwardsAndNominationsFromXML()
-        {
-            const string movieAward = "movie-awards";
-            const string movieNomination = "movie-nominations";
-            const string industryAwardsNode = "industry-awards";
+			return data;
+		}
 
-            var result = new StringBuilder();
+		public static string Serialize<TEntity>(TEntity data)
+		{
+			using (var memoryStream = new MemoryStream())
+			{
+				XmlWriterSettings xmlSettings = new XmlWriterSettings
+				{
+					Indent = true,
+					IndentChars = "\t",
+					Encoding = new UTF8Encoding(false),
+					CloseOutput = false,
+				};
 
-            var nominations = new List<string>();
-            var awards = new List<string>();
-            List<string> currentCollection = null;
+				var xmlDictionaryWriter = XmlWriter.Create(memoryStream, xmlSettings);
+				var dataContractSerializer = new DataContractSerializer(data.GetType());
+				dataContractSerializer.WriteObject(xmlDictionaryWriter, data);
+				xmlDictionaryWriter.Close();
 
-            // Create an XmlReader
-            using (XmlReader reader = XmlReader.Create(new StringReader(File.ReadAllText("Data.xml"))))
-            {
-                XmlWriterSettings ws = new XmlWriterSettings();
-                ws.Indent = true;
+				memoryStream.Flush();
+				memoryStream.Seek(0, SeekOrigin.Begin);
+				using (var streamReader = new StreamReader(memoryStream))
+				{
+					return streamReader.ReadToEnd();
+				}
+			}
+		}
 
-                bool isInAwardNode = false;
-                bool isInNominationNode = false;
+		public static void SaveToFile(string fileName, string contents)
+		{
+			File.WriteAllText(GetFilePath(fileName), contents);
+		}
 
-                // Parse the file and display each of the nodes.
-                while (reader.Read())
-                {
-                    switch (reader.NodeType)
-                    {
-                        case XmlNodeType.Element:
-                            if (!(isInAwardNode || isInNominationNode))
-                            {
-                                isInAwardNode = reader.Name == movieAward;
-                                isInNominationNode = reader.Name == movieNomination;
-
-                                if (isInAwardNode)
-                                {
-                                    currentCollection = awards;
-                                }
-
-                                if (isInNominationNode)
-                                {
-                                    currentCollection = nominations;
-                                }
-                            }
-                            else if (reader.Name == industryAwardsNode)
-                            {
-                                var awardYear = reader.GetAttribute("year");
-                                var awardName = reader.ReadElementContentAsString();
-                                currentCollection.Add("Name: " + awardName + " Year: " + awardYear);
-                            }
-                            break;
-
-                        case XmlNodeType.EndElement:
-                            if (reader.Name != industryAwardsNode)
-                            {
-                                isInAwardNode = false;
-                                isInNominationNode = false;
-                                currentCollection = null;
-                            }
-                            break;
-                    }
-                }
-            }
-
-            Console.WriteLine("Nominations:");
-            foreach (var nomination in nominations)
-            {
-                Console.WriteLine(nomination);
-            }
-
-            Console.WriteLine("Awards:");
-            foreach (var award in awards)
-            {
-                Console.WriteLine(award);
-            }
-        }
-    }
+		public static string GetFilePath(string fileName)
+		{
+			var filePath = Path.Combine(Settings.Default.FolderPath, fileName);
+			return filePath;
+		}
+	}
 }
