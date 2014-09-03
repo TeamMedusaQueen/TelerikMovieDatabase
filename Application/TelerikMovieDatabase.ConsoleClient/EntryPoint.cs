@@ -1,16 +1,18 @@
 ﻿namespace TelerikMovieDatabase.ConsoleClient
 {
-	using System;
-	using System.Collections.Generic;
-	using System.Linq;
-	using TelerikMovieDatabase.Common;
-	using TelerikMovieDatabase.Data.Imdb;
-	using TelerikMovieDatabase.Data.MongoDb;
-	using TelerikMovieDatabase.Data.MsSql;
-	using TelerikMovieDatabase.Models;
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using TelerikMovieDatabase.Common;
+    using TelerikMovieDatabase.Data.Imdb;
+    using TelerikMovieDatabase.Data.MongoDb;
+    using TelerikMovieDatabase.Data.MsSql;
+    using TelerikMovieDatabase.Data.SqLite;
+    using TelerikMovieDatabase.Models;
 
 	internal class EntryPoint
 	{
+      
 		// Tasks:
 		// C#
 		// Prelimirary data
@@ -26,6 +28,7 @@
 		// SQL Server => PDF
 		private static void Main()
 		{
+
 			// Prepare Initial Data
 			// Step 1
 			InitializeMongoDb();
@@ -45,18 +48,18 @@
 			//Create SqLite Database and fill data ?
 			// Step 4
 			//Create MySql Database and fill data ?
-
+            
 			// Step 5
 			// Migrate Data From MongoDb To MsSql
 			MigrateDataFromMongoDbToMsSql();
-
+            
 			var personsManager = ManagerProvider<Person>.Json;
 			var languagesManager = ManagerProvider<Language>.Json;
 			var countriesManager = ManagerProvider<Country>.Json;
 			var jobPositionsManager = ManagerProvider<JobPosition>.Json;
 			var genresManager = ManagerProvider<Genre>.Json;
 			var moviesManager = ManagerProvider<Movie>.Json;
-
+            
 			// Export all data to xml
 			using (var data = new TelerikMovieDatabaseMsSqlData())
 			{
@@ -65,7 +68,7 @@
 				countriesManager.Export(data.Countries, "Countries");
 				jobPositionsManager.Export(data.JobPositions, "JobPositions");
 				genresManager.Export(data.Genres, "Genres");
-
+            
 				// Custom report ( All movies after 2000 year exported with direcotr and actors )
 				moviesManager.Export(
 					data.Movies,
@@ -74,7 +77,7 @@
 					movie => movie.Director,
 					movie => movie.Cast);
 			}
-
+            
 			// Import all data from xml
 			var persons = personsManager.Import("Persons");
 			var languages = languagesManager.Import("Languages");
@@ -95,6 +98,7 @@
 
 			new MongoDbInitializer().Init(movies);
 		}
+
 
 		private static void MigrateDataFromMongoDbToMsSql()
 		{

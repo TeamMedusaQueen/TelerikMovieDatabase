@@ -44,6 +44,7 @@
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Data.Entity" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -79,6 +80,10 @@
     <ProjectReference Include="..\TelerikMovieDatabase.Data.Json\TelerikMovieDatabase.Data.Json.csproj">
       <Project>{370ed994-c881-4031-a6cc-d8a9b821ac19}</Project>
       <Name>TelerikMovieDatabase.Data.Json</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TelerikMovieDatabase.Data.SqLite\TelerikMovieDatabase.Data.SqLite.csproj">
+      <Project>{152b7108-1ed1-46e4-b035-80fc0ab205ec}</Project>
+      <Name>TelerikMovieDatabase.Data.SqLite</Name>
     </ProjectReference>
     <ProjectReference Include="..\TelerikMovieDatabase.Data.Xml\TelerikMovieDatabase.Data.Xml.csproj">
       <Project>{108516f2-db82-418e-8b8d-ef168ddf2637}</Project>
