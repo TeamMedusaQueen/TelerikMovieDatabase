@@ -94,7 +94,7 @@
 		{
 			if (data.Any())
 			{
-				var jsonString = ManagerProvider<TModel>.Json.Serialize(data);
+				var jsonString = ManagerProvider<TModel>.Json.Serialize(data, tableName);
 				BsonArray bsonArray = BsonSerializer.Deserialize<BsonArray>(jsonString);
 				var collection = database.GetCollection<BsonArray>(tableName);
 				collection.InsertBatch(bsonArray);

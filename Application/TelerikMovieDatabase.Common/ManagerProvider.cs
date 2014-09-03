@@ -2,8 +2,10 @@
 {
 	using System;
 	using System.Collections.Generic;
+	using System.IO;
 	using System.Linq;
 	using TelerikMovieDatabase.Data;
+	using TelerikMovieDatabase.Data.Excel;
 	using TelerikMovieDatabase.Data.Json;
 	using TelerikMovieDatabase.Data.Xml;
 	using TelerikMovieDatabase.Models;
@@ -24,6 +26,14 @@
 			get
 			{
 				return new JsonManager<TInput>();
+			}
+		}
+
+		public static ImportExportManagerBase<TInput, MemoryStream> Excel2007
+		{
+			get
+			{
+				return new Excel2007Manager<TInput>();
 			}
 		}
 	}
