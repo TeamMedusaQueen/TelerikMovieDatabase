@@ -13,7 +13,9 @@
 		{           
             // To test xml report
             // var test = new XmlManager();
-            // test.ExportFromMovieToXml();
+            // string tableName = "Movies";
+            // List<string> columnNames = new List<string>() { "Title", "RunningTime", "Rating" };
+            // test.ExportFromMovieToXml(tableName, columnNames);
 
             // Prepare Initial Data
 			// Step 1

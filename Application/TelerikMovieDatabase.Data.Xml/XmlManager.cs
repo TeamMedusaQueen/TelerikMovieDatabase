@@ -12,28 +12,30 @@
 
     public class XmlManager
     {
-        public void ExportFromMovieToXml()
+        public void ExportFromMovieToXml(string TableName, List<string> columnNames)
         {
             string path = "../../../Movies.xml";
-
             var connectionString = "Data Source=(localdb)\\mssqllocaldb;Initial Catalog=TMDB;Integrated Security=True";
             var xmlFileData = "<?xml version='1.0'?>";
+
             DataSet data = new DataSet();
-            data.DataSetName = "Movies";
-            var tables = new[] { "Movies" };
-            foreach (var table in tables)
+            data.DataSetName = TableName;
+            var query = "SELECT ";
+            foreach (var column in columnNames)
             {
-                var query = "SELECT Title, RunningTime, Rating  FROM " + table;
-                //" WHERE (RunningTime = '200')";
-                SqlConnection connection = new SqlConnection(connectionString);
-                SqlCommand command = new SqlCommand(query, connection);
-                connection.Open();
-                SqlDataAdapter dataAdapter = new SqlDataAdapter(command);
-                dataAdapter.Fill(data);
-                connection.Close();
-                connection.Dispose();
-                xmlFileData += data.GetXml();
+                query += column + ", ";
             }
+            query = query.Substring(0, query.Length - 2);
+            query += " FROM " + TableName;            
+            //" WHERE (RunningTime = '200')";
+            SqlConnection connection = new SqlConnection(connectionString);
+            SqlCommand command = new SqlCommand(query, connection);
+            connection.Open();
+            SqlDataAdapter dataAdapter = new SqlDataAdapter(command);
+            dataAdapter.Fill(data);
+            connection.Close();
+            connection.Dispose();
+            xmlFileData += data.GetXml();
             File.WriteAllText(path, xmlFileData);
         }
 
