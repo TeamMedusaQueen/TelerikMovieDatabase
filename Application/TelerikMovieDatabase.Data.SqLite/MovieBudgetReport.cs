@@ -8,7 +8,7 @@
     
     public class MovieBudgetReport
     {
-        public int ReportID { get; set; }
+        public int Id { get; set; }
 
         public string Title { get; set; }
 
