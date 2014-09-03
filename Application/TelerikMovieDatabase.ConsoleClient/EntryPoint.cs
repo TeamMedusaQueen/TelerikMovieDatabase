@@ -5,12 +5,17 @@
 	using System.Linq;
 	using TelerikMovieDatabase.Data.MongoDb;
 	using TelerikMovieDatabase.Data.MsSql;
+    using TelerikMovieDatabase.Data.Xml;
 
 	internal class EntryPoint
 	{
 		private static void Main()
-		{
-			// Prepare Initial Data
+		{           
+            // To test xml report
+            // var test = new XmlManager();
+            // test.ExportFromMovieToXml();
+
+            // Prepare Initial Data
 			// Step 1
 			new MongoDbInitializer().Init();
 			// Step 2
