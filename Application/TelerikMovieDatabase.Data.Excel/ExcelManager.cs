@@ -29,20 +29,15 @@
             }
         }
 
-        public static void ImportInSqlDb(TelerikMovieDatabaseMsSqlContext db)
+        public static void ImportInSqlDb(TelerikMovieDatabaseMsSqlContext db, string reportsZipPath)
         {
-            const string ReportsPath = "..\\..\\..\\..\\Databases\\XLS\\XLSData";
-            const string directoryPathForArchive = "..\\..\\..\\..\\Databases\\XLS\\Reports";
-            const string zipFilePath = "..\\..\\..\\..\\Databases\\XLS\\";
-            const string zipFileName = "ReportsArchive.zip";
-
-            if (!Directory.Exists(ReportsPath))
+            if (!Directory.Exists(reportsZipPath))
             {
-                Directory.CreateDirectory(ReportsPath);
+                Directory.CreateDirectory(reportsZipPath);
             }
 
             List<string> files = new List<string>();
-            var directories = Directory.GetDirectories(ReportsPath);
+            var directories = Directory.GetDirectories(reportsZipPath);
 
             foreach (var folder in directories)
             {
@@ -61,29 +56,35 @@
                     {
                         OleDbCommand command = new OleDbCommand("SELECT * FROM [Sheet1$]", xlsConn);
                         OleDbDataReader reader = command.ExecuteReader();
+                        var movies = from movie in db.Movies select movie.Title;
+                        Dictionary<string, string[]> reports = new Dictionary<string, string[]>();
 
                         using (reader)
                         {
                             while (reader.Read())
                             {
-                                double weeks = (double)reader["Weeks"];
-                                string score = (string)reader["Budget"];
-                                Console.WriteLine("{0} - {1}", weeks, score);
+                                string weeks = (string)reader["Weeks"];
+                                string score = (string)reader["Gross"];
+                                string movie = (string)reader["Movie"];
 
-                                db.BoxOfficeEntries.Add(
-                                    new BoxOfficeEntry
-                                    {
-                                        Weeks = (int)weeks,
-                                        GeneratedWeekendIncome = decimal.Parse(score)
-                                    });
-
-                                db.SaveChanges();
+                                reports.Add(movie, new string[] { weeks, score });
                             }
 
-                            foreach (var item in db.BoxOfficeEntries)
-                            {
-                                Console.WriteLine(item.ID + " " + item.Weeks + " - > " + item.GeneratedWeekendIncome);
-                            }
+                           // foreach (var movie in movies)
+                           // {
+                           //     db.BoxOfficeEntries.Add(
+                           //         new BoxOfficeEntry
+                           //         {
+                           //             Weeks = int.Parse(reports[movie][0]),
+                           //             GeneratedWeekendIncome = decimal.Parse(reports[movie][1])
+                           //         });
+                           // }
+                           // db.SaveChanges();
+
+                           foreach (var item in db.BoxOfficeEntries)
+                           {
+                               Console.WriteLine(item.ID + " " + item.Weeks + " - > " + item.GeneratedWeekendIncome);
+                           }
                         }
                     }
                 }
