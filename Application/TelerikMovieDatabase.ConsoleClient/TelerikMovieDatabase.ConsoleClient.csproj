@@ -88,6 +88,10 @@
       <Project>{7de0bed1-518f-42f8-a6e4-7ee27829a410}</Project>
       <Name>TelerikMovieDatabase.Data.MongoDb</Name>
     </ProjectReference>
+    <ProjectReference Include="..\TelerikMovieDatabase.Utils\TelerikMovieDatabase.Utils.csproj">
+      <Project>{a53b833f-b631-49e2-a9b4-55ca6ab85506}</Project>
+      <Name>TelerikMovieDatabase.Utils</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -2,12 +2,16 @@
 {
 	using System;
 	using System.Collections.Generic;
+	using System.IO;
 	using System.Linq;
+
+	using TelerikMovieDatabase.Data.Excel;
 	using TelerikMovieDatabase.Data.Imdb;
 	using TelerikMovieDatabase.Data.MongoDb;
 	using TelerikMovieDatabase.Data.MsSql;
 	using TelerikMovieDatabase.Data.MsSql.Repositories;
 	using TelerikMovieDatabase.Models;
+	using TelerikMovieDatabase.Utils;
 
 	internal class EntryPoint
 	{
@@ -30,7 +34,13 @@
 			// Step 1
 			InitializeMongoDb();
 			// Step 2
-			//new ExcelZipFileInitializer().Init();
+			//Zip xls file to archive, extracting and import to sqlDB
+			using (var dbContext = new TelerikMovieDatabaseMsSqlContext())
+			{
+				ZipManager.AddFileToZipArchive("..\\..\\..\\..\\Databases\\XLS\\XLSData\\BoxOffice-week1-September.xls", File.GetCreationTime("..\\..\\..\\..\\Databases\\XLS\\XLSData\\BoxOffice-week1-September.xls").ToString("dd-MMM-yyyy"), "..\\..\\..\\..\\Databases\\XLS\\Reports.zip");
+				ZipManager.ExtractFiles("..\\..\\..\\..\\Databases\\XLS\\Reports.zip", "..\\..\\..\\..\\Databases\\XLS\\Reports\\");
+				ExcelManager.ImportInSqlDb(dbContext, "..\\..\\..\\..\\Databases\\XLS\\Reports\\"); //If you want to add in database first uncoment the code inside this method
+			}
 			// Step 3
 			//Create SqLite Database and fill data ?
 			// Step 4

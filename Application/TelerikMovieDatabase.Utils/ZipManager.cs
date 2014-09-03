@@ -9,10 +9,8 @@
 
 	public static class ZipManager
 	{
-		public static ZipFile CreateZipFile(string filePath, string zipName, string zipDirectory)
+		private static ZipFile CreateZipFile(string filePath, string zipDirectory, string zipName)
 		{
-			Thread.CurrentThread.CurrentCulture = CultureInfo.InvariantCulture;
-
 			ZipFile zip;
 			using (zip = new ZipFile())
 			{
@@ -62,23 +60,28 @@
 
 		public static void AddFileToZipArchive(string dirPath, string zipDirectory, string zipFilePath)
 		{
-			Thread.CurrentThread.CurrentCulture = CultureInfo.InvariantCulture;
-
 			FileInfo fileInfo = new FileInfo(dirPath);
 			string dateCteated = fileInfo.CreationTime.ToString("dd-MMM-yyyy");
 
-			using (ZipFile zip = ZipFile.Read(zipFilePath))
-			{
-				try
-				{
-					zip.AddFile(dirPath, zipDirectory);
-					zip.Save();
-				}
-				catch (ArgumentException)
-				{
-					Console.WriteLine("File With the same name already added");
-				}
-			}
+            if (!File.Exists(zipFilePath))
+            {
+                ZipFile zip = CreateZipFile(dirPath, zipDirectory, zipFilePath);
+            }
+            else
+            {
+                using (ZipFile zip = ZipFile.Read(zipFilePath))
+                {
+                    try
+                    {
+                        zip.AddFile(dirPath, zipDirectory);
+                        zip.Save();
+                    }
+                    catch (ArgumentException)
+                    {
+                        Console.WriteLine("File With the same name already added");
+                    }
+                }
+            }
 		}
 	}
 }
