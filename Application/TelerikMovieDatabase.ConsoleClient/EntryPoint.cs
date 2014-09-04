@@ -39,14 +39,14 @@
 			// Step 1 - MongoDB
 			//InitializeMongoDbAndXml();
 			// Step 2 - ZIP File Excel 2003
-			ExcelZipInitializer.Init(InitialExcelZipFileName);
+			//ExcelZipInitializer.Init(InitialExcelZipFileName);
 
 			// Import Initial Data
 			// (Problem #1) - Load Excel Reports from ZIP File (ZIP File Excel 2003 => SQL Server)
-			//using (var data = new TelerikMovieDatabaseMsSqlData())
-			//{
-			//	ExcelManager.ImportBoxOfficeEntriesFromZip(data, InitialExcelZipFileName);
-			//}
+			using (var data = new TelerikMovieDatabaseMsSqlData())
+			{
+				ExcelManager.ImportBoxOfficeEntriesFromZip(data, InitialExcelZipFileName);
+			}
 
 			// (Problem #1) - MongoDB => SQL Server
 			//MigrateDataFromMongoDbToMsSql();

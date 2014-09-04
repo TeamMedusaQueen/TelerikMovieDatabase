@@ -73,6 +73,7 @@
             this.cmbExport.FormattingEnabled = true;
             this.cmbExport.Items.AddRange(new object[] {
             "MongoDB",
+            "MsSQL",
             "MySQL",
             "SQLite",
             "XLS",
@@ -83,6 +84,7 @@
             this.cmbExport.TabIndex = 2;
             this.cmbExport.TabStop = false;
             this.cmbExport.Text = "Export from..";
+            this.cmbExport.SelectedIndexChanged += new System.EventHandler(this.cmbExport_SelectedIndexChanged);
             // 
             // btnImport
             // 
@@ -119,6 +121,7 @@
             this.btnOpenReport.TabStop = false;
             this.btnOpenReport.Text = "Open report";
             this.btnOpenReport.UseVisualStyleBackColor = true;
+            this.btnOpenReport.Click += new System.EventHandler(this.btnOpenReport_Click);
             // 
             // btnMovies
             // 
@@ -251,7 +254,6 @@
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "frmTMDB";
             this.Text = "Telerik Movie Database";
-            this.Load += new System.EventHandler(this.Form1_Load);
             this.groupCategories.ResumeLayout(false);
             this.groupCategories.PerformLayout();
             this.ResumeLayout(false);
@@ -263,7 +265,6 @@
 
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ComboBox cmbImport;
-        private System.Windows.Forms.ComboBox cmbExport;
         private System.Windows.Forms.Button btnImport;
         private System.Windows.Forms.ComboBox cmbExportInfo;
         private System.Windows.Forms.Button btnOpenReport;
@@ -278,6 +279,7 @@
         private System.Windows.Forms.CheckBox chkDirector;
         private System.Windows.Forms.CheckBox chkGenre;
         private System.Windows.Forms.ListBox listInfo;
+        public System.Windows.Forms.ComboBox cmbExport;
     }
 }
 
