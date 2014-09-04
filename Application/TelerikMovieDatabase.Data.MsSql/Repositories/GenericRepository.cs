@@ -41,13 +41,15 @@
 			return data;
 		}
 
-		public IQueryable<TEntity> Project(Expression<Func<TEntity, TEntity>> projectFunc, Expression<Func<TEntity, bool>> wherePredicate, params Expression<Func<TEntity, object>>[] includeProperties)
+		public IQueryable<TEntity> Project(Func<TEntity, TEntity> projectFunc, Expression<Func<TEntity, bool>> wherePredicate, params Expression<Func<TEntity, object>>[] includeProperties)
 		{
 			var data = this.SearchFor(wherePredicate, includeProperties);
 
 			if (projectFunc != null)
 			{
-				data = data.Select(projectFunc);
+				data = data.ToArray()
+					.Select(projectFunc)
+					.AsQueryable();
 			}
 
 			return data;

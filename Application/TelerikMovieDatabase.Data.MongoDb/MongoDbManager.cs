@@ -59,6 +59,14 @@
 			return this.GetServer().DatabaseExists(DbName);
 		}
 
+		public void DropDatabase()
+		{
+			if (this.GetServer().DatabaseExists(DbName))
+			{
+				this.GetServer().DropDatabase(DbName);
+			}
+		}
+
 		public void InsertMovies(IEnumerable<MongoDbMovie> data)
 		{
 			this.InsertCollection(this.GetDatabase(), DbTableMoviesName, data);

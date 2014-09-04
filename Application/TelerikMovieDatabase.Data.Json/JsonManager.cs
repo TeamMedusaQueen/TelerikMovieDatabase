@@ -74,7 +74,7 @@ namespace TelerikMovieDatabase.Data.Json
 		{
 			foreach (var item in contents)
 			{
-				var currentFilePath = Path.Combine(this.FolderPath, fileName + "_" + item.Item1 + FileExtension);
+				var currentFilePath = Path.Combine(this.FolderPath, item.Item1 + FileExtension);
 				File.WriteAllText(currentFilePath, item.Item2);
 			}
 		}

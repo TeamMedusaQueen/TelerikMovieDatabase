@@ -81,6 +81,14 @@
       <Project>{370ed994-c881-4031-a6cc-d8a9b821ac19}</Project>
       <Name>TelerikMovieDatabase.Data.Json</Name>
     </ProjectReference>
+    <ProjectReference Include="..\TelerikMovieDatabase.Data.MySql\TelerikMovieDatabase.Data.MySql.csproj">
+      <Project>{53265996-a416-4e3a-904d-184ae9759c2d}</Project>
+      <Name>TelerikMovieDatabase.Data.MySql</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TelerikMovieDatabase.Data.Pdf\TelerikMovieDatabase.Data.Pdf.csproj">
+      <Project>{b2e5b08f-0156-4437-83ec-4b9f5e8a0467}</Project>
+      <Name>TelerikMovieDatabase.Data.Pdf</Name>
+    </ProjectReference>
     <ProjectReference Include="..\TelerikMovieDatabase.Data.SqLite\TelerikMovieDatabase.Data.SqLite.csproj">
       <Project>{152b7108-1ed1-46e4-b035-80fc0ab205ec}</Project>
       <Name>TelerikMovieDatabase.Data.SqLite</Name>

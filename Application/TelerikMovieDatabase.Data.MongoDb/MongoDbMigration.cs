@@ -3,13 +3,20 @@
 	using System;
 	using System.Collections.Generic;
 	using System.Linq;
-	using System.Text;
-	using System.Threading.Tasks;
 	using TelerikMovieDatabase.Data.MongoDb.Models;
 	using TelerikMovieDatabase.Models;
 
-	public class MongoDbToMsSqlMigration
+	public class MongoDbMigration
 	{
+		public void AddMovies(IEnumerable<Movie> movies)
+		{
+			var movieMapper = new MovieMapper();
+			var mongoDbMovies = movieMapper.Map(movies);
+
+			var mongoDbManager = new MongoDbManager();
+			mongoDbManager.InsertMovies(mongoDbMovies);
+		}
+
 		public IEnumerable<Movie> GetMovies()
 		{
 			var mongoDbManager = new MongoDbManager();

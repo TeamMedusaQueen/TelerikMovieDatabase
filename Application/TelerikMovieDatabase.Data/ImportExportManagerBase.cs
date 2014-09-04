@@ -2,6 +2,7 @@
 {
 	using System;
 	using System.Collections.Generic;
+	using System.Diagnostics;
 	using System.IO;
 	using System.Linq;
 	using System.Linq.Expressions;
@@ -48,7 +49,7 @@
 			this.Export(repository, fileName, null, null, includeProperties);
 		}
 
-		public void Export(IGenericRepository<TInput> repository, string fileName, Expression<Func<TInput, TInput>> projectFunc, params Expression<Func<TInput, object>>[] includeProperties)
+		public void Export(IGenericRepository<TInput> repository, string fileName, Func<TInput, TInput> projectFunc, params Expression<Func<TInput, object>>[] includeProperties)
 		{
 			this.Export(repository, fileName, projectFunc, null, includeProperties);
 		}
@@ -58,7 +59,7 @@
 			this.Export(repository, fileName, null, wherePredicate, includeProperties);
 		}
 
-		public void Export(IGenericRepository<TInput> repository, string fileName, Expression<Func<TInput, TInput>> projectFunc, Expression<Func<TInput, bool>> wherePredicate, params Expression<Func<TInput, object>>[] includeProperties)
+		public void Export(IGenericRepository<TInput> repository, string fileName, Func<TInput, TInput> projectFunc, Expression<Func<TInput, bool>> wherePredicate, params Expression<Func<TInput, object>>[] includeProperties)
 		{
 			repository.DisableProxyCreation();
 			var data = repository.Project(projectFunc, wherePredicate, includeProperties).ToArray();
@@ -69,6 +70,8 @@
 
 		public void Export(TInput[] data, string fileName)
 		{
+			var filePath = this.GetFilePath(fileName);
+
 			if (IsMultiple)
 			{
 				var output = this.SerializeMultiple(data, fileName);
@@ -84,7 +87,12 @@
 			else
 			{
 				var output = this.Serialize(data, fileName);
-				this.SaveToFile(this.GetFilePath(fileName), output);
+				this.SaveToFile(filePath, output);
+			}
+
+			if (File.Exists(filePath))
+			{
+				Process.Start(filePath);
 			}
 		}
 

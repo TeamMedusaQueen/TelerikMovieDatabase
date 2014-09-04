@@ -1,0 +1,782 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ArrayOfMovie xmlns:i="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://schemas.datacontract.org/2004/07/TelerikMovieDatabase.Models">
+	<Movie>
+		<Awards />
+		<BoxOfficeEntry i:nil="true" />
+		<BoxOfficeEntryID i:nil="true" />
+		<Cast>
+			<Person>
+				<Jobs />
+				<Name>Eli Wallach</Name>
+			</Person>
+			<Person>
+				<Jobs />
+				<Name>Clint Eastwood</Name>
+			</Person>
+			<Person>
+				<Jobs />
+				<Name>Lee Van Cleef</Name>
+			</Person>
+			<Person>
+				<Jobs />
+				<Name>Aldo GiuffrГЁ</Name>
+			</Person>
+		</Cast>
+		<Countries />
+		<Director>
+			<Jobs />
+			<Name>Sergio Leone</Name>
+		</Director>
+		<Genres />
+		<Gross>0.00</Gross>
+		<Languages />
+		<Metascore>90</Metascore>
+		<Nominations />
+		<Rated>Approved</Rated>
+		<Rating>9</Rating>
+		<ReleaseDate>1966-12-23T00:00:00</ReleaseDate>
+		<RunningTime>161</RunningTime>
+		<Storyline>A bounty hunting scam joins two men in an uneasy alliance against a third in a race to find a fortune in gold buried in a remote cemetery.</Storyline>
+		<Title>The Good, the Bad and the Ugly</Title>
+		<Writers>
+			<Person>
+				<Jobs />
+				<Name>Luciano Vincenzoni </Name>
+			</Person>
+			<Person>
+				<Jobs />
+				<Name>Sergio Leone </Name>
+			</Person>
+			<Person>
+				<Jobs />
+				<Name>Agenore Incrocci </Name>
+			</Person>
+			<Person>
+				<Jobs />
+				<Name>Furio Scarpelli </Name>
+			</Person>
+			<Person>
+				<Jobs />
+				<Name>Mickey Knox </Name>
+			</Person>
+		</Writers>
+	</Movie>
+	<Movie>
+		<Awards />
+		<BoxOfficeEntry i:nil="true" />
+		<BoxOfficeEntryID i:nil="true" />
+		<Cast>
+			<Person>
+				<Jobs />
+				<Name>Claudia Cardinale</Name>
+			</Person>
+			<Person>
+				<Jobs />
+				<Name>Henry Fonda</Name>
+			</Person>
+			<Person>
+				<Jobs />
+				<Name>Jason Robards</Name>
+			</Person>
+			<Person>
+				<Jobs />
+				<Name>Charles Bronson</Name>
+			</Person>
+		</Cast>
+		<Countries />
+		<Director>
+			<Jobs />
+			<Name>Sergio Leone</Name>
+		</Director>
+		<Genres />
+		<Gross>0.00</Gross>
+		<Languages />
+		<Metascore>80</Metascore>
+		<Nominations />
+		<Rated>PG-13</Rated>
+		<Rating>8.6999998092651367</Rating>
+		<ReleaseDate>1968-12-21T00:00:00</ReleaseDate>
+		<RunningTime>175</RunningTime>
+		<Storyline>Epic story of a mysterious stranger with a harmonica who joins forces with a notorious desperado to protect a beautiful widow from a ruthless assassin working for the railroad.</Storyline>
+		<Title>Once Upon a Time in the West</Title>
+		<Writers>
+			<Person>
+				<Jobs />
+				<Name>Sergio Leone </Name>
+			</Person>
+			<Person>
+				<Jobs />
+				<Name>Mickey Knox </Name>
+			</Person>
+			<Person>
+				<Jobs />
+				<Name>Sergio Donati </Name>
+			</Person>
+			<Person>
+				<Jobs />
+				<Name>Dario Argento </Name>
+			</Person>
+			<Person>
+				<Jobs />
+				<Name>Bernardo Bertolucci </Name>
+			</Person>
+		</Writers>
+	</Movie>
+	<Movie>
+		<Awards />
+		<BoxOfficeEntry i:nil="true" />
+		<BoxOfficeEntryID i:nil="true" />
+		<Cast>
+			<Person>
+				<Jobs />
+				<Name>ToshirГґ Mifune</Name>
+			</Person>
+			<Person>
+				<Jobs />
+				<Name>Takashi Shimura</Name>
+			</Person>
+			<Person>
+				<Jobs />
+				<Name>Keiko Tsushima</Name>
+			</Person>
+			<Person>
+				<Jobs />
+				<Name>Yukiko Shimazaki</Name>
+			</Person>
+		</Cast>
+		<Countries />
+		<Director>
+			<Jobs />
+			<Name>Akira Kurosawa</Name>
+		</Director>
+		<Genres />
+		<Gross>0.00</Gross>
+		<Languages />
+		<Metascore>99</Metascore>
+		<Nominations />
+		<Rated>Unrated</Rated>
+		<Rating>8.8000001907348633</Rating>
+		<ReleaseDate>1956-11-19T00:00:00</ReleaseDate>
+		<RunningTime>207</RunningTime>
+		<Storyline>A poor village under attack by bandits recruits seven unemployed samurai to help them defend themselves.</Storyline>
+		<Title>Seven Samurai</Title>
+		<Writers>
+			<Person>
+				<Jobs />
+				<Name>Akira Kurosawa </Name>
+			</Person>
+			<Person>
+				<Jobs />
+				<Name>Shinobu Hashimoto </Name>
+			</Person>
+			<Person>
+				<Jobs />
+				<Name>Hideo Oguni </Name>
+			</Person>
+		</Writers>
+	</Movie>
+	<Movie>
+		<Awards />
+		<BoxOfficeEntry i:nil="true" />
+		<BoxOfficeEntryID i:nil="true" />
+		<Cast>
+			<Person>
+				<Jobs />
+				<Name>Charles Chaplin</Name>
+			</Person>
+			<Person>
+				<Jobs />
+				<Name>Paulette Goddard</Name>
+			</Person>
+			<Person>
+				<Jobs />
+				<Name>Henry Bergman</Name>
+			</Person>
+			<Person>
+				<Jobs />
+				<Name>Tiny Sandford</Name>
+			</Person>
+		</Cast>
+		<Countries />
+		<Director>
+			<Jobs />
+			<Name>Charles Chaplin</Name>
+		</Director>
+		<Genres />
+		<Gross>0.00</Gross>
+		<Languages />
+		<Metascore>96</Metascore>
+		<Nominations />
+		<Rated>G</Rated>
+		<Rating>8.6000003814697266</Rating>
+		<ReleaseDate>1936-02-25T00:00:00</ReleaseDate>
+		<RunningTime>87</RunningTime>
+		<Storyline>The Tramp struggles to live in modern industrial society with the help of a young homeless woman.</Storyline>
+		<Title>Modern Times</Title>
+		<Writers>
+			<Person>
+				<Jobs />
+				<Name>Charles Chaplin</Name>
+			</Person>
+		</Writers>
+	</Movie>
+	<Movie>
+		<Awards />
+		<BoxOfficeEntry i:nil="true" />
+		<BoxOfficeEntryID i:nil="true" />
+		<Cast>
+			<Person>
+				<Jobs />
+				<Name>Peter Sellers</Name>
+			</Person>
+			<Person>
+				<Jobs />
+				<Name>George C. Scott</Name>
+			</Person>
+			<Person>
+				<Jobs />
+				<Name>Sterling Hayden</Name>
+			</Person>
+			<Person>
+				<Jobs />
+				<Name>Keenan Wynn</Name>
+			</Person>
+		</Cast>
+		<Countries />
+		<Director>
+			<Jobs />
+			<Name>Stanley Kubrick</Name>
+		</Director>
+		<Genres />
+		<Gross>0.00</Gross>
+		<Languages />
+		<Metascore>96</Metascore>
+		<Nominations />
+		<Rated>PG</Rated>
+		<Rating>8.5</Rating>
+		<ReleaseDate>1964-01-29T00:00:00</ReleaseDate>
+		<RunningTime>95</RunningTime>
+		<Storyline>An insane general triggers a path to nuclear holocaust that a war room full of politicians and generals frantically try to stop.</Storyline>
+		<Title>Dr. Strangelove or: How I Learned to Stop Worrying and Love the Bomb</Title>
+		<Writers>
+			<Person>
+				<Jobs />
+				<Name>Stanley Kubrick </Name>
+			</Person>
+			<Person>
+				<Jobs />
+				<Name>Terry Southern </Name>
+			</Person>
+			<Person>
+				<Jobs />
+				<Name>Peter George </Name>
+			</Person>
+		</Writers>
+	</Movie>
+	<Movie>
+		<Awards />
+		<BoxOfficeEntry i:nil="true" />
+		<BoxOfficeEntryID i:nil="true" />
+		<Cast>
+			<Person>
+				<Jobs />
+				<Name>Keir Dullea</Name>
+			</Person>
+			<Person>
+				<Jobs />
+				<Name>Gary Lockwood</Name>
+			</Person>
+			<Person>
+				<Jobs />
+				<Name>William Sylvester</Name>
+			</Person>
+			<Person>
+				<Jobs />
+				<Name>Daniel Richter</Name>
+			</Person>
+		</Cast>
+		<Countries />
+		<Director>
+			<Jobs />
+			<Name>Stanley Kubrick</Name>
+		</Director>
+		<Genres />
+		<Gross>0.00</Gross>
+		<Languages />
+		<Metascore>86</Metascore>
+		<Nominations />
+		<Rated>G</Rated>
+		<Rating>8.3000001907348633</Rating>
+		<ReleaseDate>1968-05-15T00:00:00</ReleaseDate>
+		<RunningTime>160</RunningTime>
+		<Storyline>Humanity finds a mysterious, obviously artificial, object buried beneath the Lunar surface and, with the intelligent computer H.A.L. 9000, sets off on a quest.</Storyline>
+		<Title>2001: A Space Odyssey</Title>
+		<Writers>
+			<Person>
+				<Jobs />
+				<Name>Stanley Kubrick </Name>
+			</Person>
+			<Person>
+				<Jobs />
+				<Name>Arthur C. Clarke </Name>
+			</Person>
+		</Writers>
+	</Movie>
+	<Movie>
+		<Awards />
+		<BoxOfficeEntry i:nil="true" />
+		<BoxOfficeEntryID i:nil="true" />
+		<Cast>
+			<Person>
+				<Jobs />
+				<Name>Alfred Abel</Name>
+			</Person>
+			<Person>
+				<Jobs />
+				<Name>Gustav FrГ¶hlich</Name>
+			</Person>
+			<Person>
+				<Jobs />
+				<Name>Rudolf Klein-Rogge</Name>
+			</Person>
+			<Person>
+				<Jobs />
+				<Name>Fritz Rasp</Name>
+			</Person>
+		</Cast>
+		<Countries />
+		<Director>
+			<Jobs />
+			<Name>Fritz Lang</Name>
+		</Director>
+		<Genres />
+		<Gross>0.00</Gross>
+		<Languages />
+		<Metascore>98</Metascore>
+		<Nominations />
+		<Rated>Not Rated</Rated>
+		<Rating>8.3000001907348633</Rating>
+		<ReleaseDate>1927-03-13T00:00:00</ReleaseDate>
+		<RunningTime>153</RunningTime>
+		<Storyline>In a futuristic city sharply divided between the working class and the city planners, the son of the city's mastermind falls in love with a working class prophet who predicts the coming of a savior to mediate their differences.</Storyline>
+		<Title>Metropolis</Title>
+		<Writers>
+			<Person>
+				<Jobs />
+				<Name>Thea von Harbou </Name>
+			</Person>
+		</Writers>
+	</Movie>
+	<Movie>
+		<Awards />
+		<BoxOfficeEntry i:nil="true" />
+		<BoxOfficeEntryID i:nil="true" />
+		<Cast>
+			<Person>
+				<Jobs />
+				<Name>Peter O'Toole</Name>
+			</Person>
+			<Person>
+				<Jobs />
+				<Name>Alec Guinness</Name>
+			</Person>
+			<Person>
+				<Jobs />
+				<Name>Anthony Quinn</Name>
+			</Person>
+			<Person>
+				<Jobs />
+				<Name>Jack Hawkins</Name>
+			</Person>
+		</Cast>
+		<Countries />
+		<Director>
+			<Jobs />
+			<Name>David Lean</Name>
+		</Director>
+		<Genres />
+		<Gross>0.00</Gross>
+		<Languages />
+		<Metascore>100</Metascore>
+		<Nominations />
+		<Rated>PG</Rated>
+		<Rating>8.3999996185302734</Rating>
+		<ReleaseDate>1962-12-10T00:00:00</ReleaseDate>
+		<RunningTime>216</RunningTime>
+		<Storyline>A flamboyant and controversial British military figure and his conflicted loyalties during his World War I service in the Middle East.</Storyline>
+		<Title>Lawrence of Arabia</Title>
+		<Writers>
+			<Person>
+				<Jobs />
+				<Name>T.E. Lawrence </Name>
+			</Person>
+			<Person>
+				<Jobs />
+				<Name>Robert Bolt </Name>
+			</Person>
+			<Person>
+				<Jobs />
+				<Name>Michael Wilson </Name>
+			</Person>
+		</Writers>
+	</Movie>
+	<Movie>
+		<Awards />
+		<BoxOfficeEntry i:nil="true" />
+		<BoxOfficeEntryID i:nil="true" />
+		<Cast>
+			<Person>
+				<Jobs />
+				<Name>Marlon Brando</Name>
+			</Person>
+			<Person>
+				<Jobs />
+				<Name>Lee J. Cobb</Name>
+			</Person>
+			<Person>
+				<Jobs />
+				<Name>Karl Malden</Name>
+			</Person>
+			<Person>
+				<Jobs />
+				<Name>Rod Steiger</Name>
+			</Person>
+		</Cast>
+		<Countries />
+		<Director>
+			<Jobs />
+			<Name>Elia Kazan</Name>
+		</Director>
+		<Genres />
+		<Gross>0.00</Gross>
+		<Languages />
+		<Metascore>88</Metascore>
+		<Nominations />
+		<Rated>Not Rated</Rated>
+		<Rating>8.3000001907348633</Rating>
+		<ReleaseDate>1954-06-22T00:00:00</ReleaseDate>
+		<RunningTime>108</RunningTime>
+		<Storyline>An ex-prize fighter turned longshoreman struggles to stand up to his corrupt union bosses.</Storyline>
+		<Title>On the Waterfront</Title>
+		<Writers>
+			<Person>
+				<Jobs />
+				<Name>Budd Schulberg </Name>
+			</Person>
+			<Person>
+				<Jobs />
+				<Name>Malcolm Johnson </Name>
+			</Person>
+		</Writers>
+	</Movie>
+	<Movie>
+		<Awards />
+		<BoxOfficeEntry i:nil="true" />
+		<BoxOfficeEntryID i:nil="true" />
+		<Cast>
+			<Person>
+				<Jobs />
+				<Name>Judy Garland</Name>
+			</Person>
+			<Person>
+				<Jobs />
+				<Name>Frank Morgan</Name>
+			</Person>
+			<Person>
+				<Jobs />
+				<Name>Ray Bolger</Name>
+			</Person>
+			<Person>
+				<Jobs />
+				<Name>Bert Lahr</Name>
+			</Person>
+		</Cast>
+		<Countries />
+		<Director>
+			<Jobs />
+			<Name>Victor Fleming, George Cukor, Mervyn LeRoy, Norman Taurog, King Vidor</Name>
+		</Director>
+		<Genres />
+		<Gross>0.00</Gross>
+		<Languages />
+		<Metascore>100</Metascore>
+		<Nominations />
+		<Rated>PG</Rated>
+		<Rating>8.1000003814697266</Rating>
+		<ReleaseDate>1939-08-25T00:00:00</ReleaseDate>
+		<RunningTime>102</RunningTime>
+		<Storyline>Dorothy Gale is swept away to a magical land in a tornado and embarks on a quest to see the Wizard who can help her return home.</Storyline>
+		<Title>The Wizard of Oz</Title>
+		<Writers>
+			<Person>
+				<Jobs />
+				<Name>Noel Langley </Name>
+			</Person>
+			<Person>
+				<Jobs />
+				<Name>Florence Ryerson </Name>
+			</Person>
+			<Person>
+				<Jobs />
+				<Name>Edgar Allan Woolf </Name>
+			</Person>
+			<Person>
+				<Jobs />
+				<Name>L. Frank Baum </Name>
+			</Person>
+		</Writers>
+	</Movie>
+	<Movie>
+		<Awards />
+		<BoxOfficeEntry i:nil="true" />
+		<BoxOfficeEntryID i:nil="true" />
+		<Cast>
+			<Person>
+				<Jobs />
+				<Name>Gregory Peck</Name>
+			</Person>
+			<Person>
+				<Jobs />
+				<Name>Audrey Hepburn</Name>
+			</Person>
+			<Person>
+				<Jobs />
+				<Name>Eddie Albert</Name>
+			</Person>
+			<Person>
+				<Jobs />
+				<Name>Hartley Power</Name>
+			</Person>
+		</Cast>
+		<Countries />
+		<Director>
+			<Jobs />
+			<Name>William Wyler</Name>
+		</Director>
+		<Genres />
+		<Gross>0.00</Gross>
+		<Languages />
+		<Metascore>76</Metascore>
+		<Nominations />
+		<Rated>Not Rated</Rated>
+		<Rating>8.1000003814697266</Rating>
+		<ReleaseDate>1953-09-02T00:00:00</ReleaseDate>
+		<RunningTime>118</RunningTime>
+		<Storyline>A bored and sheltered princess escapes her guardians and falls in love with an American newsman in Rome.</Storyline>
+		<Title>Roman Holiday</Title>
+		<Writers>
+			<Person>
+				<Jobs />
+				<Name>Ian McLellan Hunter </Name>
+			</Person>
+			<Person>
+				<Jobs />
+				<Name>John Dighton </Name>
+			</Person>
+			<Person>
+				<Jobs />
+				<Name>Dalton Trumbo </Name>
+			</Person>
+		</Writers>
+	</Movie>
+	<Movie>
+		<Awards />
+		<BoxOfficeEntry i:nil="true" />
+		<BoxOfficeEntryID i:nil="true" />
+		<Cast>
+			<Person>
+				<Jobs />
+				<Name>Thomas Mitchell</Name>
+			</Person>
+			<Person>
+				<Jobs />
+				<Name>Gary Cooper</Name>
+			</Person>
+			<Person>
+				<Jobs />
+				<Name>Lloyd Bridges</Name>
+			</Person>
+			<Person>
+				<Jobs />
+				<Name>Katy Jurado</Name>
+			</Person>
+		</Cast>
+		<Countries />
+		<Director>
+			<Jobs />
+			<Name>Fred Zinnemann</Name>
+		</Director>
+		<Genres />
+		<Gross>0.00</Gross>
+		<Languages />
+		<Metascore>89</Metascore>
+		<Nominations />
+		<Rated>PG</Rated>
+		<Rating>8.1000003814697266</Rating>
+		<ReleaseDate>1952-07-30T00:00:00</ReleaseDate>
+		<RunningTime>85</RunningTime>
+		<Storyline>A marshall, personally compelled to face a returning deadly enemy, finds that his own town refuses to help him.</Storyline>
+		<Title>High Noon</Title>
+		<Writers>
+			<Person>
+				<Jobs />
+				<Name>Carl Foreman </Name>
+			</Person>
+			<Person>
+				<Jobs />
+				<Name>John W. Cunningham </Name>
+			</Person>
+		</Writers>
+	</Movie>
+	<Movie>
+		<Awards />
+		<BoxOfficeEntry i:nil="true" />
+		<BoxOfficeEntryID i:nil="true" />
+		<Cast>
+			<Person>
+				<Jobs />
+				<Name>Robert Mitchum</Name>
+			</Person>
+			<Person>
+				<Jobs />
+				<Name>Shelley Winters</Name>
+			</Person>
+			<Person>
+				<Jobs />
+				<Name>Lillian Gish</Name>
+			</Person>
+			<Person>
+				<Jobs />
+				<Name>James Gleason</Name>
+			</Person>
+		</Cast>
+		<Countries />
+		<Director>
+			<Jobs />
+			<Name>Charles Laughton, Robert Mitchum, Terry Sanders</Name>
+		</Director>
+		<Genres />
+		<Gross>0.00</Gross>
+		<Languages />
+		<Metascore>99</Metascore>
+		<Nominations />
+		<Rated>Approved</Rated>
+		<Rating>8.1000003814697266</Rating>
+		<ReleaseDate>1955-11-24T00:00:00</ReleaseDate>
+		<RunningTime>92</RunningTime>
+		<Storyline>A religious fanatic marries a gullible widow whose young children are reluctant to tell him where their real daddy hid $10,000 he'd stolen in a robbery.</Storyline>
+		<Title>The Night of the Hunter</Title>
+		<Writers>
+			<Person>
+				<Jobs />
+				<Name>Davis Grubb </Name>
+			</Person>
+			<Person>
+				<Jobs />
+				<Name>James Agee </Name>
+			</Person>
+		</Writers>
+	</Movie>
+	<Movie>
+		<Awards />
+		<BoxOfficeEntry i:nil="true" />
+		<BoxOfficeEntryID i:nil="true" />
+		<Cast>
+			<Person>
+				<Jobs />
+				<Name>Anne Bancroft</Name>
+			</Person>
+			<Person>
+				<Jobs />
+				<Name>Katharine Ross</Name>
+			</Person>
+			<Person>
+				<Jobs />
+				<Name>Dustin Hoffman</Name>
+			</Person>
+			<Person>
+				<Jobs />
+				<Name>William Daniels</Name>
+			</Person>
+		</Cast>
+		<Countries />
+		<Director>
+			<Jobs />
+			<Name>Mike Nichols</Name>
+		</Director>
+		<Genres />
+		<Gross>0.00</Gross>
+		<Languages />
+		<Metascore>77</Metascore>
+		<Nominations />
+		<Rated>Approved</Rated>
+		<Rating>8.1000003814697266</Rating>
+		<ReleaseDate>1967-12-22T00:00:00</ReleaseDate>
+		<RunningTime>106</RunningTime>
+		<Storyline>Recent college graduate Benjamin Braddock is trapped into an affair with Mrs. Robinson, who happens to be the wife of his father's business partner and then finds himself falling in love with her daughter, Elaine.</Storyline>
+		<Title>The Graduate</Title>
+		<Writers>
+			<Person>
+				<Jobs />
+				<Name>Calder Willingham </Name>
+			</Person>
+			<Person>
+				<Jobs />
+				<Name>Buck Henry </Name>
+			</Person>
+			<Person>
+				<Jobs />
+				<Name>Charles Webb </Name>
+			</Person>
+		</Writers>
+	</Movie>
+	<Movie>
+		<Awards />
+		<BoxOfficeEntry i:nil="true" />
+		<BoxOfficeEntryID i:nil="true" />
+		<Cast>
+			<Person>
+				<Jobs />
+				<Name>Brahim Hadjadj</Name>
+			</Person>
+			<Person>
+				<Jobs />
+				<Name>Jean Martin</Name>
+			</Person>
+			<Person>
+				<Jobs />
+				<Name>Yacef Saadi</Name>
+			</Person>
+			<Person>
+				<Jobs />
+				<Name>Samia Kerbash</Name>
+			</Person>
+		</Cast>
+		<Countries />
+		<Director>
+			<Jobs />
+			<Name>Gillo Pontecorvo</Name>
+		</Director>
+		<Genres />
+		<Gross>0.00</Gross>
+		<Languages />
+		<Metascore>94</Metascore>
+		<Nominations />
+		<Rated>Not Rated</Rated>
+		<Rating>8.1999998092651367</Rating>
+		<ReleaseDate>1967-09-20T00:00:00</ReleaseDate>
+		<RunningTime>121</RunningTime>
+		<Storyline>In the 1950s, fear and violence escalate as the people of Algiers fight for independence from the French government.</Storyline>
+		<Title>The Battle of Algiers</Title>
+		<Writers>
+			<Person>
+				<Jobs />
+				<Name>Gillo Pontecorvo</Name>
+			</Person>
+			<Person>
+				<Jobs />
+				<Name>Franco Solinas</Name>
+			</Person>
+		</Writers>
+	</Movie>
+</ArrayOfMovie>

@@ -58,8 +58,11 @@
 								GeneratedWeekendIncome = grossValue
 							};
 
-							boxOfficeEntry.ID = boxOfficeEntry.Movie.ID;
-							data.BoxOfficeEntries.Add(boxOfficeEntry);
+							if (boxOfficeEntry.Movie != null)
+							{
+								boxOfficeEntry.ID = boxOfficeEntry.Movie.ID;
+								data.BoxOfficeEntries.Add(boxOfficeEntry);
+							}
 						}
 
 						data.SaveChanges();

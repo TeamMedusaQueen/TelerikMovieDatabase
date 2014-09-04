@@ -7,8 +7,6 @@
 	using System.IO;
 	using System.Linq;
 	using System.Net;
-	using System.Text;
-	using System.Threading.Tasks;
 	using TelerikMovieDatabase.Data.MsSql;
 	using TelerikMovieDatabase.Models;
 
@@ -43,6 +41,8 @@
 		public string Poster { get; set; }
 
 		public string Metascore { get; set; }
+
+		public string Budget { get; set; }
 
 		public float imdbRating { get; set; }
 
