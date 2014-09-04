@@ -75,6 +75,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\TelerikMocieDatabase.UIClient\TelerikMovieDatabase.UIClient.csproj">
+      <Project>{10ab826d-2ee5-4287-8fe8-7569511d2c3f}</Project>
+      <Name>TelerikMovieDatabase.UIClient</Name>
+    </ProjectReference>
     <ProjectReference Include="..\TelerikMovieDatabase.Common\TelerikMovieDatabase.Common.csproj">
       <Project>{3e30d509-29c3-4ee8-8a17-08d8900a8823}</Project>
       <Name>TelerikMovieDatabase.Common</Name>
