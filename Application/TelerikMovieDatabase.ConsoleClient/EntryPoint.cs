@@ -39,14 +39,14 @@
 			// Step 1 - MongoDB
 			//InitializeMongoDbAndXml();
 			// Step 2 - ZIP File Excel 2003
-			//ExcelZipInitializer.Init(InitialExcelZipFileName);
+		    // ExcelZipInitializer.Init(InitialExcelZipFileName);
 
 			// Import Initial Data
 			// (Problem #1) - Load Excel Reports from ZIP File (ZIP File Excel 2003 => SQL Server)
-			using (var data = new TelerikMovieDatabaseMsSqlData())
-			{
-				ExcelManager.ImportBoxOfficeEntriesFromZip(data, InitialExcelZipFileName);
-			}
+            //using (var data = new TelerikMovieDatabaseMsSqlData())
+            //{
+            //    ExcelManager.ImportBoxOfficeEntriesFromZip(data, InitialExcelZipFileName);
+            //}
 
 			// (Problem #1) - MongoDB => SQL Server
 			//MigrateDataFromMongoDbToMsSql();
@@ -55,26 +55,26 @@
 			//PdfManager.ExportPdfReport("MoviesReport");
 
 			// (Problem #3) - Generate XML Report (SQL Server => XML)
-			//using (var data = new TelerikMovieDatabaseMsSqlData())
-			//{
-			//	ManagerProvider<Movie>.Xml.Export(
-			//		data.Movies,
-			//		"GoodOldMovies",
-			//		movie => movie.Metascore.HasValue && movie.Metascore.Value > 70
-			//			&& movie.ReleaseDate.HasValue && movie.ReleaseDate.Value.Year < 1970,
-			//		movie => movie.Director,
-			//		movie => movie.Writers,
-			//		movie => movie.Cast);
-			//}
+            //using (var data = new TelerikMovieDatabaseMsSqlData())
+            //{
+            //    ManagerProvider<Movie>.Xml.Export(
+            //        data.Movies,
+            //        "GoodOldMovies",
+            //        movie => movie.Metascore.HasValue && movie.Metascore.Value > 70
+            //            && movie.ReleaseDate.HasValue && movie.ReleaseDate.Value.Year < 1970,
+            //        movie => movie.Director,
+            //        movie => movie.Writers,
+            //        movie => movie.Cast);
+            //}
 
 			// (Problem #4) - Generate JSON Report (SQL Server => JSON => MySQL)
-			//MsSqlToJsonToMySQL();
+			// MsSqlToJsonToMySQL();
 
 			// (Problem #5) - XML file => SQL Server and MongoDB
 			// MigrateDataFromXmlToMongoDbAndMsSql();
 
 			// (Problem #6) - Excel data (SQLite + MySQL => Excel 2007 (.xlsx))
-			SQLiteAndMySQLToExcel2007();
+		    // SQLiteAndMySQLToExcel2007();
 		}
 
 		private static void InitializeMongoDbAndXml()
