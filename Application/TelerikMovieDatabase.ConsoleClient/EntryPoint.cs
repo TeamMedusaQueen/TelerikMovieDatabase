@@ -1,15 +1,17 @@
 ﻿namespace TelerikMovieDatabase.ConsoleClient
 {
-	using System;
-	using System.Collections.Generic;
-	using System.IO;
-	using System.Linq;
-	using TelerikMovieDatabase.Common;
-	using TelerikMovieDatabase.Data.Imdb;
-	using TelerikMovieDatabase.Data.MongoDb;
-	using TelerikMovieDatabase.Data.MsSql;
-	using TelerikMovieDatabase.Data.MySql;
-	using TelerikMovieDatabase.Models;
+    using System;
+    using System.Collections.Generic;
+    using System.IO;
+    using System.Linq;
+    using TelerikMovieDatabase.Common;
+    using TelerikMovieDatabase.Data.Excel;
+    using TelerikMovieDatabase.Data.Imdb;
+    using TelerikMovieDatabase.Data.MongoDb;
+    using TelerikMovieDatabase.Data.MsSql;
+    using TelerikMovieDatabase.Data.MySql;
+    using TelerikMovieDatabase.Data.Pdf;
+    using TelerikMovieDatabase.Models;
 
 	internal class EntryPoint
 	{
@@ -35,33 +37,33 @@
 			// Step 1 - MongoDB
 			//InitializeMongoDbAndXml();
 			// Step 2 - ZIP File Excel 2003
-			//ExcelZipInitializer.Init(InitialExcelZipFileName);
+			ExcelZipInitializer.Init(InitialExcelZipFileName);
 
 			// Import Initial Data
 			// (Problem #1) - Load Excel Reports from ZIP File (ZIP File Excel 2003 => SQL Server)
-			//using (var data = new TelerikMovieDatabaseMsSqlData())
-			//{
-			//	ExcelManager.ImportBoxOfficeEntriesFromZip(data, InitialExcelZipFileName);
-			//}
+			using (var data = new TelerikMovieDatabaseMsSqlData())
+			{
+				ExcelManager.ImportBoxOfficeEntriesFromZip(data, InitialExcelZipFileName);
+			}
 
 			// (Problem #1) - MongoDB => SQL Server
-			//MigrateDataFromMongoDbToMsSql();
+			MigrateDataFromMongoDbToMsSql();
 
 			// (Problem #2) - Generate PDF Report (SQL Server => PDF)
-			//PdfManager.ExportPdfReport("MoviesReport");
+			PdfManager.ExportPdfReport("MoviesReport");
 
 			// (Problem #3) - Generate XML Report (SQL Server => XML)
-			//using (var data = new TelerikMovieDatabaseMsSqlData())
-			//{
-			//	ManagerProvider<Movie>.Xml.Export(
-			//		data.Movies,
-			//		"GoodOldMovies",
-			//		movie => movie.Metascore.HasValue && movie.Metascore.Value > 70
-			//			&& movie.ReleaseDate.HasValue && movie.ReleaseDate.Value.Year < 1970,
-			//		movie => movie.Director,
-			//		movie => movie.Writers,
-			//		movie => movie.Cast);
-			//}
+			using (var data = new TelerikMovieDatabaseMsSqlData())
+			{
+				ManagerProvider<Movie>.Xml.Export(
+					data.Movies,
+					"GoodOldMovies",
+					movie => movie.Metascore.HasValue && movie.Metascore.Value > 70
+						&& movie.ReleaseDate.HasValue && movie.ReleaseDate.Value.Year < 1970,
+					movie => movie.Director,
+					movie => movie.Writers,
+					movie => movie.Cast);
+			}
 
 			// (Problem #4) - Generate JSON Report (SQL Server => JSON => MySQL)
 			MsSqlToJsonToMySQL();
