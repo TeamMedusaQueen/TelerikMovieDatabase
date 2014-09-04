@@ -99,7 +99,6 @@
 			new MongoDbInitializer().Init(movies);
 		}
 
-
 		private static void MigrateDataFromMongoDbToMsSql()
 		{
 			using (var dbContext = new TelerikMovieDatabaseMsSqlContext())

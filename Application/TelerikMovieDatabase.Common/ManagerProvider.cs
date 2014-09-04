@@ -29,7 +29,7 @@
 			}
 		}
 
-		public static ImportExportManagerBase<TInput, MemoryStream> Excel2007
+		public static ImportExportManagerBase<TInput, byte[]> Excel2007
 		{
 			get
 			{

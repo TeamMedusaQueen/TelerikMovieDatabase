@@ -51,7 +51,6 @@
     <Compile Include="MovieBudgetReport.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SqLiteManager.cs" />
-    <Compile Include="Models\MovieBudget.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\TelerikMovieDatabase.Data.Excel\TelerikMovieDatabase.Data.Excel.csproj">

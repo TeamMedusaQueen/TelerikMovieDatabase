@@ -1,11 +1,10 @@
 ﻿namespace TelerikMovieDatabase.Models
 {
+	using Newtonsoft.Json;
 	using System;
 	using System.Collections.Generic;
-
 	using System.Linq;
 	using System.Runtime.Serialization;
-	using Newtonsoft.Json;
 
 	public class JobPosition : BaseEntity
 	{
@@ -32,5 +31,10 @@
 
 		[DataMember]
 		public JobPositionType Type { get; set; }
+
+		public override string ToString()
+		{
+			return this.Type.ToString();
+		}
 	}
 }
