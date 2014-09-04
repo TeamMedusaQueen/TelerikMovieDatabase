@@ -1,7 +1,6 @@
 ﻿namespace TelerikMovieDatabase.Data.Excel
 {
 	using System;
-	using System.Collections.Generic;
 	using System.Data.OleDb;
 	using System.IO;
 	using System.Linq;
