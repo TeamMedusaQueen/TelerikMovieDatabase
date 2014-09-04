@@ -2,11 +2,13 @@
 {
 	using System;
 	using System.Collections.Generic;
+	using System.IO;
 	using System.Linq;
 	using TelerikMovieDatabase.Common;
 	using TelerikMovieDatabase.Data.Imdb;
 	using TelerikMovieDatabase.Data.MongoDb;
 	using TelerikMovieDatabase.Data.MsSql;
+	using TelerikMovieDatabase.Data.MySql;
 	using TelerikMovieDatabase.Models;
 
 	internal class EntryPoint
@@ -62,23 +64,7 @@
 			//}
 
 			// (Problem #4) - Generate JSON Report (SQL Server => JSON => MySQL)
-			using (var data = new TelerikMovieDatabaseMsSqlData())
-			{
-				var jsonManager = ManagerProvider<Movie>.Json;
-				jsonManager.IsMultiple = true;
-				jsonManager.Export(
-					data.Movies,
-					"MovieBoxOfficeReport",
-					movie => new Movie()
-					{
-						ID = movie.ID,
-						Title = movie.Title,
-						Gross = movie.BoxOfficeEntry.GeneratedWeekendIncome,
-					},
-					movie => movie.BoxOfficeEntry != null,
-					movie => movie.BoxOfficeEntry);
-			}
-			// TODO: Read the exported json files to MySql
+			MsSqlToJsonToMySQL();
 
 			// (Problem #5) - XML file => SQL Server and MongoDB
 			// MigrateDataFromXmlToMongoDbAndMsSql();
@@ -135,6 +121,34 @@
 
 			// Import to MongoDb
 			new MongoDbMigration().AddMovies(movies);
+		}
+
+		private static void MsSqlToJsonToMySQL()
+		{
+			using (var data = new TelerikMovieDatabaseMsSqlData())
+			{
+				var jsonManager = ManagerProvider<Movie>.Json;
+				jsonManager.IsMultiple = true;
+				jsonManager.Export(
+					data.Movies,
+					"MovieBoxOfficeReport",
+					movie => new Movie()
+					{
+						ID = movie.ID,
+						Title = movie.Title,
+						Gross = movie.BoxOfficeEntry.GeneratedWeekendIncome,
+					},
+					movie => movie.BoxOfficeEntry != null,
+					movie => movie.BoxOfficeEntry);
+			}
+
+			// Read the exported json files to MySql
+			var jsonFiles = Directory.GetFiles(Data.Json.Settings.Default.FolderPath)
+				.Select(file => Path.GetFileNameWithoutExtension(file))
+				.ToArray();
+			var movesGross = ManagerProvider<Movie>.Json.DeserializeMultiple(jsonFiles)
+				.ToDictionary(movie => movie.Title, movie => movie.Gross);
+			MySqlManager.InsertIntoMySqlDatabase(movesGross);
 		}
 	}
 }

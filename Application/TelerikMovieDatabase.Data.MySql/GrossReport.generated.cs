@@ -49,8 +49,8 @@ namespace TelerikMovieDatabase.Data.MySql
 			}
 		}
 		
-		private int _gross;
-		public virtual int Gross
+		private decimal _gross;
+		public virtual decimal Gross
 		{
 			get
 			{

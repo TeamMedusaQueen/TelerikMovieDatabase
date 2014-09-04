@@ -17,7 +17,7 @@
         <orm:field name="_title" property="Title" behavior="readwrite" uniqueId="26bc9107-ea15-47da-939a-016dc4539ba9" type="System.String">
           <orm:column name="Title" sql-type="nvarchar" nullable="false" length="45" scale="0" ado-type="UnicodeStringVariableLength" />
         </orm:field>
-        <orm:field name="_gross" property="Gross" behavior="readwrite" uniqueId="26eb7bf3-de07-4b22-a3a9-3deacbce2b1b" type="System.Int32">
+        <orm:field name="_gross" property="Gross" behavior="readwrite" uniqueId="26eb7bf3-de07-4b22-a3a9-3deacbce2b1b" type="System.Decimal">
           <orm:column name="Gross" sql-type="integer" nullable="false" length="0" scale="0" ado-type="Int32" />
         </orm:field>
       </orm:class>
@@ -73,7 +73,7 @@
   <Types>
     <DomainClass Id="0d00e8da-1a08-4a81-b820-e35c8390c38d" name="GrossReport" namespace="TelerikMovieDatabase.Data.MySql" showPropertiesCompartment="true" identityMechanism="DatabaseServerCalculated" concurrencyMode="Changed" showNavigationCompartment="true" showImplementationCompartment="true" identityMechanismMember="ReportID">
       <Property Id="36d630e5-d664-448f-a4c8-a91b1d4226bd" name="ReportID" type="Int32" label="ReportID : Int32" kind="Persistent" identity="true" fieldName="_reportID" />
-      <Property Id="26eb7bf3-de07-4b22-a3a9-3deacbce2b1b" name="Gross" type="Int32" label="Gross : Int32" kind="Persistent" fieldName="_gross" />
+      <Property Id="26eb7bf3-de07-4b22-a3a9-3deacbce2b1b" name="Gross" type="Decimal" label="Gross : Decimal" kind="Persistent" fieldName="_gross" />
       <Property Id="26bc9107-ea15-47da-939a-016dc4539ba9" name="Title" label="Title : String" kind="Persistent" fieldName="_title" />
     </DomainClass>
   </Types>
