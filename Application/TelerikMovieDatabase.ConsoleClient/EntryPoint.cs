@@ -105,23 +105,23 @@
 		}
 
 		private static void MigrateDataFromXmlToMongoDbAndMsSql()
-		{
+			{
 			var movies = ManagerProvider<Movie>.Xml.Import(MoviesInitialXmlFileName);
 
 			// Import to MsSql
 			using (var data = new TelerikMovieDatabaseMsSqlData())
-			{
-				foreach (var movie in movies)
 				{
+					foreach (var movie in movies)
+					{
 					data.Movies.Add(movie);
 				}
 
 				data.SaveChanges();
-			}
+					}
 
 			// Import to MongoDb
 			new MongoDbMigration().AddMovies(movies);
-		}
+				}
 
 		private static void MsSqlToJsonToMySQL()
 		{
