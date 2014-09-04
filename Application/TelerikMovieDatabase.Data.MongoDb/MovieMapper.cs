@@ -145,9 +145,9 @@
 			return movieProjection;
 		}
 
-		public IEnumerable<object> GetPersonProjections()
+		public IEnumerable<MongoDbPerson> GetPersonProjections()
 		{
-			var personProjections = new HashSet<object>();
+			var personProjections = new HashSet<MongoDbPerson>();
 
 			foreach (var person in persons)
 			{
@@ -179,29 +179,29 @@
 			return personProjections;
 		}
 
-		public IEnumerable<object> GetGenreProjections()
+		public IEnumerable<MongoDbGenre> GetGenreProjections()
 		{
 			return this.GetProjections(this.genres, item => new MongoDbGenre { _id = item.ID, Title = item.Title });
 		}
 
-		public IEnumerable<object> GetCountryProjections()
+		public IEnumerable<MongoDbCountry> GetCountryProjections()
 		{
 			return this.GetProjections(this.countries, item => new MongoDbCountry { _id = item.ID, Name = item.Name });
 		}
 
-		public IEnumerable<object> GetLanguageProjections()
+		public IEnumerable<MongoDbLanguage> GetLanguageProjections()
 		{
 			return this.GetProjections(this.languages, item => new MongoDbLanguage { _id = item.ID, Name = item.Name });
 		}
 
-		public IEnumerable<object> GetJobProjections()
+		public IEnumerable<MongoDbJob> GetJobProjections()
 		{
 			return this.GetProjections(this.jobs, item => new MongoDbJob { _id = item.ID, Type = item.Type });
 		}
 
-		public IEnumerable<object> GetProjections<TEntity>(IEnumerable<TEntity> collection, Func<TEntity, object> getProjection)
+		public IEnumerable<TModel> GetProjections<TEntity, TModel>(IEnumerable<TEntity> collection, Func<TEntity, TModel> getProjection)
 		{
-			var projections = new HashSet<object>();
+			var projections = new HashSet<TModel>();
 
 			foreach (var item in collection)
 			{

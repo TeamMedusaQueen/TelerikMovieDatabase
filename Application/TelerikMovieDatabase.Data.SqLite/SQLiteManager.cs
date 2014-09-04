@@ -4,30 +4,26 @@
     using System.Collections.Generic;
     using System.Data.SQLite;
 	using System.Linq;
-	using TelerikMovieDatabase.Data.SqLite.Models;
 
     public class SqLiteManager
     {
-        private IList<MovieBudget> GetDataFromSqLiteDatabase()
+        public IList<MovieBudgetReport> GetDataFromSqLiteDatabase()
         {
-            SQLiteConnection sqliteConnection = new SQLiteConnection("Data Source = ..\\..\\..\\..\\Databases\\SQLite\\MovieBudget.db");
-            sqliteConnection.Open();
-            SQLiteCommand command = new SQLiteCommand("SELECT * FROM MovieBudgetReports", sqliteConnection);
-            SQLiteDataReader reader = command.ExecuteReader();
-            var data = new List<MovieBudget>();
-            using (reader)
-            {
-                while (reader.Read())
-                {
-                    int reportId = Convert.ToInt32(reader["ReportID"]);
-                    string title = (string)reader["Title"];
-                    int budget = Convert.ToInt32(reader["Budget"]);
-                    MovieBudget report = new MovieBudget(reportId, title, budget);
-                    data.Add(report);
-                }
-            }
-            
+            var db = new MovieBudgetContext();
+            var data = db.MovieBudgetReports.ToList();
             return data;
+        }
+
+        public static void InitializeSQLiteDb()
+        {
+
+            using (var db = new MovieBudgetContext())
+            {
+                db.MovieBudgetReports.Add(new MovieBudgetReport { Title = "Titanic", Budget = 200000000 });
+                db.MovieBudgetReports.Add(new MovieBudgetReport { Title = "The Shawnshank redemption", Budget = 25000000 });
+                db.MovieBudgetReports.Add(new MovieBudgetReport { Title = "The Godfather", Budget = 6000000 });
+                db.SaveChanges();
+            }
         }
     }
 }

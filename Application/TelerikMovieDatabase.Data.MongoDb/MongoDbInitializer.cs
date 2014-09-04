@@ -7,9 +7,14 @@
 
 	public class MongoDbInitializer
 	{
-		public bool Init(IEnumerable<Movie> movies)
+		public void Init(IEnumerable<Movie> movies, bool forceReCreate = false)
 		{
 			var mongoDbHandler = new MongoDbManager();
+
+			if (forceReCreate)
+			{
+				mongoDbHandler.DropDatabase();
+			}
 
 			if (!mongoDbHandler.DatabaseExists())
 			{
@@ -27,11 +32,7 @@
 				mongoDbHandler.InsertCountries(countryProjections);
 				mongoDbHandler.InsertLanguages(languageProjections);
 				mongoDbHandler.InsertJobPositions(jobProjections);
-
-				return true;
 			}
-
-			return false;
 		}
 	}
 }

@@ -2,26 +2,11 @@
 {
 	using Ionic.Zip;
 	using System;
-	using System.Globalization;
 	using System.IO;
 	using System.Linq;
-	using System.Threading;
 
 	public static class ZipManager
 	{
-		private static ZipFile CreateZipFile(string filePath, string zipDirectory, string zipName)
-		{
-			ZipFile zip;
-			using (zip = new ZipFile())
-			{
-				// add this map file into the "zipDirectory" in the zip archive
-				zip.AddFile(filePath, zipDirectory);
-				zip.Save(zipName);
-			}
-
-			return zip;
-		}
-
 		public static void ExtractFiles(string zipFile, string zipDirectory, string fileName = "")
 		{
 			using (ZipFile zipForUnpack = ZipFile.Read(zipFile))
@@ -58,30 +43,38 @@
 			}
 		}
 
-		public static void AddFileToZipArchive(string dirPath, string zipDirectory, string zipFilePath)
+		public static void AddFileToZipArchive(string dirPath, string zipFilePath)
 		{
-			FileInfo fileInfo = new FileInfo(dirPath);
-			string dateCteated = fileInfo.CreationTime.ToString("dd-MMM-yyyy");
+			if (!File.Exists(zipFilePath))
+			{
+				File.Delete(zipFilePath);
+			}
 
-            if (!File.Exists(zipFilePath))
-            {
-                ZipFile zip = CreateZipFile(dirPath, zipDirectory, zipFilePath);
-            }
-            else
-            {
-                using (ZipFile zip = ZipFile.Read(zipFilePath))
-                {
-                    try
-                    {
-                        zip.AddFile(dirPath, zipDirectory);
-                        zip.Save();
-                    }
-                    catch (ArgumentException)
-                    {
-                        Console.WriteLine("File With the same name already added");
-                    }
-                }
-            }
+			using (var zip = new ZipFile(zipFilePath))
+			{
+				try
+				{
+					zip.AddFile(dirPath, string.Empty);
+					zip.Save();
+				}
+				catch (ArgumentException)
+				{
+					Console.WriteLine("File with the same name already added");
+				}
+			}
+		}
+
+		private static ZipFile CreateZipFile(string filePath, string zipDirectory, string zipName)
+		{
+			ZipFile zip;
+			using (zip = new ZipFile())
+			{
+				// add this map file into the "zipDirectory" in the zip archive
+				zip.AddFile(filePath, zipDirectory);
+				zip.Save(zipName);
+			}
+
+			return zip;
 		}
 	}
 }

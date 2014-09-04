@@ -10,7 +10,7 @@ namespace TelerikMovieDatabase.Data.MsSql.Repositories
 
 		IQueryable<TEntity> SearchFor(Expression<Func<TEntity, bool>> wherePredicate, params Expression<Func<TEntity, object>>[] includeProperties);
 
-		IQueryable<TEntity> Project(Expression<Func<TEntity, TEntity>> projectFunc, Expression<Func<TEntity, bool>> wherePredicate, params Expression<Func<TEntity, object>>[] includeProperties);
+		IQueryable<TEntity> Project(Func<TEntity, TEntity> projectFunc, Expression<Func<TEntity, bool>> wherePredicate, params Expression<Func<TEntity, object>>[] includeProperties);
 
 		void Add(TEntity entity);
 

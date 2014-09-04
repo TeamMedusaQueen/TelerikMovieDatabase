@@ -21,6 +21,14 @@
 			this.repositories = new Dictionary<Type, object>();
 		}
 
+		public TelerikMovieDatabaseMsSqlContext Context
+		{
+			get
+			{
+				return this.context;
+			}
+		}
+
 		public IGenericRepository<Movie> Movies
 		{
 			get

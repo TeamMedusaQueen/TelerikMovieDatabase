@@ -62,12 +62,6 @@
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\TelerikMovieDatabase.Data.Excel\TelerikMovieDatabase.Data.Excel.csproj">
-      <Project>{d5fb25d1-306d-4ade-9c57-63c4fa1e6f5f}</Project>
-      <Name>TelerikMovieDatabase.Data.Excel</Name>
-    </ProjectReference>
-  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

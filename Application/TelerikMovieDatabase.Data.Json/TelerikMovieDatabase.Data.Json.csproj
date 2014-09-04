@@ -46,9 +46,30 @@
   <ItemGroup>
     <Compile Include="JsonManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SerializableContractResolver.cs" />
+    <Compile Include="Settings.Designer.cs">
+      <DependentUpon>Settings.settings</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
+    <None Include="app.config" />
     <None Include="packages.config" />
+    <None Include="Settings.settings">
+      <Generator>PublicSettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\TelerikMovieDatabase.Data\TelerikMovieDatabase.Data.csproj">
+      <Project>{D41EFD1C-507F-425E-BCA2-E0BF9597FAFC}</Project>
+      <Name>TelerikMovieDatabase.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TelerikMovieDatabase.Models\TelerikMovieDatabase.Models.csproj">
+      <Project>{D03BE1AD-12DB-4C2E-A974-A8801BB5B66D}</Project>
+      <Name>TelerikMovieDatabase.Models</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

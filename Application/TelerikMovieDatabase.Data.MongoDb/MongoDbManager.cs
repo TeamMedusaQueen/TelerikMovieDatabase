@@ -6,7 +6,9 @@
 	using System;
 	using System.Collections.Generic;
 	using System.Linq;
-	using TelerikMovieDatabase.Data.Json;
+	using TelerikMovieDatabase.Common;
+	using TelerikMovieDatabase.Data.MongoDb.Models;
+	using TelerikMovieDatabase.Models;
 
 	public class MongoDbManager
 	{
@@ -57,41 +59,50 @@
 			return this.GetServer().DatabaseExists(DbName);
 		}
 
-		public void InsertMovies(IEnumerable<object> data)
+		public void DropDatabase()
+		{
+			if (this.GetServer().DatabaseExists(DbName))
+			{
+				this.GetServer().DropDatabase(DbName);
+			}
+		}
+
+		public void InsertMovies(IEnumerable<MongoDbMovie> data)
 		{
 			this.InsertCollection(this.GetDatabase(), DbTableMoviesName, data);
 		}
 
-		public void InsertPersons(IEnumerable<object> data)
+		public void InsertPersons(IEnumerable<MongoDbPerson> data)
 		{
 			this.InsertCollection(this.GetDatabase(), DbTablePersonsName, data);
 		}
 
-		public void InsertGenres(IEnumerable<object> data)
+		public void InsertGenres(IEnumerable<MongoDbGenre> data)
 		{
 			this.InsertCollection(this.GetDatabase(), DbTableGenresName, data);
 		}
 
-		public void InsertCountries(IEnumerable<object> data)
+		public void InsertCountries(IEnumerable<MongoDbCountry> data)
 		{
 			this.InsertCollection(this.GetDatabase(), DbTableCountriesName, data);
 		}
 
-		public void InsertLanguages(IEnumerable<object> data)
+		public void InsertLanguages(IEnumerable<MongoDbLanguage> data)
 		{
 			this.InsertCollection(this.GetDatabase(), DbTableLanguagesName, data);
 		}
 
-		public void InsertJobPositions(IEnumerable<object> data)
+		public void InsertJobPositions(IEnumerable<MongoDbJob> data)
 		{
 			this.InsertCollection(this.GetDatabase(), DbTableJobPositionsName, data);
 		}
 
-		private void InsertCollection(MongoDatabase database, string tableName, IEnumerable<object> data)
+		private void InsertCollection<TModel>(MongoDatabase database, string tableName, IEnumerable<TModel> data)
+			where TModel : class, IKeyHolder
 		{
 			if (data.Any())
 			{
-				var jsonString = JsonManager.Serialize(data);
+				var jsonString = ManagerProvider<TModel>.Json.Serialize(data, tableName);
 				BsonArray bsonArray = BsonSerializer.Deserialize<BsonArray>(jsonString);
 				var collection = database.GetCollection<BsonArray>(tableName);
 				collection.InsertBatch(bsonArray);

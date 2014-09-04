@@ -25,7 +25,7 @@ namespace TelerikMovieDatabase.Data.Xml {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("..\\..\\..\\..\\Databases\\XML\\")]
+        [global::System.Configuration.DefaultSettingValueAttribute("..\\..\\..\\..\\Databases\\Xml\\")]
         public string FolderPath {
             get {
                 return ((string)(this["FolderPath"]));

@@ -64,6 +64,7 @@
     <Compile Include="BoxOfficeEntry.cs" />
     <Compile Include="Country.cs" />
     <Compile Include="Genre.cs" />
+    <Compile Include="IKeyHolder.cs" />
     <Compile Include="JobPosition.cs" />
     <Compile Include="JobPositionType.cs" />
     <Compile Include="Language.cs" />

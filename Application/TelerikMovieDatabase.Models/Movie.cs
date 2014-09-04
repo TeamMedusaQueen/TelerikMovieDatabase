@@ -43,6 +43,8 @@
 
 		public double Rating { get; set; }
 
+		public decimal Gross { get; set; }
+
 		//[MaxLength(int.MaxValue)]
 		//public byte[] Poster { get; set; }
 
@@ -50,8 +52,6 @@
 
 		[Column("Director_ID")]
 		public Person Director { get; set; }
-
-		public decimal Gross { get; set; }
 
 		public int? BoxOfficeEntryID { get; set; }
 
@@ -139,6 +139,11 @@
 			{
 				this.awards = value;
 			}
+		}
+
+		public override string ToString()
+		{
+			return this.Title;
 		}
 	}
 }

@@ -6,9 +6,9 @@
 	using System.Text;
 	using System.Threading.Tasks;
 
-	public class MySqlManager
+	public static class MySqlManager
 	{
-		public List<GrossReport> GetDataFromMySqlDatabase()
+		public static List<GrossReport> GetDataFromMySqlDatabase()
 		{
 			using (var dbContext = new TelerikMovieDatabaseMySqlContext())
 			{
@@ -17,7 +17,7 @@
 			}
 		}
 
-		public void InsertIntoMySqlDatabase(IDictionary<string, int> data)
+		public static void InsertIntoMySqlDatabase(IDictionary<string, decimal> data)
 		{
 			using (var dbContext = new TelerikMovieDatabaseMySqlContext())
 			{

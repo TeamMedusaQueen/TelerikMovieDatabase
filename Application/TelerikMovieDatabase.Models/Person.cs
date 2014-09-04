@@ -1,8 +1,8 @@
 ﻿namespace TelerikMovieDatabase.Models
 {
+	using Newtonsoft.Json;
 	using System;
 	using System.Collections.Generic;
-
 	using System.Linq;
 	using System.Runtime.Serialization;
 
@@ -19,7 +19,6 @@
 			this.writedMovies = new HashSet<Movie>();
 		}
 
-		[DataMemberAttribute]
 		public virtual ICollection<JobPosition> Jobs
 		{
 			get
@@ -33,6 +32,7 @@
 		}
 
 		[IgnoreDataMember]
+		[JsonIgnore]
 		public virtual ICollection<Movie> FilmedMovies
 		{
 			get
@@ -46,6 +46,7 @@
 		}
 
 		[IgnoreDataMember]
+		[JsonIgnore]
 		public virtual ICollection<Movie> WritedMovies
 		{
 			get
@@ -58,7 +59,11 @@
 			}
 		}
 
-		[DataMemberAttribute]
 		public string Name { get; set; }
+
+		public override string ToString()
+		{
+			return this.Name;
+		}
 	}
 }

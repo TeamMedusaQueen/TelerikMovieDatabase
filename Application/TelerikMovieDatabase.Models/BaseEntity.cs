@@ -8,7 +8,8 @@
 	using System.Runtime.Serialization;
 
 	[DataContract]
-	public abstract class BaseEntity
+	[JsonObject(MemberSerialization.OptOut)]
+	public abstract class BaseEntity : IKeyHolder
 	{
 		[Key]
 		[JsonIgnore]

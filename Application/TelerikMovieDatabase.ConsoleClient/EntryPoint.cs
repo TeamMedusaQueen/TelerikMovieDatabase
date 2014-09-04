@@ -4,107 +4,151 @@
 	using System.Collections.Generic;
 	using System.IO;
 	using System.Linq;
-
-	using TelerikMovieDatabase.Data.Excel;
+	using TelerikMovieDatabase.Common;
 	using TelerikMovieDatabase.Data.Imdb;
 	using TelerikMovieDatabase.Data.MongoDb;
 	using TelerikMovieDatabase.Data.MsSql;
-	using TelerikMovieDatabase.Data.MsSql.Repositories;
+	using TelerikMovieDatabase.Data.MySql;
 	using TelerikMovieDatabase.Models;
-	using TelerikMovieDatabase.Utils;
 
 	internal class EntryPoint
 	{
-        // Tasks:
-        // C#
-        // Prelimirary data
-        // ZIP File Excel 2003 => SQL Server
-        // MongoDB => SQL Server
-        //
-        // XML file => SQL Server and MongoDB
-        // SQLite + MySQL => Excel 2007 (.xlsx)
-        // SQL Server => JSON => MySQL
-        //
-        // Reports
-        // SQL Server => XML
-        // SQL Server => PDF
-        private static void Main()
-        {
-            // Prepare Initial Data
-            // Step 1
-            InitializeMongoDb();
-            // Step 2
-            //Zip xls file to archive, extracting and import to sqlDB
-            using (var dbContext = new TelerikMovieDatabaseMsSqlContext())
-            {
-                ZipManager.AddFileToZipArchive("..\\..\\..\\..\\Databases\\XLS\\XLSData\\BoxOffice-week1-September.xls", File.GetCreationTime("..\\..\\..\\..\\Databases\\XLS\\XLSData\\BoxOffice-week1-September.xls").ToString("dd-MMM-yyyy"), "..\\..\\..\\..\\Databases\\XLS\\Reports.zip");
-                ZipManager.ExtractFiles("..\\..\\..\\..\\Databases\\XLS\\Reports.zip", "..\\..\\..\\..\\Databases\\XLS\\Reports\\");
-                ExcelManager.ImportInSqlDb(dbContext, "..\\..\\..\\..\\Databases\\XLS\\Reports\\"); //If you want to add in database first uncoment the code inside this method
-            }
-            // Step 3
-            //Create SqLite Database and fill data ?
-            // Step 4
-            //Create MySql Database and fill data ?
+		private const string MoviesInitialXmlFileName = "MoviesInitial";
+		private const string InitialExcelZipFileName = "BoxOffice-week1-September";
 
-            // Step 5
-            // Migrate Data From MongoDb To MsSql
-            MigrateDataFromMongoDbToMsSql();
+		// Tasks:
+		// C#
+		// Prelimirary data
+		// ZIP File Excel 2003 => SQL Server
+		// MongoDB => SQL Server
+		//
+		// XML file => SQL Server and MongoDB
+		// SQLite + MySQL => Excel 2007 (.xlsx)
+		// SQL Server => JSON => MySQL
+		//
+		// Reports
+		// SQL Server => XML
+		// SQL Server => PDF
+		private static void Main()
+		{
+			// Prepare Initial Data
+			// Step 1 - MongoDB
+			//InitializeMongoDbAndXml();
+			// Step 2 - ZIP File Excel 2003
+			//ExcelZipInitializer.Init(InitialExcelZipFileName);
 
-            // Export all data to xml
-            using (var data = new TelerikMovieDatabaseMsSqlData())
-            {
-                XmlReport.ExportToXml<IGenericRepository<Person>, Person>(data.Persons, "Persons.xml", p => p.Jobs);
-                XmlReport.ExportToXml<IGenericRepository<Language>, Language>(data.Languages, "Languages.xml");
-                XmlReport.ExportToXml<IGenericRepository<Country>, Country>(data.Countries, "Countries.xml");
-                XmlReport.ExportToXml<IGenericRepository<JobPosition>, JobPosition>(data.JobPositions, "JobPositions.xml");
-                XmlReport.ExportToXml<IGenericRepository<Genre>, Genre>(data.Genres, "Genres.xml");
+			// Import Initial Data
+			// (Problem #1) - Load Excel Reports from ZIP File (ZIP File Excel 2003 => SQL Server)
+			//using (var data = new TelerikMovieDatabaseMsSqlData())
+			//{
+			//	ExcelManager.ImportBoxOfficeEntriesFromZip(data, InitialExcelZipFileName);
+			//}
 
-                // Custom report ( All movies after 2000 year exported with direcotr and actors )
-                XmlReport.ExportToXml<IGenericRepository<Movie>, Movie>(
-                    data.Movies,
-                    "MoviesAfter2000.xml",
-                    movie => movie.ReleaseDate.HasValue && movie.ReleaseDate.Value.Year > 2000,
-                    movie => movie.Director,
-                    movie => movie.Cast);
-            }
+			// (Problem #1) - MongoDB => SQL Server
+			//MigrateDataFromMongoDbToMsSql();
 
-            // Import all data from xml
-            var persons = XmlReport.ImportFromXml<Person[]>("Persons.xml");
-            var languages = XmlReport.ImportFromXml<Language[]>("Languages.xml");
-            var countries = XmlReport.ImportFromXml<Country[]>("Countries.xml");
-            var jobPositions = XmlReport.ImportFromXml<JobPosition[]>("JobPositions.xml");
-            var genres = XmlReport.ImportFromXml<Genre[]>("Genres.xml");
-            var moviesAfter2000 = XmlReport.ImportFromXml<Movie[]>("MoviesAfter2000.xml");
-        }
+			// (Problem #2) - Generate PDF Report (SQL Server => PDF)
+			//PdfManager.ExportPdfReport("MoviesReport");
 
-        private static void InitializeMongoDb()
-        {
-            IEnumerable<Movie> movies;
-            using (var dbContext = new TelerikMovieDatabaseMsSqlContext())
-            {
-                movies = OpenMovieDatabase.GetTop250()
-                    .Select(movieJson => movieJson.GetMovieModel(dbContext));
-            }
+			// (Problem #3) - Generate XML Report (SQL Server => XML)
+			//using (var data = new TelerikMovieDatabaseMsSqlData())
+			//{
+			//	ManagerProvider<Movie>.Xml.Export(
+			//		data.Movies,
+			//		"GoodOldMovies",
+			//		movie => movie.Metascore.HasValue && movie.Metascore.Value > 70
+			//			&& movie.ReleaseDate.HasValue && movie.ReleaseDate.Value.Year < 1970,
+			//		movie => movie.Director,
+			//		movie => movie.Writers,
+			//		movie => movie.Cast);
+			//}
 
-            new MongoDbInitializer().Init(movies);
-        }
+			// (Problem #4) - Generate JSON Report (SQL Server => JSON => MySQL)
+			MsSqlToJsonToMySQL();
 
-        private static void MigrateDataFromMongoDbToMsSql()
-        {
-            using (var dbContext = new TelerikMovieDatabaseMsSqlContext())
-            {
-                // TODO: This condition should be removed, when UI is ready the migration process will be invoked from button
-                if (!dbContext.Movies.Any())
-                {
-                    var movies = new MongoDbToMsSqlMigration().GetMovies();
-                    foreach (var movie in movies)
-                    {
-                        dbContext.Movies.Add(movie);
-                    }
+			// (Problem #5) - XML file => SQL Server and MongoDB
+			// MigrateDataFromXmlToMongoDbAndMsSql();
 
-                    dbContext.SaveChanges();
-                }
-            }
-        }
+			// (Problem #6) - Excel data (SQLite + MySQL => Excel 2007 (.xlsx))
+			// TODO:
+		}
+
+		private static void InitializeMongoDbAndXml()
+		{
+			IEnumerable<Movie> movies;
+			using (var data = new TelerikMovieDatabaseMsSqlData())
+			{
+				data.Movies.DisableProxyCreation();
+				movies = OpenMovieDatabase.GetTop250()
+					.Select(movieJson => movieJson.GetMovieModel(data.Context)).ToArray();
+				data.Movies.EnableProxyCreation();
+			}
+
+			// Import First 150 to MongoDB
+			new MongoDbInitializer().Init(movies.Take(150), forceReCreate: false);
+			// Import the rest to the initial xml file
+			ManagerProvider<Movie>.Xml.Export(movies.Skip(150).ToArray(), MoviesInitialXmlFileName);
+		}
+
+		private static void MigrateDataFromMongoDbToMsSql()
+		{
+			using (var data = new TelerikMovieDatabaseMsSqlData())
+			{
+				var movies = new MongoDbMigration().GetMovies();
+				foreach (var movie in movies)
+				{
+					data.Context.Movies.Add(movie);
+				}
+
+				data.SaveChanges();
+			}
+		}
+
+		private static void MigrateDataFromXmlToMongoDbAndMsSql()
+			{
+			var movies = ManagerProvider<Movie>.Xml.Import(MoviesInitialXmlFileName);
+
+			// Import to MsSql
+			using (var data = new TelerikMovieDatabaseMsSqlData())
+				{
+					foreach (var movie in movies)
+					{
+					data.Movies.Add(movie);
+				}
+
+				data.SaveChanges();
+					}
+
+			// Import to MongoDb
+			new MongoDbMigration().AddMovies(movies);
+				}
+
+		private static void MsSqlToJsonToMySQL()
+		{
+			using (var data = new TelerikMovieDatabaseMsSqlData())
+			{
+				var jsonManager = ManagerProvider<Movie>.Json;
+				jsonManager.IsMultiple = true;
+				jsonManager.Export(
+					data.Movies,
+					"MovieBoxOfficeReport",
+					movie => new Movie()
+					{
+						ID = movie.ID,
+						Title = movie.Title,
+						Gross = movie.BoxOfficeEntry.GeneratedWeekendIncome,
+					},
+					movie => movie.BoxOfficeEntry != null,
+					movie => movie.BoxOfficeEntry);
+			}
+
+			// Read the exported json files to MySql
+			var jsonFiles = Directory.GetFiles(Data.Json.Settings.Default.FolderPath)
+				.Select(file => Path.GetFileNameWithoutExtension(file))
+				.ToArray();
+			var movesGross = ManagerProvider<Movie>.Json.DeserializeMultiple(jsonFiles)
+				.ToDictionary(movie => movie.Title, movie => movie.Gross);
+			MySqlManager.InsertIntoMySqlDatabase(movesGross);
+		}
 	}
 }
