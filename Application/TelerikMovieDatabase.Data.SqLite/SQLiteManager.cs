@@ -5,9 +5,9 @@
     using System.Data.SQLite;
 	using System.Linq;
 
-    public class SqLiteManager
+    public static class SqLiteManager
     {
-        public IList<MovieBudgetReport> GetDataFromSqLiteDatabase()
+        public static IList<MovieBudgetReport> GetDataFromSqLiteDatabase()
         {
             var db = new MovieBudgetContext();
             var data = db.MovieBudgetReports.ToList();

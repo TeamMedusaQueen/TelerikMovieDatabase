@@ -45,6 +45,8 @@
 
 		public decimal Gross { get; set; }
 
+		public decimal Revenue { get; set; }
+
 		//[MaxLength(int.MaxValue)]
 		//public byte[] Poster { get; set; }
 

@@ -1,17 +1,19 @@
 ﻿namespace TelerikMovieDatabase.ConsoleClient
 {
-    using System;
-    using System.Collections.Generic;
-    using System.IO;
-    using System.Linq;
-    using TelerikMovieDatabase.Common;
+	using System;
+	using System.Collections.Generic;
+	using System.IO;
+	using System.Linq;
+	using TelerikMovieDatabase.Common;
+	using TelerikMovieDatabase.Data.Excel.Models;
     using TelerikMovieDatabase.Data.Excel;
-    using TelerikMovieDatabase.Data.Imdb;
-    using TelerikMovieDatabase.Data.MongoDb;
-    using TelerikMovieDatabase.Data.MsSql;
-    using TelerikMovieDatabase.Data.MySql;
+	using TelerikMovieDatabase.Data.Imdb;
+	using TelerikMovieDatabase.Data.MongoDb;
+	using TelerikMovieDatabase.Data.MsSql;
+	using TelerikMovieDatabase.Data.MySql;
+	using TelerikMovieDatabase.Data.SqLite;
     using TelerikMovieDatabase.Data.Pdf;
-    using TelerikMovieDatabase.Models;
+	using TelerikMovieDatabase.Models;
 
 	internal class EntryPoint
 	{
@@ -41,38 +43,38 @@
 
 			// Import Initial Data
 			// (Problem #1) - Load Excel Reports from ZIP File (ZIP File Excel 2003 => SQL Server)
-			using (var data = new TelerikMovieDatabaseMsSqlData())
-			{
-				ExcelManager.ImportBoxOfficeEntriesFromZip(data, InitialExcelZipFileName);
-			}
+			//using (var data = new TelerikMovieDatabaseMsSqlData())
+			//{
+			//	ExcelManager.ImportBoxOfficeEntriesFromZip(data, InitialExcelZipFileName);
+			//}
 
 			// (Problem #1) - MongoDB => SQL Server
-			MigrateDataFromMongoDbToMsSql();
+			//MigrateDataFromMongoDbToMsSql();
 
 			// (Problem #2) - Generate PDF Report (SQL Server => PDF)
-			PdfManager.ExportPdfReport("MoviesReport");
+			//PdfManager.ExportPdfReport("MoviesReport");
 
 			// (Problem #3) - Generate XML Report (SQL Server => XML)
-			using (var data = new TelerikMovieDatabaseMsSqlData())
-			{
-				ManagerProvider<Movie>.Xml.Export(
-					data.Movies,
-					"GoodOldMovies",
-					movie => movie.Metascore.HasValue && movie.Metascore.Value > 70
-						&& movie.ReleaseDate.HasValue && movie.ReleaseDate.Value.Year < 1970,
-					movie => movie.Director,
-					movie => movie.Writers,
-					movie => movie.Cast);
-			}
+			//using (var data = new TelerikMovieDatabaseMsSqlData())
+			//{
+			//	ManagerProvider<Movie>.Xml.Export(
+			//		data.Movies,
+			//		"GoodOldMovies",
+			//		movie => movie.Metascore.HasValue && movie.Metascore.Value > 70
+			//			&& movie.ReleaseDate.HasValue && movie.ReleaseDate.Value.Year < 1970,
+			//		movie => movie.Director,
+			//		movie => movie.Writers,
+			//		movie => movie.Cast);
+			//}
 
 			// (Problem #4) - Generate JSON Report (SQL Server => JSON => MySQL)
-			MsSqlToJsonToMySQL();
+			//MsSqlToJsonToMySQL();
 
 			// (Problem #5) - XML file => SQL Server and MongoDB
 			// MigrateDataFromXmlToMongoDbAndMsSql();
 
 			// (Problem #6) - Excel data (SQLite + MySQL => Excel 2007 (.xlsx))
-			// TODO:
+			SQLiteAndMySQLToExcel2007();
 		}
 
 		private static void InitializeMongoDbAndXml()
@@ -151,6 +153,32 @@
 			var movesGross = ManagerProvider<Movie>.Json.DeserializeMultiple(jsonFiles)
 				.ToDictionary(movie => movie.Title, movie => movie.Gross);
 			MySqlManager.InsertIntoMySqlDatabase(movesGross);
+		}
+
+		private static void SQLiteAndMySQLToExcel2007()
+		{
+			var grossReports = MySqlManager.GetDataFromMySqlDatabase();
+			var movieBudgets = SqLiteManager.GetDataFromSqLiteDatabase();
+
+			var moviesRevenue = new List<MovieRevenueReport>();
+
+			foreach (var moveBudget in movieBudgets)
+			{
+				var grossReport = grossReports
+					.FirstOrDefault(movie => movie.Title.Equals(moveBudget.Title, StringComparison.OrdinalIgnoreCase));
+
+				if (grossReport != null)
+				{
+					moviesRevenue.Add(new MovieRevenueReport()
+					{
+						Title = moveBudget.Title,
+						Gross = grossReport.Gross,
+						Revenue = grossReport.Gross - moveBudget.Budget
+					});
+				}
+			}
+
+			ManagerProvider<MovieRevenueReport>.Excel2007.Export(moviesRevenue.ToArray(), "MoviesRevenue");
 		}
 	}
 }
