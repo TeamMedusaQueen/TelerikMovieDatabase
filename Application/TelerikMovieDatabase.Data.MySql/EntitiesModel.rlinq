@@ -37,7 +37,7 @@
   </orm:orm>
   <ModelSettings xmlns="">
     <AppConfigConnectionPropertyName>Connection</AppConfigConnectionPropertyName>
-    <AppConfigConnectionString>Server=localhost;Database=tmdbgrossreports;Uid=root;Pwd=11235813787898;</AppConfigConnectionString>
+    <AppConfigConnectionString>server=localhost;database=tmdbgrossinformation;uid=root;pwd=11235813787898</AppConfigConnectionString>
     <NamingSettings>
       <ClassRules>
         <CaseMode>PascalCase</CaseMode>
@@ -58,6 +58,7 @@
       <MappingDefinitionType>Xml</MappingDefinitionType>
     </CodeGenerationSettings>
     <SchemaUpdateSettings>
+      <ExecuteScript>true</ExecuteScript>
       <DeploymentProject>TelerikMovieDatabase.Data.MySql</DeploymentProject>
     </SchemaUpdateSettings>
     <BackendConfigurationSettings>
