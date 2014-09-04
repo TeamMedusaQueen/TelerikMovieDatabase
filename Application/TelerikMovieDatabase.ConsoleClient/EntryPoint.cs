@@ -5,10 +5,12 @@
 	using System.IO;
 	using System.Linq;
 	using TelerikMovieDatabase.Common;
+	using TelerikMovieDatabase.Data.Excel.Models;
 	using TelerikMovieDatabase.Data.Imdb;
 	using TelerikMovieDatabase.Data.MongoDb;
 	using TelerikMovieDatabase.Data.MsSql;
 	using TelerikMovieDatabase.Data.MySql;
+	using TelerikMovieDatabase.Data.SqLite;
 	using TelerikMovieDatabase.Models;
 
 	internal class EntryPoint
@@ -64,13 +66,13 @@
 			//}
 
 			// (Problem #4) - Generate JSON Report (SQL Server => JSON => MySQL)
-			MsSqlToJsonToMySQL();
+			//MsSqlToJsonToMySQL();
 
 			// (Problem #5) - XML file => SQL Server and MongoDB
 			// MigrateDataFromXmlToMongoDbAndMsSql();
 
 			// (Problem #6) - Excel data (SQLite + MySQL => Excel 2007 (.xlsx))
-			// TODO:
+			SQLiteAndMySQLToExcel2007();
 		}
 
 		private static void InitializeMongoDbAndXml()
@@ -105,23 +107,23 @@
 		}
 
 		private static void MigrateDataFromXmlToMongoDbAndMsSql()
-			{
+		{
 			var movies = ManagerProvider<Movie>.Xml.Import(MoviesInitialXmlFileName);
 
 			// Import to MsSql
 			using (var data = new TelerikMovieDatabaseMsSqlData())
+			{
+				foreach (var movie in movies)
 				{
-					foreach (var movie in movies)
-					{
 					data.Movies.Add(movie);
 				}
 
 				data.SaveChanges();
-					}
+			}
 
 			// Import to MongoDb
 			new MongoDbMigration().AddMovies(movies);
-				}
+		}
 
 		private static void MsSqlToJsonToMySQL()
 		{
@@ -149,6 +151,32 @@
 			var movesGross = ManagerProvider<Movie>.Json.DeserializeMultiple(jsonFiles)
 				.ToDictionary(movie => movie.Title, movie => movie.Gross);
 			MySqlManager.InsertIntoMySqlDatabase(movesGross);
+		}
+
+		private static void SQLiteAndMySQLToExcel2007()
+		{
+			var grossReports = MySqlManager.GetDataFromMySqlDatabase();
+			var movieBudgets = SqLiteManager.GetDataFromSqLiteDatabase();
+
+			var moviesRevenue = new List<MovieRevenueReport>();
+
+			foreach (var moveBudget in movieBudgets)
+			{
+				var grossReport = grossReports
+					.FirstOrDefault(movie => movie.Title.Equals(moveBudget.Title, StringComparison.OrdinalIgnoreCase));
+
+				if (grossReport != null)
+				{
+					moviesRevenue.Add(new MovieRevenueReport()
+					{
+						Title = moveBudget.Title,
+						Gross = grossReport.Gross,
+						Revenue = grossReport.Gross - moveBudget.Budget
+					});
+				}
+			}
+
+			ManagerProvider<MovieRevenueReport>.Excel2007.Export(moviesRevenue.ToArray(), "MoviesRevenue");
 		}
 	}
 }

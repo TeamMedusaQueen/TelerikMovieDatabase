@@ -24,12 +24,13 @@ USE `tmdbgrossinformation`;
 DROP TABLE IF EXISTS `grossreports`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `grossreports` (
-  `idGrossReports` int(11) NOT NULL AUTO_INCREMENT,
-  `Title` varchar(500) NOT NULL,
-  `Gross` int(11) NOT NULL,
-  PRIMARY KEY (`idGrossReports`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+CREATE TABLE `GrossReports` (
+    `ReportID` integer AUTO_INCREMENT NOT NULL, -- _idGrossReports
+    `Title` nvarchar(45) NOT NULL,          -- _title
+    `Gross` integer NOT NULL,               -- _gross
+    CONSTRAINT `pk_GrossReports` PRIMARY KEY (`ReportID`)
+) ENGINE = InnoDB;
+
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --

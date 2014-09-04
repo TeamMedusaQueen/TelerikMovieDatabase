@@ -93,7 +93,6 @@
     </OpenAccessDeploy>
     <None Include="EntitiesModel.rlinq.diagram">
       <DependentUpon>EntitiesModel.rlinq</DependentUpon>
-      <ExcludeFromStyleCop>False</ExcludeFromStyleCop>
     </None>
     <None Include="packages.config" />
   </ItemGroup>
@@ -102,6 +101,9 @@
       <Project>{d5fb25d1-306d-4ade-9c57-63c4fa1e6f5f}</Project>
       <Name>TelerikMovieDatabase.Data.Excel</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Connection%282014-09-04 05-21-26%29.rlinq.sql" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Condition="Exists('$(MSBuildExtensionsPath)\OpenAccess.targets')" Project="$(MSBuildExtensionsPath)\OpenAccess.targets" />
