@@ -19,6 +19,7 @@
 	{
 		private const string MoviesInitialXmlFileName = "MoviesInitial";
 		private const string InitialExcelZipFileName = "BoxOffice-week1-September";
+        private const string XlsPath = "..\\..\\..\\..\\Databases\\Excel\\";
 
 		// Tasks:
 		// C#
@@ -37,7 +38,7 @@
 		{
 			// Prepare Initial Data
 			// Step 1 - MongoDB
-			//InitializeMongoDbAndXml();
+			InitializeMongoDbAndXml();
 			// Step 2 - ZIP File Excel 2003
 		    // ExcelZipInitializer.Init(InitialExcelZipFileName);
 

@@ -18,10 +18,14 @@
     using TelerikMovieDatabase.Data.MySql;
     using TelerikMovieDatabase.Data.SqLite;
     using TelerikMovieDatabase.Data.Excel.Models;
+    using TelerikMovieDatabase.Data.Imdb;
+    using System.IO;
+    using TelerikMovieDatabase.Data.Pdf;
 
     public partial class frmTMDB : Form
     {
-        TelerikMovieDatabaseMsSqlContext db = new TelerikMovieDatabaseMsSqlContext();
+        private TelerikMovieDatabaseMsSqlContext db = new TelerikMovieDatabaseMsSqlContext();
+        private const string MoviesInitialXmlFileName = "MoviesInitial";
 
         public frmTMDB()
         {
@@ -272,14 +276,48 @@
 
             if (cmbExportInfo.Text == "JSON")
             {
+                using (var data = new TelerikMovieDatabaseMsSqlData())
+                {
+                    var jsonManager = ManagerProvider<Movie>.Json;
+                    jsonManager.IsMultiple = true;
+                    jsonManager.Export(
+                        data.Movies,
+                        "MovieBoxOfficeReport",
+                        movie => new Movie()
+                        {
+                            ID = movie.ID,
+                            Title = movie.Title,
+                            Gross = movie.BoxOfficeEntry.GeneratedWeekendIncome,
+                        },
+                        movie => movie.BoxOfficeEntry != null,
+                        movie => movie.BoxOfficeEntry);
+                }
 
+                // Read the exported json files to MySql
+                var jsonFiles = Directory.GetFiles(Data.Json.Settings.Default.FolderPath)
+                    .Select(file => Path.GetFileNameWithoutExtension(file))
+                    .ToArray();
+                var movesGross = ManagerProvider<Movie>.Json.DeserializeMultiple(jsonFiles)
+                    .ToDictionary(movie => movie.Title, movie => movie.Gross);
+                MySqlManager.InsertIntoMySqlDatabase(movesGross);
             }
             else if (cmbExportInfo.Text == "PDF")
             {
-
+                PdfManager.ExportPdfReport("MoviesReport");
             }
             else if (cmbExportInfo.Text == "XML")
             {
+                using (var data = new TelerikMovieDatabaseMsSqlData())
+                {
+                    ManagerProvider<Movie>.Xml.Export(
+                        data.Movies,
+                        "GoodOldMovies",
+                        movie => movie.Metascore.HasValue && movie.Metascore.Value > 70
+                            && movie.ReleaseDate.HasValue && movie.ReleaseDate.Value.Year < 1970,
+                        movie => movie.Director,
+                        movie => movie.Writers,
+                        movie => movie.Cast);
+                }
 
             }
             else if (cmbExportInfo.Text == "XLS")
