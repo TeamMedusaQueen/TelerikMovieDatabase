@@ -7,14 +7,14 @@
 
     public class SqLiteManager
     {
-        private IList<MovieBudgetReport> GetDataFromSqLiteDatabase()
+        public IList<MovieBudgetReport> GetDataFromSqLiteDatabase()
         {
             var db = new MovieBudgetContext();
             var data = db.MovieBudgetReports.ToList();
             return data;
         }
 
-        private static void InitializeSQLiteDb()
+        public static void InitializeSQLiteDb()
         {
 
             using (var db = new MovieBudgetContext())
