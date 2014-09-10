@@ -38,7 +38,7 @@
 		{
 			// Prepare Initial Data
 			// Step 1 - MongoDB
-			InitializeMongoDbAndXml();
+			// InitializeMongoDbAndXml();
 			// Step 2 - ZIP File Excel 2003
 		    // ExcelZipInitializer.Init(InitialExcelZipFileName);
 
@@ -72,7 +72,7 @@
 			// MsSqlToJsonToMySQL();
 
 			// (Problem #5) - XML file => SQL Server and MongoDB
-			// MigrateDataFromXmlToMongoDbAndMsSql();
+			//MigrateDataFromXmlToMongoDbAndMsSql();
 
 			// (Problem #6) - Excel data (SQLite + MySQL => Excel 2007 (.xlsx))
 		    // SQLiteAndMySQLToExcel2007();

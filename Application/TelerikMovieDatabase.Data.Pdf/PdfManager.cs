@@ -62,7 +62,7 @@ namespace TelerikMovieDatabase.Data.Pdf
 			PdfPTable reportTable = new PdfPTable(TableNumberOfColumns);
 			reportTable.SetWidths(new float[] { 80f, 20f, 25f });
 
-			SqlConnection dbConnection = new SqlConnection("Server=(localdb)\\MSSqlLocalDB; " + "Database=TMDB; Integrated Security=true");
+			SqlConnection dbConnection = new SqlConnection("Server=(localdb)\\v11.0; " + "Database=TelerikMovieDatabase; Integrated Security=true");
 			dbConnection.Open();
 
 			using (dbConnection)
